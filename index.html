@@ -13,13 +13,13 @@
    THEME & RESET
    ========================= */
 :root {
-  --primary: #efff09;
-  --secondary: #1e3a8a;
+  --primary: hsla(64, 100%, 52%, 1.00);
+  --secondary: #fcfc06ff;
   --bg: #f9fafb;
   --text: #111827;
   --muted: #6b7280;
   --overlay: rgba(0, 0, 0, 0.306);
-  --card-bg: rgba(255,255,255,0.95);
+  --card-bg: rgba(255, 255, 255, 0.88);
   --radius: 12px;
   --container-w: 1200px;
 }
@@ -58,7 +58,7 @@ header {
   display: flex;
   align-items: center;
   gap: .75rem;
-  color: #fff;
+  color: #1786cbff;
   font-weight: 700;
   letter-spacing: 0.2px;
 }
@@ -116,8 +116,8 @@ nav a:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
 /* base section style (we add backgrounds and overlay) */
 section {
   display: none;
-  min-height: 100vh;       /* fill full screen height */
-  padding: 6rem 0 5rem;    /* top padding pushes content below fixed header */
+  min-height: 70vh;       /* fill full screen height */
+  padding: 0.6rem 0 0rem;    /* top padding pushes content below fixed header */
   position: relative;
   overflow: hidden;
 
@@ -149,10 +149,10 @@ section::before {
 
 /* per-section background placeholders (removed `fixed`) */
 #home { background: #0b1a3a; }
-#fundraise { background: url('https://i.imgur.com/K7OsXYP.jpg') center center/auto auto no-repeat; }
+#fundraise { background: url('https://i.imgur.com/K7OsXYP.jpg') center center/200% auto no-repeat; }
 #project-donate { background: url('https://i.imgur.com/CHIYsK9.jpeg') center center/cover no-repeat; }
-#about { background: url('https://i.imgur.com/v5HBQSK.jpg') center center/50% auto no-repeat; }
-#contact { background: url('https://i.imgur.com/CoCKRlV.jpg') center center/cover no-repeat; }
+#about { background: url('https://i.imgur.com/v5HBQSK.jpg') center center/30% auto no-repeat; }
+#contact { background: url('https://i.imgur.com/CoCKRlV.jpg') center center/120% auto no-repeat; }
 
 /* headings and readable text */
 h1,h2,h3 { margin-bottom: .5rem; line-height: 1.1; }
@@ -202,7 +202,7 @@ h3 { font-size: clamp(16px, 2.2vw, 20px); font-weight: 700; color: var(--seconda
 
 /* progress bar */
 .progress-container {
-  background: #e5e7eb;
+  background: #070b1439;
   border-radius: 20px;
   overflow: hidden;
   height: 12px;
@@ -342,38 +342,68 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="swiper-slide home-slide">
           <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/DolIePP.png')"></div>
           <div class="home-slide__content">
-            <h1 id="home-title">Welcome to Golden Gates</h1>
-            <p class="lead">Education for displaced learners — creating hope through opportunities and community action.</p>
-            <a href="#" class="cta-btn donate-floating-inline" data-target="fundraise">Explore Projects</a>
+            <h1 id="home-title">The Gate Of Hope</h1>
+            <p class="lead">In 2023, a dream took its first breath. With the unwavering guidance of our devoted Director and the tireless dedication of our system administrator, we reached out to over 200 homes—knocking on doors, sharing hope, and offering children a chance at a future they had only imagined in whispers.</p>
           </div>
         </div>
-        <!-- Slide 2 -->
+       <!-- Slide 2 -->
         <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/wpRPSPP.jpeg')"></div>
+          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/CHIYsK9.jpg')"></div>
           <div class="home-slide__content">
-            <h1>Clean Water Changes Everything</h1>
-            <p class="lead">Help us drill a borehole so students and families have safe, reliable water on campus.</p>
-            <a href="#" class="cta-btn" data-target="fundraise">Support Borehole</a>
+            <h1 id="home-title">The First Step of Courage</h1>
+            <p class="lead">That first year, only 70 parents found the courage to entrust their precious children to us. Fear of the unknown weighed heavily on their hearts, yet their bravery planted the first seeds of hope in our classrooms.</p>
           </div>
         </div>
-         <!-- Slide 3 -->
-         <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/K7OsXYP.jpg')"></div>
-          <div class="home-slide__content">
-            <h1>Clean Water Changes Everything</h1>
-            <p class="lead">Help us as we strive to make education a norm for these children once again.</p>
-            <a href="#" class="cta-btn" data-target="fundraise">Support Borehole</a>
-          </div>
-        </div>
-        <!-- Slide 4 -->
+          <!-- Slide 3 -->
         <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/Lwru71P.jpeg')"></div>
+          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/axJOklA.jpg')"></div>
           <div class="home-slide__content">
-            <h1>Finish the Classrooms</h1>
-            <p class="lead">Complete learning spaces so displaced learners can study in safety and dignity.</p>
-            <a href="#" class="cta-btn" data-target="fundraise">Fund a Classroom</a>
+            <h1 id="home-title">Little Hands, Big Dreams</h1>
+            <p class="lead">Every child who walked through our doors carried a story of resilience. Tiny hands clutched pencils as big dreams sparkled in their eyes. Each smile, each question, reminded us why every effort mattered.</p>
           </div>
         </div>
+         <!-- Slide 4 -->
+        <div class="swiper-slide home-slide">
+          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/EKdWUWy.jpg')"></div>
+          <div class="home-slide__content">
+            <h1 id="home-title">Triumphs and Tears</h1>
+            <p class="lead">There were tears of struggle and joy of discovery. Lessons learned weren’t only in books—they were in courage, patience, and the quiet victories of children who had once been denied the chance to learn.</p>
+          </div>
+        </div>
+         <!-- Slide 5 -->
+        <div class="swiper-slide home-slide">
+          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/xYrNFPT.jpg')"></div>
+          <div class="home-slide__content">
+            <h1 id="home-title">Growing Togheter</h1>
+            <p class="lead">With each passing day, our classrooms blossomed with curiosity. Children who once hesitated now raised their voices, eager to explore, to ask, to understand. Their courage became our inspiration.</p>
+          </div>
+        </div>
+         <!-- Slide 6 -->
+        <div class="swiper-slide home-slide">
+          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/CoCKRlV.jpg')"></div>
+          <div class="home-slide__content">
+            <h1 id="home-title">Milestones Achieved</h1>
+            <p class="lead">By the end of our first year, we had not only taught lessons, but nurtured souls. Over 70 children had found a safe haven, a place where knowledge met care, and dreams could take their first flight.</p>
+          </div>
+        </div>
+         <!-- Slide 7 -->
+        <div class="swiper-slide home-slide">
+          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/4N97QBK.jpg')"></div>
+          <div class="home-slide__content">
+            <h1 id="home-title">Gratitude in Every Step</h1>
+            <p class="lead">Every smile captured in these photos tells a story of trust, perseverance, and love. Every parent who believed, every child who dared, brought us closer to the mission we hold dear.</p>
+          </div>
+        </div>
+        <!-- Slide 8 -->
+        <div class="swiper-slide home-slide">
+          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/YToJQBb.jpg')"></div>
+          <div class="home-slide__content">
+            <h1>The Journey Ahead</h1>
+            <p class="lead">Golden Gates is more than walls and classrooms. It is hope made tangible, opportunity made real. Every picture, every moment, is a reminder: together, we can transform lives, one child at a time.</p>
+            <a href="#" class="cta-btn" data-target="fundraise">Support our mission</a>
+          </div>
+        </div>
+        
       </div>
       <div class="swiper-pagination"></div>
     </div>
@@ -419,8 +449,8 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           </div>
         </div>
         <div class="project__body">
-          <h3 id="p-bus">School Bus</h3>
-          <p>Purchase a reliable bus to transport children safely to and from school.</p>
+          <h3 id="p-bus">Help us buy a new bus</h3>
+          <p>Our current bus can carry only 40 students at a time. With humility, we appeal for your support to provide safe and accessible transportation for all our children.</p>
           <div class="progress-container"><div class="progress-bar" style="width:30%"></div></div>
           <button class="donateBtn" data-project="bus">Donate</button>
         </div>
@@ -440,7 +470,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         </div>
         <div class="project__body">
           <h3 id="p-classroom">Classroom Completion</h3>
-          <p>Finish construction of classrooms to provide proper learning space for displaced learners.</p>
+          <p>Help us complete the  construction of classrooms to provide proper learning space for our displaced learners.</p>
           <div class="progress-container"><div class="progress-bar" style="width:45%"></div></div>
           <button class="donateBtn" data-project="classroom">Donate</button>
         </div>
@@ -459,7 +489,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         </div>
         <div class="project__body">
           <h3 id="p-landscaping">School Landscaping</h3>
-          <p>Create a safe, green, and inspiring environment for children to learn and play.</p>
+          <p>Aid us in creating a safe, green, and inspiring environment for children to learn and play.</p>
           <div class="progress-container"><div class="progress-bar" style="width:20%"></div></div>
           <button class="donateBtn" data-project="landscaping">Donate</button>
         </div>
@@ -478,7 +508,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         </div>
         <div class="project__body">
           <h3 id="p-electrification">Electrification</h3>
-          <p>Bring power to the school to enable evening classes, digital learning, and improved safety.</p>
+          <p>With all our efforts, we have raised the school structure, but electricity is not yet in place. We humbly ask for your support to power the school and make digital learning accessible to our students.</p>
           <div class="progress-container"><div class="progress-bar" style="width:10%"></div></div>
           <button class="donateBtn" data-project="electrification">Donate</button>
         </div>
@@ -535,9 +565,28 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         </div>
         <div class="project__body">
           <h3 id="p-library">Library</h3>
-          <p>Provide children access to timeless knowledge and wisdom.</p>
+          <p>Every donation brings children closer to the knowledge that shapes tomorrow..</p>
           <div class="progress-container"><div class="progress-bar" style="width:10%"></div></div>
           <button class="donateBtn" data-project="library">Donate</button>
+        </div>
+      </article>
+
+      <!-- Project 7: Staff payment -->
+      <article class="project" aria-labelledby="p-computer">
+        <div class="project__media">
+          <div class="swiper proj7">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"><img src="https://via.placeholder.com/960x520.png?text=Before+Computer+Lab" alt="Before Computer Lab"></div>
+              <div class="swiper-slide"><img src="https://via.placeholder.com/960x520.png?text=After+Computer+Lab" alt="After Computer Lab"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+        <div class="project__body">
+          <h3 id="p-computer">staff support</h3>
+          <p>They lost their own education to war, yet give everything to teach others. Help us keep their hope—and classrooms—alive.</p>
+          <div class="progress-container"><div class="progress-bar" style="width:80%"></div></div>
+          <button class="donateBtn" data-project="computer-lab">Donate</button>
         </div>
       </article>
 
@@ -557,9 +606,10 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
       <div class="donation-project" data-project="borehole">
         <h3>Borehole Construction</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="50"> Drill borehole — $50</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="100"> Water pump installation — $100</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="1200"> Drill borehole — $1200</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="1000"> Water pump installation — $1000</label></li>
           <li><label><input type="checkbox" class="subtask" data-price="200"> Tank & piping — $200</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="600"> water tower cosntruction — $600</label></li>
         </ul>
       </div>
 
@@ -567,9 +617,8 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
       <div class="donation-project" data-project="bus">
         <h3>School Bus</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="500"> Buy bus chassis — $500</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="800"> Engine & mechanics — $800</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="300"> Seats & safety equipment — $300</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="12000"> Buying a  second hand bus — $12000</label></li>
+        <li><label><input type="checkbox" class="subtask" data-price="20000"> Buying a new bus — $20000</label></li>
         </ul>
       </div>
 
@@ -577,9 +626,9 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
       <div class="donation-project" data-project="classroom">
         <h3>Classroom Completion</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="150"> Walls & roof — $150</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="100"> Windows & doors — $100</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="50"> Furniture & paint — $50</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="350"> Walls plastering per class(13 total classes) — $350</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="200"> Windows & doors-per classroom(13 classes in total) — $200</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="150">  painting a classroom(13 clases) — $150</label></li>
         </ul>
       </div>
 
@@ -597,9 +646,9 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
       <div class="donation-project" data-project="electrification">
         <h3>Electrification</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="100"> Wiring — $100</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="150"> Light fixtures — $150</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="50"> Switches & outlets — $50</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="1200"> Wiring — 1200</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="700"> electric poles— $700</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="300"> Switches & outlets — $300</label></li>
         </ul>
       </div>
 
@@ -607,9 +656,9 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
       <div class="donation-project" data-project="lab">
         <h3>Science Lab</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="200"> Lab construction — $200</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="150"> Equipment — $150</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="50"> Safety gear & materials — $50</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="3500"> Lab construction — $3500</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="8000"> Equipment — $8000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="4000"> Safety gear & materials — $4000</label></li>
         </ul>
       </div>
 
@@ -617,9 +666,10 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
       <div class="donation-project" data-project="computer-lab">
         <h3>Computer Lab</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="300"> Computers — $300</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="100"> Furniture & chairs — $100</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="50"> Networking & cables — $50</label></li>
+             <li><label><input type="checkbox" class="subtask" data-price="2400"> Lab cosntruction — $2400</label></li>
+            <li><label><input type="checkbox" class="subtask" data-price="10000"> Computers — $10000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="2000"> Furniture & chairs — $2000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="1000"> Networking & cables — $1000</label></li>
         </ul>
       </div>
 
@@ -627,9 +677,10 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
       <div class="donation-project" data-project="library">
         <h3>Library</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="100"> Books — $100</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="50"> Shelves & furniture — $50</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="20"> Lighting & décor — $20</label></li>
+            <li><label><input type="checkbox" class="subtask" data-price="6000"> Library construction— $6000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="2000"> Books — $2000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="3500"> Shelves & furniture — $3500</label></li>
+          
         </ul>
       </div>
 
@@ -664,7 +715,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 <section id="about" aria-labelledby="about-title">
   <div class="inner container">
     <h2 id="about-title" class="fade-in">About Us</h2>
-    <p class="lead fade-in">Golden Gates is committed to creating access to quality education for displaced learners through community-driven initiatives, local partnerships, and sustainable projects that create long-term impact.</p>
+    <p class="lead fade-in">Golden Gates is committed to expanding access to quality education for displaced learners through community-driven initiatives, local partnerships, and sustainable projects that ensure long-term impact. Since its founding in 2023, the institution has transformed the lives of more than 200 students and adults—most of whom previously relied solely on agriculture—by opening new pathways to learning and opportunity</p>
 
     <div class="team fade-in">
       <div class="team-grid">
@@ -675,7 +726,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           </div>
           <div class="team-title">Founder</div>
           <div class="team-name">Your Founder Name</div>
-          <div class="team-note">Vision & Mission</div>
+          <div class="team-note">Children should never bear the consequences of destructive decisions made by adults. The Anglophone crisis has forced countless children out of school, with little regard for their futures. That is why we must rise to be better—working to correct the injustices and mistakes that have been unfairly inflicted upon these children and youth</div>
         </div>
         <!-- Director -->
         <div class="team-card">
@@ -683,8 +734,10 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
             <img src="https://via.placeholder.com/300x300.png?text=Director" alt="Director portrait">
           </div>
           <div class="team-title">Director</div>
-          <div class="team-name">Your Director Name</div>
-          <div class="team-note">Programs & Partnerships</div>
+          <div class="team-name">Tonghtoh Ernest</div>
+          <div class="team-note">I am a refugee of the Anglophone crisis. When the war consumed my hometown, I lost not only my job but the stability I had worked so hard to build. With nothing left, I fled to Fumbot, carrying only the hope that I could start over. Life as a refugee is a daily struggle—every day feels like learning to live again from nothing.
+
+In the midst of this hardship, Golden Gates became my salvation. It offered me more than support; it gave me a renewed purpose. Through its mission, I found strength in helping others who, like me, had seen their futures shattered. Today, I stand firmly committed to the vision of Golden Gates: to bring displaced children back into the classrooms they were cruelly torn away from, and to restore the education and dignity that war had stolen from them.</div>
         </div>
         <!-- System Administrator -->
         <div class="team-card">
@@ -692,14 +745,14 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
             <img src="https://via.placeholder.com/300x300.png?text=System+Admin" alt="System Administrator portrait">
           </div>
           <div class="team-title">System Administrator</div>
-          <div class="team-name">Your Admin Name</div>
-          <div class="team-note">Technology & Platforms</div>
+          <div class="team-name">Priceless Sheutang</div>
+          <div class="team-note">I am a consequence of the Anglophone crisis. The conflict tore me away from my hometown and disrupted my education, leaving me to rebuild my life from fragments. Yet, from this loss, I found a renewed purpose. I have vowed to put my knowledge of data systems and spreadsheets at the service of Golden Gate, using every skill I have to strengthen our mission. What was once a story of disruption has become a story of dedication—because no child should suffer the same fate I endured, and every displaced learner deserves the chance to return to education.</div>
         </div>
       </div>
 
       <!-- Space below images to write about the school -->
       <div class="about-body">
-        <p style="margin-bottom:.5rem;">We focus on infrastructure (classrooms, water, electricity), learning resources (libraries, labs), and safe transport. Your contribution helps make these projects real.</p>
+        <p style="margin-bottom:.5rem;">We are driven by the vision that education is not a privilege to be purchased, but a fundamental right accessible to all. Guided by this belief, our unwavering dedication and sheer willpower fuel the change we bring to the lives of hundreds of children and adults whose education and dreams have been broken.</p>
         <!-- You can freely write a longer story here. Keep this div; replace with your own copy. -->
       </div>
     </div>
@@ -786,7 +839,7 @@ for(let i = 1; i <= 8; i++){
 try {
   new Swiper('.home-swiper', {
     loop: true,
-    autoplay: { delay: 10000, disableOnInteraction: false },
+    autoplay: { delay: 15000, disableOnInteraction: false },
     pagination: { el: '.home-swiper .swiper-pagination', clickable: true },
     effect: 'fade',
     fadeEffect: { crossFade: true },
