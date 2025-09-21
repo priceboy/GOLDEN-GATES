@@ -7,6 +7,8 @@
 
 <!-- Swiper -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+<script src="https://checkout.flutterwave.com/v3.js"></script>
+
 
 <style>
 /* =========================
@@ -275,7 +277,7 @@ h3 { font-size: clamp(16px, 2.2vw, 20px); font-weight: 700; color: var(--seconda
 .team-avatar { width: 140px; height: 140px; border-radius: 9999px; overflow: hidden; margin: 0 auto .75rem; border: 5px solid rgba(26,58,217,0.15); box-shadow: 0 6px 16px rgba(2,6,23,0.08) inset; }
 .team-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .team-title { font-weight: 800; color: var(--secondary); margin-bottom: .25rem; }
-.team-name { color: #dec507; font-weight: 700; margin-bottom: .25rem; }
+.team-name { color: #191c25; font-weight: 700; margin-bottom: .25rem; }
 .team-note { color: #f6f6f6; font-size: .95rem; }
 .about-body { max-width: 980px; margin: 1rem auto 0; background: rgba(1, 7, 24, 0.96); color: var(--text); border-radius: 12px; padding: 1rem; box-shadow: 0 8px 24px rgba(2,6,23,0.08); }
 
@@ -310,6 +312,7 @@ h3 { font-size: clamp(16px, 2.2vw, 20px); font-weight: 700; color: var(--seconda
 /* small accessible focus */
 a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,130,246,0.25); outline-offset: 3px; }
 </style>
+
 </head>
 <body>
 
@@ -318,7 +321,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
     <div class="brand__logo" aria-hidden="true">
       <img src="https://i.imgur.com/v5HBQSK.jpg" alt="Golden Gates logo">
     </div>
-    <span>Golden Gate</span>
+    <span>GOLDEN GATE</span>
   </div>
 
   <div class="hamburger" aria-hidden="true" title="Menu" id="hamburger">
@@ -338,12 +341,22 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
   <div class="inner">
     <div class="swiper home-swiper">
       <div class="swiper-wrapper">
+         <!-- Slide o -->
+        <div class="swiper-slide home-slide">
+          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/DolIePP.png')"></div>
+          <div class="home-slide__content">
+            <h1 id="home-title">OUR MISSION</h1>
+            <p class="lead">........</p>
+          <h1 id="home-title">OUR VISION</h1>
+            <p class="lead">.......</p>
+          </div>
+        </div>
         <!-- Slide 1 -->
         <div class="swiper-slide home-slide">
           <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/DolIePP.png')"></div>
           <div class="home-slide__content">
             <h1 id="home-title">The Gate Of Hope</h1>
-            <p class="lead">In 2023, a dream took its first breath. With the unwavering guidance of our devoted Director and the tireless dedication of our system administrator, we reached out to over 200 homes—knocking on doors, sharing hope, and offering children a chance at a future they had only imagined in whispers.</p>
+            <p class="lead">In 2023, a dream took its first breath. Through the vision of our funder and the dedication of our team, Golden gate was born.</p>
           </div>
         </div>
        <!-- Slide 2 -->
@@ -414,7 +427,8 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 <section id="fundraise" aria-labelledby="fundraise-title">
   <div class="inner container">
     <h2 id="fundraise-title" class="fade-in">Current Fundraising Projects</h2>
-    <p class="lead fade-in">Choose a project and click Donate to support a specific part of that project.</p>
+    <p class="lead fade-in">Choose a project and click Donate to support a specific part of that project.</br>
+    (The green lines indicate how close we are to luanching the project.)</p>
 
     <div class="projects fade-in" id="projects-grid" style="margin-top:1.25rem;">
 
@@ -431,7 +445,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         </div>
         <div class="project__body">
           <h3 id="p-borehole">Borehole Construction</h3>
-          <p>Provide clean, accessible water to the school community.</p>
+          <p>Provide clean, accessible water to the school community.  </p>
           <div class="progress-container"><div class="progress-bar" style="width:60%"></div></div>
           <button class="donateBtn" data-project="borehole" aria-label="Donate to Borehole">Donate</button>
         </div>
@@ -572,21 +586,20 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
       </article>
 
       <!-- Project 7: Staff payment -->
-      <article class="project" aria-labelledby="p-computer">
+      <article class="project" aria-labelledby="p_staff">
         <div class="project__media">
           <div class="swiper proj7">
             <div class="swiper-wrapper">
               <div class="swiper-slide"><img src="https://via.placeholder.com/960x520.png?text=Before+Computer+Lab" alt="Before Computer Lab"></div>
-              <div class="swiper-slide"><img src="https://via.placeholder.com/960x520.png?text=After+Computer+Lab" alt="After Computer Lab"></div>
             </div>
             <div class="swiper-pagination"></div>
           </div>
         </div>
         <div class="project__body">
-          <h3 id="p-computer">staff support</h3>
+          <h3 id="p_staff">staff support</h3>
           <p>They lost their own education to war, yet give everything to teach others. Help us keep their hope—and classrooms—alive.</p>
           <div class="progress-container"><div class="progress-bar" style="width:80%"></div></div>
-          <button class="donateBtn" data-project="computer-lab">Donate</button>
+          <button class="donateBtn" data-project="staff_payment">Donate</button>
         </div>
       </article>
 
@@ -683,6 +696,13 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           
         </ul>
       </div>
+          <!-- staff payment -->
+      <div class="donation-project" data-project="staff_payment">
+        <h3>Staff-support</h3>
+        <ul>
+            <li><label><input type="checkbox" class="subtask" data-price="400"> teacher's monthly wage $400</label></li>
+          </ul>
+      </div>
 
       <!-- TOTAL & PAYMENT -->
       <div class="total" aria-live="polite">Total Amount: $<span id="total-amount">0</span></div>
@@ -706,7 +726,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <button id="initiate-payment" class="donateBtn" style="margin-left:.5rem;">Donate Now</button>
       </div>
 
-      <p class="helper">After clicking Donate, you'll be given instructions based on your selected payment method. MTN/Orange flows are currently placeholders — I can add live API integration when you're ready.</p>
+      <p class="helper">After clicking Donate, you'll be redirected according to your desired payment method.</p>
     </div>
   </div>
 </section>
@@ -764,7 +784,7 @@ In the midst of this hardship, Golden Gates became my salvation. It offered me m
   <div class="inner container">
     <h2 id="contact-title" class="fade-in">Contact Us</h2>
     <p class="lead fade-in">Email: <a href="mailto:info@goldengates.org" style="color: #fff; font-weight:700;">info@goldengates.org</a></p>
-    <p class="helper fade-in">Follow us on social media or send a message to learn how you can partner with Golden Gates.</p>
+    <p class="helper fade-in">Follow us on social media or send a message to learn how you can partner with Golden Gate.</p>
   </div>
 </section>
 
@@ -976,6 +996,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // Show initial fade-ins for whichever section is active
   document.querySelectorAll('section.active .fade-in').forEach(el => el.classList.add('show'));
 });
+</script>
+<script>
+function makePayment() {
+  const amount = document.getElementById("donation-amount").value || 5000; // default 5000 XAF
+  FlutterwaveCheckout({
+    public_key: "YOUR_PUBLIC_KEY",  // Replace with your real public key from dashboard
+    tx_ref: "GGATE-" + Date.now(),
+    amount: amount,
+    currency: "XAF",
+    payment_options: "card,mobilemoneyfranco,mobilemoneyghana,banktransfer,paypal",
+    customer: {
+      email: "donor@example.com",
+      phone_number: "677123456",
+      name: "Golden Gate Supporter",
+    },
+    customizations: {
+      title: "Golden Gate Donations",
+      description: "Support displaced learners with your gift",
+      logo: "https://yourdomain.com/logo.png",
+    },
+  });
+}
 </script>
 
 </body>
