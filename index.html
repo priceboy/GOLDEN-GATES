@@ -15,10 +15,12 @@
    THEME & RESET
    ========================= */
 :root {
-  --primary: rgb(112, 151, 3);
-  --secondary: rgb(112, 151, 3);
+  --primary: rgb(12, 59, 107);
+  --ter: rgba(18, 205, 252, 0.747);
+  --secondary: rgb(255, 251, 4);
   --bg: #02101f;
   --text: #ffffff;
+  --ttext: #000000;
   --muted: #ffffff;
   --overlay: rgba(0, 0, 0, 0.306);
   --card-bg: rgba(0, 1, 16, 0.88);
@@ -48,7 +50,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.25rem;
-  background: linear-gradient(90deg, var(--primary), #0e5bb2);
+  background: linear-gradient(60deg, var(--ter), hsla(216, 89%, 19%, 0.363));
   box-shadow: 0 2px 6px rgba(0,0,0,0.12);
   position: sticky;
   top: 0;
@@ -60,7 +62,7 @@ header {
   display: flex;
   align-items: center;
   gap: .75rem;
-  color: rgb(245, 212, 0);
+  color: rgb(255, 221, 0);
   font-weight: 700;
   letter-spacing: 0.2px;
 }
@@ -69,7 +71,7 @@ header {
   height: 48px;
   border-radius: 999px;
   overflow: hidden;
-  background: #6b89e4;
+  background: #fefeff;
   box-shadow: 0 2px 10px rgba(0,0,0,.18);
   display: inline-flex;
   align-items: center;
@@ -150,17 +152,18 @@ section::before {
 }
 
 /* per-section background placeholders (removed `fixed`) */
-#home { background: #0b1a3a; }
+#home { background: rgb(5, 19, 32); }
 #fundraise { background: url('https://i.imgur.com/GIfidXr.png') center center/200% auto no-repeat; }
 #project-donate { background: url('https://i.imgur.com/CHIYsK9.jpeg') center center/cover no-repeat; }
-#about { background: url('https://i.imgur.com/v5HBQSK.jpg') center center/30% auto no-repeat; }
-#contact { background: url('https://i.imgur.com/CoCKRlV.jpg') center center/120% auto no-repeat; }
+#about { background: url('https://i.imgur.com/v5HBQSK.jpg') center center/cover auto no-repeat; }
+#contact { background: url('https://i.imgur.com/CoCKRlV.jpg') center center/cover no-repeat; }
 
 /* headings and readable text */
 h1,h2,h3 { margin-bottom: .5rem; line-height: 1.1; }
 h1 { font-size: clamp(26px, 4vw, 42px); font-weight: 800; }
 h2 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 700; }
 h3 { font-size: clamp(16px, 2.2vw, 20px); font-weight: 700; color: var(--secondary); }
+h4 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 500; }
 
 /* small paragraph */
 .lead { color: rgba(255,255,255,0.95); font-size: clamp(14px, 1.9vw, 16px); margin-bottom: 1rem; }
@@ -273,13 +276,13 @@ h3 { font-size: clamp(16px, 2.2vw, 20px); font-weight: 700; color: var(--seconda
    ========================= */
 .team { margin-top: 1rem; }
 .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 980px; margin: 1rem auto 1.25rem; }
-.team-card { background: rgba(5, 1, 23, 0.96); color: var(--text); border-radius: 16px; padding: 1rem; text-align: center; box-shadow: 0 8px 24px rgba(2,6,23,0.08); }
+.team-card { background: rgba(5, 1, 23, 0.96); color: var(--ttext); border-radius: 16px; padding: 1rem; text-align: center; box-shadow: 0 8px 24px rgba(2,6,23,0.08); }
 .team-avatar { width: 140px; height: 140px; border-radius: 9999px; overflow: hidden; margin: 0 auto .75rem; border: 5px solid rgba(26,58,217,0.15); box-shadow: 0 6px 16px rgba(2,6,23,0.08) inset; }
 .team-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .team-title { font-weight: 800; color: var(--secondary); margin-bottom: .25rem; }
-.team-name { color: #191c25; font-weight: 700; margin-bottom: .25rem; }
-.team-note { color: #f6f6f6; font-size: .95rem; }
-.about-body { max-width: 980px; margin: 1rem auto 0; background: rgba(1, 7, 24, 0.96); color: var(--text); border-radius: 12px; padding: 1rem; box-shadow: 0 8px 24px rgba(2,6,23,0.08); }
+.team-name { color: #dfea03; font-weight: 700; margin-bottom: .25rem; }
+.team-note { color: #080101c4; font-size: .95rem; }
+.about-body { max-width: 980px; margin: 1rem auto 0; background: rgba(11, 141, 255, 0.795); color: var(--ttext); border-radius: 12px; padding: 1rem; box-shadow: 0 8px 24px rgba(2,6,23,0.08); }
 
 /* =========================
    ANIMATIONS
@@ -330,7 +333,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 
   <nav role="navigation" aria-label="Primary navigation" id="main-nav">
     <a href="#" data-target="home">Home</a>
-    <a href="#" data-target="fundraise">Fundraise</a>
+    <a href="#" data-target="fundraise">Fundraiser Projects</a>
     <a href="#" data-target="about">About</a>
     <a href="#" data-target="contact">Contact</a>
   </nav>
@@ -345,11 +348,11 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="swiper-slide home-slide">
           <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/DolIePP.png')"></div>
           <div class="home-slide__content">
-            <h1 id="home-title"> MISSION</h1>
+            <h4 id="home-title"><em> MISSION</em></h4>
             <p class="lead">Our mission is to bridge educational gaps between underprivileged and other student groups by providing equitable access to learning opportunities. We are committed to cultivating a supportive environment that empowers students to learn, achieve, and excel. Our success is defined by the impact we create in the community and the inspiring stories of those we serve.</p>
-          <h1 id="home-title"> VISION</h1>
+          <h4 id="home-title"> <em>VISION</em></h4>
             <p class="lead">Golden Gate envisions an educational hub that serves as a beacon of hope and opportunity, empowering every learner to overcome challenges, thrive, and create a brighter future, regardless of circumstance.</p>
-           <h1 id="home-title"> Values </h1>
+           <h4 id="home-title"> <em>Values </em></h4>
              <p class="lead">Guided by honesty, integrity, and respect, we foster trust, embrace fairness, and honor the contributions of every member of our community.</p>
                                                                                                                                                                                                                                            
           </div> 
@@ -387,7 +390,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="swiper-slide home-slide">
           <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/xYrNFPT.jpg')"></div>
           <div class="home-slide__content">
-            <h1 id="home-title">Growing Togheter</h1>
+            <h1 id="home-title">Growing Together</h1>
             <p class="lead">With each passing day, our classrooms blossomed with curiosity. Children who once hesitated now raised their voices, eager to explore, to ask, to understand. Their courage became our inspiration.</p>
           </div>
         </div>
@@ -605,7 +608,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           </div>
         </div>
         <div class="project__body">
-          <h3 id="p_staff">staff support</h3>
+          <h3 id="p_staff">Staff Support</h3>
           <p>They lost their own education to war, yet give everything to teach others. Help us keep their hope—and classrooms—alive.</p>
           <div class="progress-container"><div class="progress-bar" style="width:80%"></div></div>
           <button class="donateBtn" data-project="staff_payment">Donate</button>
@@ -744,7 +747,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 <section id="about" aria-labelledby="about-title">
   <div class="inner container">
     <h2 id="about-title" class="fade-in">About Us</h2>
-    <p class="lead fade-in">Golden Gates is committed to expanding access to quality education for displaced learners through community-driven initiatives, local partnerships, and sustainable projects that ensure long-term impact. Since its founding in 2023, the institution has transformed the lives of more than 200 students and adults—most of whom previously relied solely on agriculture—by opening new pathways to learning and opportunity</p>
+    <p class="lead fade-in">Golden Gate is committed to expanding access to quality education for displaced learners through community-driven initiatives, local partnerships, and sustainable projects that ensure long-term impact. Since its founding in 2023, the institution has transformed the lives of more than 200 students and adults—most of whom previously relied solely on agriculture—by opening new pathways to learning and opportunity</p>
 
     <div class="team fade-in">
       <div class="team-grid">
@@ -766,7 +769,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           <div class="team-name">Tonghtoh Ernest</div>
           <div class="team-note">I am a refugee of the Anglophone crisis. When the war consumed my hometown, I lost not only my job but the stability I had worked so hard to build. With nothing left, I fled to Fumbot, carrying only the hope that I could start over. Life as a refugee is a daily struggle—every day feels like learning to live again from nothing.
 
-In the midst of this hardship, Golden Gates became my salvation. It offered me more than support; it gave me a renewed purpose. Through its mission, I found strength in helping others who, like me, had seen their futures shattered. Today, I stand firmly committed to the vision of Golden Gates: to bring displaced children back into the classrooms they were cruelly torn away from, and to restore the education and dignity that war had stolen from them.</div>
+In the midst of this hardship, Golden Gate became my salvation. It offered me more than support; it gave me a renewed purpose. Through its mission, I found strength in helping others who, like me, had seen their futures shattered. Today, I stand firmly committed to the vision of Golden Gates: to bring displaced children back into the classrooms they were cruelly torn away from, and to restore the education and dignity that war had stolen from them.</div>
         </div>
         
         <!-- System Administrator -->
