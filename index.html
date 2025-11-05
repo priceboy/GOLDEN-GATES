@@ -155,7 +155,7 @@ section::before {
 #home { background: rgb(5, 19, 32); }
 #fundraise { background: url('https://i.imgur.com/GIfidXr.png') center center/200% auto no-repeat; }
 #project-donate { background: url('https://i.imgur.com/CHIYsK9.jpeg') center center/cover no-repeat; }
-#about { background: url('https://i.postimg.cc/sDLhf4zq/Chat-GPT-Image-Oct-25-2025-01-09-53-AM.png') center center/140% auto no-repeat; }
+#about { background: url('https://i.postimg.cc/hj7xnvZR/www.png') center center/145% auto no-repeat; }
 #contact { background: url('https://i.imgur.com/CoCKRlV.jpg') center center/cover no-repeat; }
 
 /* headings and readable text */
@@ -379,7 +379,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         </div>
           <!-- Slide 3 -->
         <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/axJOklA.jpg')"></div>
+          <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/5NkxnNgf/IMG-20251025-WA0003.jpg')"></div>
           <div class="home-slide__content">
             <h1 id="home-title">Little Hands, Big Dreams</h1>
             <p class="lead">Every child who walked through our doors carried a story of resilience. Tiny hands clutched pencils as big dreams sparkled in their eyes. Each smile, each question, reminded us why every effort mattered.</p>
@@ -404,7 +404,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         </div>
          <!-- Slide 6 -->
         <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/CoCKRlV.jpg')"></div>
+          <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/7P3GnppL/Untitled.png')"></div>
           <div class="home-slide__content">
             <h1 id="home-title">Milestones Achieved</h1>
             <p class="lead">By the end of our first year, we had not only taught lessons, but nurtured souls. Over 180 children had found a safe haven, a place where knowledge met care, and dreams could take their first flight.</p>
@@ -412,10 +412,10 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         </div>
          <!-- Slide 7 -->
         <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/4N97QBK.jpg')"></div>
+          <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/63MWKVP6/IMG-20251025-WA0002.jpg')"></div>
           <div class="home-slide__content">
             <h1 id="home-title">Gratitude in Every Step</h1>
-            <p class="lead">Every smile captured in these photos tells a story of trust, perseverance, and love. Every parent who believed, every child who dared, brought us one step closer to the mission we hold dear.</p>
+            <p class="lead">Every smile captured in these photo tells a story of trust, perseverance, and love. Every parent who believed, every child who dared, brought us one step closer to the mission we hold dear.</p>
           </div>
         </div>
         <!-- Slide 8 -->
@@ -769,7 +769,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           <div class="team-name">Tonghtoh Ernest</div>
           <div class="team-note"><strong>I am a refugee of the Anglophone crisis. When the war consumed my hometown, I lost not only my job but the stability I had worked so hard to build. With nothing left, I fled to Fumbot, carrying only the hope that I could start over. Life as a refugee is a daily struggle—every day feels like learning to live again from nothing.
 
-In the midst of this hardship, Golden Gate became my salvation. It offered me more than support; it gave me a renewed purpose. Through its mission, I found strength in helping others who, like me, had seen their futures shattered. Today, I stand firmly committed to the vision of Golden Gates: to bring displaced children back into the classrooms they were cruelly torn away from, and to restore the education and dignity that war had stolen from them.</strong></div>
+In the midst of this hardship, Golden Gate became my salvation. It offered me more than support; it gave me a renewed purpose. Through its mission, I found strength in helping others who, like me, had seen their futures shattered. Today, I stand firmly committed to the vision of Golden Gate: to bring displaced children back into the classrooms they were cruelly torn away from, and to restore the education and dignity that war had stolen from them.</strong></div>
         </div>
         
         <!-- System Administrator -->
@@ -903,51 +903,55 @@ function updateTotal() {
 document.querySelectorAll('.subtask').forEach(cb => cb.addEventListener('change', updateTotal));
 document.getElementById('custom-amount').addEventListener('input', updateTotal);
 
+
 /* =========================
    INITIATE PAYMENT
    ========================= */
 document.getElementById('initiate-payment').addEventListener('click', () => {
   const totalText = document.getElementById('total-amount').textContent;
-  const total = parseFloat(totalText || 0);
-  const method = document.getElementById('payment-method').value;
+  const total = parseFloat(totalText.replace(/[^0-9.]/g, '')) || 0;
+  const method = (document.getElementById('payment-method').value || '').trim();
 
-  if(!total || total <= 0) {
+  if (!total || total <= 0) {
     alert('Please select at least one subtask or enter a custom amount to donate.');
     return;
   }
-  if(!method) {
+
+  if (!method) {
     alert('Please select a payment method.');
     return;
   }
 
   const activeProject = document.querySelector('.donation-project.active');
-  const projectName = activeProject ? activeProject.querySelector('h3').textContent : 'Golden Gates';
+  const projectName = activeProject?.querySelector('h3')?.textContent || 'Golden Gates';
 
-  switch(method) {
+  switch (method.toLowerCase()) {
     case 'flutterwave':
-      makePayment(total);
+      const donorName = prompt("Enter your full name:") || "Golden Gate Supporter";
+      const donorEmail = prompt("Enter your email:") || "donor@example.com";
+      const donorPhone = prompt("Enter your phone number (include country code):") || "677123456";
+      makeFlutterwavePayment(total, donorName, donorEmail, donorPhone, projectName);
       break;
 
     case 'cashapp':
-      const cashHandle = "GoldenGateSupport"; // replace with your CashApp $handle
-      window.open(`https://cash.app/$${cashHandle}/${total}`, '_blank');
+      const cashHandle = "GoldenGateSupport";
+      window.open(`https://cash.app/$${encodeURIComponent(cashHandle)}/${encodeURIComponent(total)}`, '_blank');
       break;
 
     case 'venmo':
-      const venmoHandle = "GoldenGateSupport"; // replace with your Venmo username
-      const venmoNote = encodeURIComponent("Golden Gate Donation");
-      window.open(`https://venmo.com/${venmoHandle}?txn=pay&amount=${total}&note=${venmoNote}`, '_blank');
+      const venmoHandle = "GoldenGateSupport";
+      const venmoNote = encodeURIComponent(`Donation to ${projectName}`);
+      window.open(`https://venmo.com/code?user_id=4407078516950843826&created=1762382134${encodeURIComponent(venmoHandle)}?txn=pay&amount=${encodeURIComponent(total)}&note=${venmoNote}`, '_blank');
       break;
 
     case 'bank':
-      document.getElementById('bank-amount').textContent = `$${total.toFixed(2)}`;
-      document.getElementById('bank-modal').style.display = 'block';
+      showBankModal(total);
       break;
 
     case 'orange':
     case 'mtn':
       const phone = prompt(`To pay $${total.toFixed(2)} via ${method.toUpperCase()}, enter your phone number (include country code):`);
-      if(phone) {
+      if (phone) {
         alert(`(Demo) Initiating ${method.toUpperCase()} payment of $${total.toFixed(2)} for ${projectName} to phone ${phone}.\nReplace this with server API call.`);
       }
       break;
@@ -960,30 +964,48 @@ document.getElementById('initiate-payment').addEventListener('click', () => {
 /* =========================
    FLUTTERWAVE PAYMENT
    ========================= */
-function makePayment(amount) {
+function makeFlutterwavePayment(amount, name, email, phone, projectName) {
   FlutterwaveCheckout({
-    public_key: "YOUR_PUBLIC_KEY", // replace with your real Flutterwave public key
+    public_key: "YOUR_PUBLIC_KEY", // Replace with real key
     tx_ref: "GGATE-" + Date.now(),
     amount: amount,
     currency: "XAF",
     payment_options: "card,mobilemoneyfranco,mobilemoneyghana,banktransfer,paypal",
-    customer: {
-      email: "donor@example.com",
-      phone_number: "677123456",
-      name: "Golden Gate Supporter",
-    },
+    customer: { name, email, phone_number: phone },
     customizations: {
       title: "Golden Gate Donations",
-      description: "Support displaced learners with your gift",
+      description: `Support ${projectName} with your gift`,
       logo: "https://yourdomain.com/logo.png",
     },
+    callback: function(payment) {
+      console.log("Payment success:", payment);
+      alert(`Thank you for your donation! Payment reference: ${payment.transaction_id}`);
+      // TODO: Call your backend to record this payment
+    },
+    onclose: function() {
+      console.log("Flutterwave popup closed");
+    }
   });
+}
+
+/* =========================
+   BANK MODAL
+   ========================= */
+function showBankModal(amount) {
+  document.getElementById('bank-amount').textContent = `$${amount.toFixed(2)}`;
+  const modal = document.getElementById('bank-modal');
+  modal.style.display = 'block';
+
+  // Close modal if clicking outside content
+  modal.onclick = function(e) {
+    if (e.target === modal) modal.style.display = 'none';
+  }
 }
 </script>
 
-</script>
-<div id="bank-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7);">
-  <div style="background:#fff; padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
+<!-- Bank modal HTML -->
+<div id="bank-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
+  <div style="background:#032955; padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
     <h3>Bank Transfer Instructions</h3>
     <p><strong>Account Name:</strong> Golden Gates</p>
     <p><strong>Account Number:</strong> 1234567890</p>
@@ -993,6 +1015,7 @@ function makePayment(amount) {
     <button onclick="document.getElementById('bank-modal').style.display='none'">Close</button>
   </div>
 </div>
+
 
 
 </body>
