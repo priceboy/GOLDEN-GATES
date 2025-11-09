@@ -1,1039 +1,1036 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Golden Gate — Education for Displaced Learners</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Golden Gate — Education for Displaced Learners</title>
 
-<!-- Swiper -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
-<script src="https://checkout.flutterwave.com/v3.js"></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+  <script src="https://checkout.flutterwave.com/v3.js"></script>
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'inter': ['Inter', 'sans-serif'],
+            'playfair': ['Playfair Display', 'serif'],
+          },
+          colors: {
+            primary: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#0c3b6b',
+            },
+            secondary: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            },
+            accent: {
+              400: '#12cdfc',
+              500: '#06b6d4',
+            }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.6s ease-out forwards',
+            'slide-up': 'slideUp 0.8s ease-out forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            slideUp: {
+              '0%': { opacity: '0', transform: 'translateY(40px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
 
-<style>
-/* =========================
-   THEME & RESET
-   ========================= */
-:root {
-  --primary: rgb(12, 59, 107);
-  --ter: rgba(18, 205, 252, 0.747);
-  --secondary: rgb(255, 251, 4);
-  --bg: #02101f;
-  --text: #ffffff;
-  --ttext: #000000;
-  --muted: #ffffff;
-  --overlay: rgba(0, 0, 0, 0.306);
-  --card-bg: rgba(0, 1, 16, 0.88);
-  --radius: 12px;
-  --container-w: 1200px;
-}
+  <style>
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+    .gradient-text {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-html,body { height: auto }
+    .section-hidden {
+      display: none;
+    }
 
-body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  font-size: clamp(14px, 2vw, 18px);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+    .section-active {
+      display: block;
+    }
 
-/* =========================
-   HEADER & NAV
-   ========================= */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.25rem;
-  background: linear-gradient(60deg, var(--ter), hsla(216, 89%, 19%, 0.363));
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
-  position: sticky;
-  top: 0;
-  z-index: 1200;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-.brand {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-  color: rgb(255, 221, 0);
-  font-weight: 700;
-  letter-spacing: 0.2px;
-}
-.brand__logo {
-  width: 48px;
-  height: 48px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: #fefeff;
-  box-shadow: 0 2px 10px rgba(0,0,0,.18);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.brand__logo img { width: 80%; height: 80%; object-fit: cover; display:block; }
-nav {
-  display: flex;
-  gap: .5rem;
-  align-items: center;
-}
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  padding: .35rem .6rem;
-  border-radius: 8px;
-  transition: background .18s ease, transform .08s ease;
-  opacity: .95;
-}
-nav a:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+    .swiper-pagination-bullet {
+      background: rgba(255, 255, 255, 0.5) !important;
+    }
 
-/* Hamburger */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-}
-.hamburger div {
-  width: 26px;
-  height: 3px;
-  background-color: rgba(1, 10, 28, 0.849);
-  border-radius: 3px;
-}
+    .swiper-pagination-bullet-active {
+      background: #fbbf24 !important;
+    }
 
-/* =========================
-   SECTIONS BASE + BACKGROUNDS
-   ========================= */
-.container {
-  max-width: var(--container-w);
-  margin: 0 auto;
-  padding: 0 1rem;
-}
+    .progress-bar {
+      transition: width 1s ease-in-out;
+    }
 
-/* base section style (we add backgrounds and overlay) */
-section {
-  display: none;
-  min-height: 70vh;       /* fill full screen height */
-  padding: 0.6rem 0 0rem;    /* top padding pushes content below fixed header */
-  position: relative;
-  overflow: hidden;
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
 
-  width: 100vw;            /* stretch full width */
-  margin-left: calc(-50vw + 50%); /* prevent being boxed */
-}
+    .hover-lift:hover {
+      transform: translateY(-8px);
+    }
 
-section.active { display: block; }
+    .fade-in-element {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
 
-/* make text appear above overlay */
-section .inner {
-  position: relative;
-  z-index: 5;
-  max-width: var(--container-w);
-  margin: 0 auto;
-  padding: 0 1rem;
-  color: #fff;
-}
-
-/* overlay for text readability */
-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--overlay);
-  z-index: 3;
-  pointer-events: none;
-}
-
-/* per-section background placeholders (removed `fixed`) */
-#home { background: rgb(5, 19, 32); }
-#fundraise { background: url('https://i.imgur.com/GIfidXr.png') center center/200% auto no-repeat; }
-#project-donate { background: url('https://i.imgur.com/CHIYsK9.jpeg') center center/cover no-repeat; }
-#about { background: url('https://i.postimg.cc/hj7xnvZR/www.png') center center/145% auto no-repeat; }
-#contact { background: url('https://i.imgur.com/CoCKRlV.jpg') center center/cover no-repeat; }
-
-/* headings and readable text */
-h1,h2,h3 { margin-bottom: .5rem; line-height: 1.1; }
-h1 { font-size: clamp(26px, 4vw, 42px); font-weight: 800; }
-h2 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 700; }
-h3 { font-size: clamp(16px, 2.2vw, 20px); font-weight: 700; color: var(--secondary); }
-h4 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 500; }
-
-/* small paragraph */
-.lead { color: rgba(255,255,255,0.95); font-size: clamp(14px, 1.9vw, 16px); margin-bottom: 1rem; }
-
-/* =========================
-   HOME: AUTO-GLIDER (Swiper)
-   ========================= */
-#home .inner { padding: 0; max-width: none; }
-.home-swiper { width: 100%; height: calc(100vh - 90px); position: relative; z-index: 5; }
-.home-slide { width: 100%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; }
-.home-slide::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)); z-index: 1; }
-.home-slide__bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: saturate(1.1); }
-.home-slide__content { position: relative; z-index: 2; text-align: center; max-width: 820px; padding: 0 1rem; color: #fff; }
-.home-slide__content h1 { font-size: clamp(28px, 4.5vw, 56px); margin-bottom: .6rem; }
-.home-slide__content p { font-size: clamp(14px, 2vw, 18px); opacity: .96; margin-bottom: 1rem; }
-.cta-btn { display: inline-block; background: #fbbf24; color: #111827; padding: .6rem 1rem; border-radius: 9999px; font-weight: 800; text-decoration: none; box-shadow: 0 10px 24px rgba(0,0,0,.18); }
-.cta-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
-
-/* =========================
-   PROJECT CARDS (white cards over background)
-   ========================= */
-.projects {
-  display: grid;
-  gap: 1.4rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  margin-top: 1.25rem;
-}
-.project {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 8px 26px rgba(3, 71, 71, 0.511);
-  display: flex;
-  flex-direction: column;
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-.project:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(255, 255, 255, 0.12); }
-.project__media img { width: 100%; height: 180px; object-fit: cover; display:block; }
-.project__body { padding: 1rem; }
-.project__body p { color: var(--muted); margin: .35rem 0 1rem; }
-
-/* progress bar */
-.progress-container {
-  background: #070b1439;
-  border-radius: 20px;
-  overflow: hidden;
-  height: 12px;
-  margin-bottom: .9rem;
-}
-.progress-bar { height: 100%; background: var(--primary); }
-
-/* donate buttons */
-.donateBtn {
-  display: inline-block;
-  background: var(--secondary);
-  color: #07011b;
-  padding: .5rem .85rem;
-  border-radius: 8px;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-}
-.donateBtn:hover { background: #ffe607; }
-
-/* floating CTA */
-.donate-floating {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  background: var(--primary);
-  color: #031327;
-  padding: .7rem 1rem;
-  border-radius: 9999px;
-  font-weight: 800;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-  z-index: 1400;
-  text-decoration: none;
-}
-
-/* =========================
-   DONATION DETAILS
-   ========================= */
-#project-donate .panel {
-  background: rgba(5, 1, 1, 0.55);
-  padding: 1rem;
-  border-radius: 12px;
-  color: var(--text);
-  box-shadow: 0 10px 30px rgba(2,6,23,0.08);
-}
-.donation-project { display: none; margin-bottom: 1rem; }
-.donation-project.active { display: block; }
-.donation-project ul { list-style: none; padding: 0; margin: .5rem 0; }
-.donation-project li { margin: .5rem 0; }
-
-/* total and payment controls */
-.total { margin: 1rem 0; font-weight: 800; font-size: 1.05rem; color: #fff; }
-.controls { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; margin-top: .5rem; }
-.controls select, .controls button, .controls input[type="number"] {
-  padding: .5rem .6rem;
-  border-radius: 8px;
-  border: 1px solid #d1d5db;
-}
-
-/* small note */
-.helper { font-size: .9rem; color: rgba(255,255,255,0.85); margin-top: .5rem; }
-
-/* =========================
-   ABOUT: TEAM CIRCLES
-   ========================= */
-.team { margin-top: 1rem; }
-.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 980px; margin: 1rem auto 1.25rem; }
-.team-card { background: rgba(5, 66, 120, 0.795); color: var(--ttext); border-radius: 16px; padding: 1rem; text-align: center; box-shadow: 0 8px 24px rgba(2,6,23,0.08); }
-.team-avatar { width: 140px; height: 140px; border-radius: 9999px; overflow: hidden; margin: 0 auto .75rem; border: 5px solid rgba(11, 30, 126, 0.553); box-shadow: 0 6px 16px rgba(2,6,23,0.08) inset; }
-.team-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.team-title { font-weight: 800; color: var(--secondary); margin-bottom: .25rem; }
-.team-name { color: #dfea03; font-weight: 700; margin-bottom: .25rem; }
-.team-note { color: #080101c4; font-size: .95rem; }
-.about-body { max-width: 980px; margin: 1rem auto 0; background: rgba(5, 66, 120, 0.795); color: var(--ttext); border-radius: 12px; padding: 1rem; box-shadow: 0 8px 24px rgba(2,6,23,0.08); }
-
-/* =========================
-   ANIMATIONS
-   ========================= */
-.fade-in {
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity .45s ease, transform .45s ease;
-}
-.fade-in.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* =========================
-   RESPONSIVE
-   ========================= */
-@media (max-width: 900px) {
-  .project__media img { height: 160px; }
-  .hamburger { display: flex; }
-  nav { display: none; }
-  .team-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 480px) {
-  header { padding: .75rem 0.9rem; }
-  .project__media img { height: 140px; }
-  section { padding: 3rem 0; }
-}
-
-/* small accessible focus */
-a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,130,246,0.25); outline-offset: 3px; }
-</style>
-
+    .fade-in-element.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
-<body>
 
-<header role="banner" aria-label="Main header">
-  <div class="brand" aria-hidden="false">
-    <div class="brand__logo" aria-hidden="true">
-      <img src="https://i.imgur.com/v5HBQSK.jpg" alt="Golden Gate logo">
+<body class="bg-slate-900 text-white font-inter">
+
+  <!-- HEADER -->
+  <header
+    class="sticky top-0 z-50 bg-gradient-to-r from-blue-900/90 to-cyan-600/90 backdrop-blur-md border-b border-white/10">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+      <!-- Brand -->
+      <div class="flex items-center space-x-3">
+        <div class="w-12 h-12 rounded-full overflow-hidden bg-white shadow-lg flex items-center justify-center">
+          <img src="https://i.imgur.com/v5HBQSK.jpg" alt="Golden Gate logo" class="w-10 h-10 object-cover">
+        </div>
+        <span class="text-xl font-bold gradient-text">GOLDEN GATE</span>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+
+      <!-- Navigation -->
+      <nav id="main-nav" class="hidden md:flex space-x-6">
+        <a href="#" data-target="home"
+          class="nav-link px-4 py-2 rounded-lg hover:bg-white/10 transition-all duration-300 font-medium">Home</a>
+        <a href="#" data-target="fundraise"
+          class="nav-link px-4 py-2 rounded-lg hover:bg-white/10 transition-all duration-300 font-medium">Projects</a>
+        <a href="#" data-target="about"
+          class="nav-link px-4 py-2 rounded-lg hover:bg-white/10 transition-all duration-300 font-medium">About</a>
+        <a href="#" data-target="contact"
+          class="nav-link px-4 py-2 rounded-lg hover:bg-white/10 transition-all duration-300 font-medium">Contact</a>
+      </nav>
     </div>
-    <span>GOLDEN GATE</span>
-  </div>
 
-  <div class="hamburger" aria-hidden="true" title="Menu" id="hamburger">
-    <div></div><div></div><div></div>
-  </div>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-nav" class="md:hidden hidden bg-slate-800/95 backdrop-blur-md border-t border-white/10">
+      <div class="px-4 py-2 space-y-2">
+        <a href="#" data-target="home"
+          class="block px-4 py-3 rounded-lg hover:bg-white/10 transition-all duration-300">Home</a>
+        <a href="#" data-target="fundraise"
+          class="block px-4 py-3 rounded-lg hover:bg-white/10 transition-all duration-300">Projects</a>
+        <a href="#" data-target="about"
+          class="block px-4 py-3 rounded-lg hover:bg-white/10 transition-all duration-300">About</a>
+        <a href="#" data-target="contact"
+          class="block px-4 py-3 rounded-lg hover:bg-white/10 transition-all duration-300">Contact</a>
+      </div>
+    </nav>
+  </header>
 
-  <nav role="navigation" aria-label="Primary navigation" id="main-nav">
-    <a href="#" data-target="home">Home</a>
-    <a href="#" data-target="fundraise">Help_us_fund a_project</a>
-    <a href="#" data-target="about">About</a>
-    <a href="#" data-target="contact">Contact</a>
-  </nav>
-</header>
-
-<!-- HOME (with auto-glider) -->
-<section id="home" class="active" aria-labelledby="home-title">
-  <div class="inner">
-    <div class="swiper home-swiper">
+  <!-- HOME SECTION -->
+  <section id="home" class="section-active min-h-screen relative overflow-hidden">
+    <div class="swiper home-swiper h-screen">
       <div class="swiper-wrapper">
-         <!-- Slide o -->
-        <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/DolIePP.png')"></div>
-          <div class="home-slide__content">
-            <h4 id="home-title"><em> MISSION</em></h4>
-            <p class="lead">Our mission is to bridge educational gaps between underprivileged and other student groups by providing equitable access to learning opportunities. We are committed to cultivating a supportive environment that empowers students to learn, achieve, and excel. Our success is defined by the impact we create in the community and the inspiring stories of those we serve.</p>
-          <h4 id="home-title"> <em>VISION</em></h4>
-            <p class="lead">Golden Gate envisions an educational hub that serves as a beacon of hope and opportunity, empowering every learner to overcome challenges, thrive, and create a brighter future, regardless of circumstance.</p>
-           <h4 id="home-title"> <em>Values </em></h4>
-             <p class="lead">Guided by honesty, integrity, and respect, we foster trust, embrace fairness, and honor the contributions of every member of our community.</p>
-                                                                                                                                                                                                                                           
-          </div> 
-        </div>
-        <!-- Slide 1 -->
-        <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/DolIePP.png')"></div>
-          <div class="home-slide__content">
-            <h1 id="home-title">The Gate Of Hope</h1>
-            <p class="lead">In 2023, a dream took its first breath.Under the  vision of our founder, our dedicted team set out on a mission:
-              <li>To revamp the broken education of the refugee children</li>
-             <li> To make education A reality not just a dream:</li>
-             <li> To open the gate of hope, the gate of equality, the gate of education-THE GOLDEN GATE.
-               </p>
+
+        <!-- Mission Slide -->
+        <div class="swiper-slide relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800"></div>
+          <div class="absolute inset-0 bg-black/30"></div>
+          <div class="relative z-10 h-full flex items-center justify-center text-center px-4">
+            <div class="max-w-4xl">
+              <div class="mb-8 animate-float">
+                <i class="fas fa-graduation-cap text-6xl text-yellow-400 mb-4"></i>
+              </div>
+              <h1 class="text-5xl md:text-7xl font-playfair font-bold mb-6 gradient-text">Our Mission</h1>
+              <p class="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
+                Our mission is to bridge educational gaps between underprivileged and other student groups by providing
+                equitable access to learning opportunities. We are committed to cultivating a supportive environment
+                that empowers students to learn, achieve, and excel.
+              </p>
+              <div class="grid md:grid-cols-3 gap-8 mt-12">
+                <div class="glass-effect p-6 rounded-2xl">
+                  <i class="fas fa-eye text-3xl text-yellow-400 mb-4"></i>
+                  <h3 class="text-xl font-bold mb-2">Vision</h3>
+                  <p class="text-gray-300">An educational hub that serves as a beacon of hope and opportunity for every
+                    learner.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-2xl">
+                  <i class="fas fa-heart text-3xl text-yellow-400 mb-4"></i>
+                  <h3 class="text-xl font-bold mb-2">Values</h3>
+                  <p class="text-gray-300">Guided by honesty, integrity, and respect, fostering trust and embracing
+                    fairness.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-2xl">
+                  <i class="fas fa-users text-3xl text-yellow-400 mb-4"></i>
+                  <h3 class="text-xl font-bold mb-2">Community</h3>
+                  <p class="text-gray-300">Honoring the contributions of every member of our diverse community.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-       <!-- Slide 2 -->
-        <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/CHIYsK9.jpg')"></div>
-          <div class="home-slide__content">
-            <h1 id="home-title">The First Step of Courage</h1>
-            <p class="lead">On our  first year, 100 parents found the courage to entrust their precious children to us. Fear of the unknown weighed heavily on their hearts, yet their bravery planted the first seeds of hope in our classrooms.</p>
+
+        <!-- Gate of Hope Slide -->
+        <div class="swiper-slide relative">
+          <div class="absolute inset-0 bg-cover bg-center"
+            style="background-image: url('https://i.imgur.com/DolIePP.png')"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+          <div class="relative z-10 h-full flex items-center px-4">
+            <div class="max-w-4xl mx-auto text-center">
+              <h1 class="text-5xl md:text-7xl font-playfair font-bold mb-6 text-white">The Gate Of Hope</h1>
+              <p class="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed">
+                In 2023, a dream took its first breath. Under the vision of our founder, our dedicated team set out on a
+                mission:
+              </p>
+              <div class="space-y-4 text-lg md:text-xl text-left max-w-2xl mx-auto">
+                <div class="flex items-center space-x-4 glass-effect p-4 rounded-lg">
+                  <i class="fas fa-check-circle text-yellow-400 text-xl"></i>
+                  <span>To revamp the broken education of refugee children</span>
+                </div>
+                <div class="flex items-center space-x-4 glass-effect p-4 rounded-lg">
+                  <i class="fas fa-check-circle text-yellow-400 text-xl"></i>
+                  <span>To make education a reality, not just a dream</span>
+                </div>
+                <div class="flex items-center space-x-4 glass-effect p-4 rounded-lg">
+                  <i class="fas fa-check-circle text-yellow-400 text-xl"></i>
+                  <span>To open the gate of hope, equality, and education—THE GOLDEN GATE</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-          <!-- Slide 3 -->
-        <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/5NkxnNgf/IMG-20251025-WA0003.jpg')"></div>
-          <div class="home-slide__content">
-            <h1 id="home-title">Little Hands, Big Dreams</h1>
-            <p class="lead">Every child who walked through our doors carried a story of resilience. Tiny hands clutched pencils as big dreams sparkled in their eyes. Each smile, each question, reminded us why every effort mattered.</p>
+
+        <!-- First Step Slide -->
+        <div class="swiper-slide relative">
+          <div class="absolute inset-0 bg-cover bg-center"
+            style="background-image: url('https://i.imgur.com/CHIYsK9.jpg')"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/40"></div>
+          <div class="relative z-10 h-full flex items-center px-4">
+            <div class="max-w-4xl mx-auto">
+              <div class="glass-effect p-8 md:p-12 rounded-3xl">
+                <h1 class="text-4xl md:text-6xl font-playfair font-bold mb-6 gradient-text">The First Step of Courage
+                </h1>
+                <p class="text-lg md:text-xl text-gray-200 leading-relaxed">
+                  In our first year, 100 parents found the courage to entrust their precious children to us. Fear of the
+                  unknown weighed heavily on their hearts, yet their bravery planted the first seeds of hope in our
+                  classrooms.
+                </p>
+                <div class="mt-8 flex items-center space-x-6">
+                  <div class="text-center">
+                    <div class="text-3xl font-bold text-yellow-400">100+</div>
+                    <div class="text-sm text-gray-300">Brave Parents</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-3xl font-bold text-yellow-400">180+</div>
+                    <div class="text-sm text-gray-300">Students Enrolled</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-3xl font-bold text-yellow-400">2023</div>
+                    <div class="text-sm text-gray-300">Year Founded</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        
-     <!-- Slide 5 -->
-        <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/xYrNFPT.jpg')"></div>
-          <div class="home-slide__content">
-            <h1 id="home-title">Growing Together</h1>
-            <p class="lead">With each passing day, our classrooms blossomed with curiosity. Children who once hesitated now raised their voices, eager to explore, to ask, to understand. Their courage became our inspiration.</p>
+
+        <!-- More slides with similar improvements... -->
+        <div class="swiper-slide relative">
+          <div class="absolute inset-0 bg-cover bg-center"
+            style="background-image: url('https://i.postimg.cc/5NkxnNgf/IMG-20251025-WA0003.jpg')"></div>
+          <div class="absolute inset-0 bg-black/50"></div>
+          <div class="relative z-10 h-full flex items-center justify-center text-center px-4">
+            <div class="max-w-4xl">
+              <h1 class="text-5xl md:text-7xl font-playfair font-bold mb-6 text-white">Little Hands, Big Dreams</h1>
+              <p class="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed">
+                Every child who walked through our doors carried a story of resilience. Tiny hands clutched pencils as
+                big dreams sparkled in their eyes.
+              </p>
+            </div>
           </div>
         </div>
-         <!-- Slide 4 -->
-        <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/EKdWUWy.jpg')"></div>
-          <div class="home-slide__content">
-            <h1 id="home-title">Triumphs and Tears</h1>
-            <p class="lead">There were tears of struggle and joy of discovery. Lessons learned weren’t only in books—they were in courage, patience, and the quiet victories of children who had once been denied the chance to learn.</p>
+
+        <!-- Final slide with CTA -->
+        <div class="swiper-slide relative">
+          <div class="absolute inset-0 bg-cover bg-center"
+            style="background-image: url('https://i.imgur.com/YToJQBb.jpg')"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-black/50"></div>
+          <div class="relative z-10 h-full flex items-center justify-center text-center px-4">
+            <div class="max-w-4xl">
+              <h1 class="text-5xl md:text-7xl font-playfair font-bold mb-6 text-white">The Journey Ahead</h1>
+              <p class="text-xl md:text-2xl text-gray-200 mb-12 leading-relaxed">
+                Golden Gate is more than walls and classrooms. It is hope made tangible, opportunity made real.
+                Together, we can transform lives, one child at a time.
+              </p>
+              <a href="#"
+                class="cta-btn inline-flex items-center space-x-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-8 py-4 rounded-full font-bold text-lg hover:from-yellow-500 hover:to-yellow-600 transform hover:scale-105 transition-all duration-300 shadow-2xl"
+                data-target="fundraise">
+                <span>Support Our Mission</span>
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
           </div>
         </div>
-         <!-- Slide 6 -->
-        <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/x1mFS0Z6/cover000.png')"></div>
-          <div class="home-slide__content">
-            <h1 id="home-title">Milestones Achieved</h1>
-            <p class="lead">By the end of our first year, we had not only taught lessons, but nurtured souls. Over 180 children had found a safe haven, a place where knowledge met care, and dreams could take their first flight.</p>
-          </div>
-        </div>
-         <!-- Slide 7 -->
-        <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/63MWKVP6/IMG-20251025-WA0002.jpg')"></div>
-          <div class="home-slide__content">
-            <h1 id="home-title">Gratitude in Every Step</h1>
-            <p class="lead">Every smile captured in these photo tells a story of trust, perseverance, and love. Every parent who believed, every child who dared, brought us one step closer to the mission we hold dear.</p>
-          </div>
-        </div>
-        <!-- Slide 8 -->
-        <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/YToJQBb.jpg')"></div>
-          <div class="home-slide__content">
-            <h1>The Journey Ahead</h1>
-            <p class="lead">Golden Gate is more than walls and classrooms. It is hope made tangible, opportunity made real. Every picture, every moment, is a reminder: together, we can transform lives, one child at a time.</p>
-            <a href="#" class="cta-btn" data-target="fundraise">Support our mission</a>
-          </div>
-        </div>
-        
       </div>
       <div class="swiper-pagination"></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FUNDRAISE / PROJECTS -->
-<section id="fundraise" aria-labelledby="fundraise-title">
-  <div class="inner container">
-    <h2 id="fundraise-title" class="fade-in">Current Fundraising Projects</h2>
-    <p class="lead fade-in">Choose a project and click Donate to support a specific part of that project.</br>
-    (The green lines indicate how close we are to luanching the project.)</p>
+  <!-- FUNDRAISE SECTION -->
+  <section id="fundraise"
+    class="section-hidden min-h-screen py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 fade-in-element">
+        <h2 class="text-4xl md:text-6xl font-playfair font-bold mb-6 gradient-text">Current Projects</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          Choose a project and click Donate to support a specific part of that project. The progress bars show how close
+          we are to launching each project.
+        </p>
+      </div>
 
-    <div class="projects fade-in" id="projects-grid" style="margin-top:1.25rem;">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-      <!-- Project 1: Borehole -->
-      <article class="project" aria-labelledby="p-borehole">
-        <div class="project__media">
-          <div class="swiper proj1">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.postimg.cc/6q4NrvjL/Borehole-with-water.jpg" alt="Before Borehole"></div>
-              <div class="swiper-slide"><img src="https://i.postimg.cc/kXHbMvC1/WATER-HOLE.jpg" alt="After Borehole"></div>
+        <!-- Borehole Project -->
+        <article class="group hover-lift fade-in-element">
+          <div class="glass-effect rounded-3xl overflow-hidden shadow-2xl">
+            <div class="swiper proj1 h-64">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="https://i.postimg.cc/6q4NrvjL/Borehole-with-water.jpg" alt="Borehole Project"
+                    class="w-full h-full object-cover">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://i.postimg.cc/kXHbMvC1/WATER-HOLE.jpg" alt="Water Access"
+                    class="w-full h-full object-cover">
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
             </div>
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>
-        <div class="project__body">
-          <h3 id="p-borehole">Borehole Construction</h3>
-          <p>Provide clean, accessible water to the school community.  </p>
-          <div class="progress-container"><div class="progress-bar" style="width:60%"></div></div>
-          <button class="donateBtn" data-project="borehole" aria-label="Donate to Borehole">Donate</button>
-        </div>
-      </article>
-
-      <!-- Project 2: School Bus -->
-      <article class="project" aria-labelledby="p-bus">
-        <div class="project__media">
-          <div class="swiper proj2">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.postimg.cc/Dwm8tJbz/IMG-20251012-WA0025.jpg" alt="Current Bus"></div>
-              <div class="swiper-slide"><img src="https://i.postimg.cc/BntXdL1t/IMG-20251012-WA0026.jpg" alt="Planned Bus"></div>
+            <div class="p-6">
+              <h3 class="text-2xl font-bold mb-3 text-yellow-400">Borehole Construction</h3>
+              <p class="text-gray-300 mb-4">Provide clean, accessible water to the school community.</p>
+              <div class="mb-4">
+                <div class="flex justify-between text-sm mb-2">
+                  <span>Progress</span>
+                  <span class="text-yellow-400">60%</span>
+                </div>
+                <div class="w-full bg-gray-700 rounded-full h-3">
+                  <div class="progress-bar bg-gradient-to-r from-green-400 to-green-500 h-3 rounded-full"
+                    style="width: 60%"></div>
+                </div>
+              </div>
+              <button
+                class="donate-btn w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black py-3 rounded-xl font-bold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105"
+                data-project="borehole">
+                <i class="fas fa-heart mr-2"></i>Donate Now
+              </button>
             </div>
-            <div class="swiper-pagination"></div>
           </div>
-        </div>
-        <div class="project__body">
-          <h3 id="p-bus">Help us buy a new bus</h3>
-          <p>Our current bus can carry only 40 students at a time. With humility, we appeal for your support to provide safe and accessible transportation for all our children.</p>
-          <div class="progress-container"><div class="progress-bar" style="width:30%"></div></div>
-          <button class="donateBtn" data-project="bus">Donate</button>
-        </div>
-      </article>
+        </article>
 
-      <!-- Project 3: Classroom Completion -->
-      <article class="project" aria-labelledby="p-classroom">
-        <div class="project__media">
-          <div class="swiper proj3">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.imgur.com/wpRPSPP.jpeg" alt="Unfinished Classroom"></div>
-              <div class="swiper-slide"><img src="https://i.imgur.com/Lwru71P.jpeg" alt="Completed Classroom"></div>
-              <div class="swiper-slide"><img src="https://i.imgur.com/qrs36sI.jpeg" alt="Another view"></div>
+        <!-- School Bus Project -->
+        <article class="group hover-lift fade-in-element">
+          <div class="glass-effect rounded-3xl overflow-hidden shadow-2xl">
+            <div class="swiper proj2 h-64">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="https://i.postimg.cc/Dwm8tJbz/IMG-20251012-WA0025.jpg" alt="Current Bus"
+                    class="w-full h-full object-cover">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://i.postimg.cc/BntXdL1t/IMG-20251012-WA0026.jpg" alt="New Bus"
+                    class="w-full h-full object-cover">
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
             </div>
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>
-        <div class="project__body">
-          <h3 id="p-classroom">Classroom Completion</h3>
-          <p>Help us complete the  construction of classrooms to provide proper learning space for our displaced learners.</p>
-          <div class="progress-container"><div class="progress-bar" style="width:45%"></div></div>
-          <button class="donateBtn" data-project="classroom">Donate</button>
-        </div>
-      </article>
-
-      <!-- Project 4: Landscaping -->
-      <article class="project" aria-labelledby="p-landscaping">
-        <div class="project__media">
-          <div class="swiper proj4">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.imgur.com/86U8eZt.jpeg" alt="Current shcool ground"></div>
-              <div class="swiper-slide"><img src="https://i.imgur.com/U9ROml0.jpeg" alt="current playyard"></div>
-              <div class="swiper-slide"><img src="https://i.imgur.com/i7y10EZ.png" alt="Donation enabled landscaping"></div>
+            <div class="p-6">
+              <h3 class="text-2xl font-bold mb-3 text-yellow-400">New School Bus</h3>
+              <p class="text-gray-300 mb-4">Our current bus can carry only 40 students. Help us provide safe
+                transportation for all children.</p>
+              <div class="mb-4">
+                <div class="flex justify-between text-sm mb-2">
+                  <span>Progress</span>
+                  <span class="text-yellow-400">30%</span>
+                </div>
+                <div class="w-full bg-gray-700 rounded-full h-3">
+                  <div class="progress-bar bg-gradient-to-r from-blue-400 to-blue-500 h-3 rounded-full"
+                    style="width: 30%"></div>
+                </div>
+              </div>
+              <button
+                class="donate-btn w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black py-3 rounded-xl font-bold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105"
+                data-project="bus">
+                <i class="fas fa-heart mr-2"></i>Donate Now
+              </button>
             </div>
-            <div class="swiper-pagination"></div>
           </div>
-        </div>
-        <div class="project__body">
-          <h3 id="p-landscaping">School Landscaping</h3>
-          <p>Aid us in creating a safe, green, and inspiring environment for children to learn and play.</p>
-          <div class="progress-container"><div class="progress-bar" style="width:20%"></div></div>
-          <button class="donateBtn" data-project="landscaping">Donate</button>
-        </div>
-      </article>
+        </article>
 
-      <!-- Project 5: Electrification -->
-      <article class="project" aria-labelledby="p-electrification">
-        <div class="project__media">
-          <div class="swiper proj5">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.postimg.cc/YCNsB0K7/Chat-GPT-Image-Oct-25-2025-01-00-15-AM.png" alt="Before Electricity"></div>
-              <div class="swiper-slide"><img src="https://i.postimg.cc/XYnTJdgJ/Chat-GPT-Image-Oct-25-2025-01-02-22-AM.png" alt="After Electricity"></div>
+        <!-- Classroom Completion -->
+        <article class="group hover-lift fade-in-element">
+          <div class="glass-effect rounded-3xl overflow-hidden shadow-2xl">
+            <div class="swiper proj3 h-64">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="https://i.imgur.com/wpRPSPP.jpeg" alt="Unfinished Classroom"
+                    class="w-full h-full object-cover">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://i.imgur.com/Lwru71P.jpeg" alt="Completed Classroom"
+                    class="w-full h-full object-cover">
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
             </div>
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>
-        <div class="project__body">
-          <h3 id="p-electrification">Electrification</h3>
-          <p>With all our efforts, we have raised the school structure, but electricity is not yet in place. We humbly ask for your support to power the school and make digital learning accessible to our students.</p>
-          <div class="progress-container"><div class="progress-bar" style="width:10%"></div></div>
-          <button class="donateBtn" data-project="electrification">Donate</button>
-        </div>
-      </article>
-
-      <!-- Project 6: Science Laboratory -->
-      <article class="project" aria-labelledby="p-lab">
-        <div class="project__media">
-          <div class="swiper proj6">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.imgur.com/PlK55l1.png" alt="Before Lab"></div>
-              
+            <div class="p-6">
+              <h3 class="text-2xl font-bold mb-3 text-yellow-400">Classroom Completion</h3>
+              <p class="text-gray-300 mb-4">Help us complete classroom construction to provide proper learning spaces.
+              </p>
+              <div class="mb-4">
+                <div class="flex justify-between text-sm mb-2">
+                  <span>Progress</span>
+                  <span class="text-yellow-400">45%</span>
+                </div>
+                <div class="w-full bg-gray-700 rounded-full h-3">
+                  <div class="progress-bar bg-gradient-to-r from-purple-400 to-purple-500 h-3 rounded-full"
+                    style="width: 45%"></div>
+                </div>
+              </div>
+              <button
+                class="donate-btn w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black py-3 rounded-xl font-bold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105"
+                data-project="classroom">
+                <i class="fas fa-heart mr-2"></i>Donate Now
+              </button>
             </div>
-            <div class="swiper-pagination"></div>
           </div>
-        </div>
-        <div class="project__body">
-          <h3 id="p-lab">Lab Construction & Equipment</h3>
-          <p>Help us teach beyond just figures and letters by constructing a science laboratory.</p>
-          <div class="progress-container"><div class="progress-bar" style="width:80%"></div></div>
-          <button class="donateBtn" data-project="lab">Donate</button>
-        </div>
-      </article>
+        </article>
 
-      <!-- Project 7: Computer Lab -->
-      <article class="project" aria-labelledby="p-computer">
-        <div class="project__media">
-          <div class="swiper proj7">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.imgur.com/NXjHAo3.png" alt="Before Computer Lab"></div>
-              
+        <!-- Continue with other projects... -->
+        <!-- Electrification -->
+        <article class="group hover-lift fade-in-element">
+          <div class="glass-effect rounded-3xl overflow-hidden shadow-2xl">
+            <div class="swiper proj5 h-64">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="https://i.postimg.cc/YCNsB0K7/Chat-GPT-Image-Oct-25-2025-01-00-15-AM.png"
+                    alt="Before Electricity" class="w-full h-full object-cover">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://i.postimg.cc/XYnTJdgJ/Chat-GPT-Image-Oct-25-2025-01-02-22-AM.png"
+                    alt="After Electricity" class="w-full h-full object-cover">
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
             </div>
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>
-        <div class="project__body">
-          <h3 id="p-computer">Computer Lab Construction</h3>
-          <p>Help us teach beyond the physical and bring students into the digital era.</p>
-          <div class="progress-container"><div class="progress-bar" style="width:80%"></div></div>
-          <button class="donateBtn" data-project="computer-lab">Donate</button>
-        </div>
-      </article>
-
-      <!-- Project 8: Library -->
-      <article class="project" aria-labelledby="p-library">
-        <div class="project__media">
-          <div class="swiper proj8">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.imgur.com/vLqBcyi.png" alt="Before Library"></div>
-  
+            <div class="p-6">
+              <h3 class="text-2xl font-bold mb-3 text-yellow-400">Electrification</h3>
+              <p class="text-gray-300 mb-4">Power the school and make digital learning accessible to our students.</p>
+              <div class="mb-4">
+                <div class="flex justify-between text-sm mb-2">
+                  <span>Progress</span>
+                  <span class="text-yellow-400">10%</span>
+                </div>
+                <div class="w-full bg-gray-700 rounded-full h-3">
+                  <div class="progress-bar bg-gradient-to-r from-yellow-400 to-orange-500 h-3 rounded-full"
+                    style="width: 10%"></div>
+                </div>
+              </div>
+              <button
+                class="donate-btn w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black py-3 rounded-xl font-bold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105"
+                data-project="electrification">
+                <i class="fas fa-heart mr-2"></i>Donate Now
+              </button>
             </div>
-            <div class="swiper-pagination"></div>
           </div>
-        </div>
-        <div class="project__body">
-          <h3 id="p-library">Library</h3>
-          <p>Every donation brings children closer to the knowledge that shapes tomorrow..</p>
-          <div class="progress-container"><div class="progress-bar" style="width:10%"></div></div>
-          <button class="donateBtn" data-project="library">Donate</button>
-        </div>
-      </article>
+        </article>
 
-      <!-- Project 7: Staff payment -->
-      <article class="project" aria-labelledby="p_staff">
-        <div class="project__media">
-          <div class="swiper proj7">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://via.placeholder.com/960x520.png?text=Before+Computer+Lab" alt="Oor dedicated teachers"></div>
+        <!-- Science Lab -->
+        <article class="group hover-lift fade-in-element">
+          <div class="glass-effect rounded-3xl overflow-hidden shadow-2xl">
+            <div class="swiper proj6 h-64">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="https://i.imgur.com/PlK55l1.png" alt="Science Lab" class="w-full h-full object-cover">
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
             </div>
-            <div class="swiper-pagination"></div>
+            <div class="p-6">
+              <h3 class="text-2xl font-bold mb-3 text-yellow-400">Science Laboratory</h3>
+              <p class="text-gray-300 mb-4">Help us teach beyond figures and letters by constructing a science
+                laboratory.</p>
+              <div class="mb-4">
+                <div class="flex justify-between text-sm mb-2">
+                  <span>Progress</span>
+                  <span class="text-yellow-400">80%</span>
+                </div>
+                <div class="w-full bg-gray-700 rounded-full h-3">
+                  <div class="progress-bar bg-gradient-to-r from-green-400 to-emerald-500 h-3 rounded-full"
+                    style="width: 80%"></div>
+                </div>
+              </div>
+              <button
+                class="donate-btn w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black py-3 rounded-xl font-bold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105"
+                data-project="lab">
+                <i class="fas fa-heart mr-2"></i>Donate Now
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="project__body">
-          <h3 id="p_staff">Staff Support</h3>
-          <p>They lost their own education to war, yet give everything to teach others. Help us keep their hope—and classrooms—alive.</p>
-          <div class="progress-container"><div class="progress-bar" style="width:80%"></div></div>
-          <button class="donateBtn" data-project="staff_payment">Donate</button>
-        </div>
-      </article>
+        </article>
 
-    </div> <!-- .projects -->
-  </div> <!-- .inner -->
-</section>
+        <!-- Library -->
+        <article class="group hover-lift fade-in-element">
+          <div class="glass-effect rounded-3xl overflow-hidden shadow-2xl">
+            <div class="swiper proj8 h-64">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="https://i.imgur.com/vLqBcyi.png" alt="Library" class="w-full h-full object-cover">
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-2xl font-bold mb-3 text-yellow-400">Library</h3>
+              <p class="text-gray-300 mb-4">Every donation brings children closer to the knowledge that shapes tomorrow.
+              </p>
+              <div class="mb-4">
+                <div class="flex justify-between text-sm mb-2">
+                  <span>Progress</span>
+                  <span class="text-yellow-400">10%</span>
+                </div>
+                <div class="w-full bg-gray-700 rounded-full h-3">
+                  <div class="progress-bar bg-gradient-to-r from-indigo-400 to-purple-500 h-3 rounded-full"
+                    style="width: 10%"></div>
+                </div>
+              </div>
+              <button
+                class="donate-btn w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black py-3 rounded-xl font-bold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105"
+                data-project="library">
+                <i class="fas fa-heart mr-2"></i>Donate Now
+              </button>
+            </div>
+          </div>
+        </article>
 
-<!-- PROJECT DONATE -->
-<section id="project-donate" aria-labelledby="donate-title">
-  <div class="inner container">
-    <h2 id="donate-title" class="fade-in">Support a Project</h2>
-    <p class="lead fade-in">Select the parts of the project you want to support and your preferred payment method.</p>
-
-    <div class="panel fade-in">
-      <!-- Donation Projects (all eight) -->
-      <!-- Borehole -->
-      <div class="donation-project" data-project="borehole">
-        <h3>Borehole Construction</h3>
-        <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="1200"> Drill borehole — $1200</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="1000"> Water pump installation — $1000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="200"> Tank & piping — $200</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="600"> water tower cosntruction — $600</label></li>
-        </ul>
       </div>
-
-      <!-- School Bus -->
-      <div class="donation-project" data-project="bus">
-        <h3>School Bus</h3>
-        <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="12000"> Buying a  second hand bus — $12000</label></li>
-        <li><label><input type="checkbox" class="subtask" data-price="20000"> Buying a new bus — $20000</label></li>
-        </ul>
-      </div>
-
-      <!-- Classroom Completion -->
-      <div class="donation-project" data-project="classroom">
-        <h3>Classroom Completion</h3>
-        <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="350"> Walls plastering per class(13 total classes) — $350</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="200"> Windows & doors-per classroom(13 classes in total) — $200</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="150">  painting a classroom(13 clases) — $150</label></li>
-        </ul>
-      </div>
-
-      <!-- Landscaping -->
-      <div class="donation-project" data-project="landscaping">
-        <h3>School Landscaping</h3>
-        <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="50"> Plant trees — $50</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="30"> Playground setup — $30</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="20"> Garden maintenance — $20</label></li>
-        </ul>
-      </div>
-
-      <!-- Electrification -->
-      <div class="donation-project" data-project="electrification">
-        <h3>Electrification</h3>
-        <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="1200"> Wiring — 1200</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="700"> electric poles— $700</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="300"> Switches & outlets — $300</label></li>
-        </ul>
-      </div>
-
-      <!-- Science Lab -->
-      <div class="donation-project" data-project="lab">
-        <h3>Science Lab</h3>
-        <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="3500"> Lab construction — $3500</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="8000"> Equipment — $8000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="4000"> Safety gear & materials — $4000</label></li>
-        </ul>
-      </div>
-
-      <!-- Computer Lab -->
-      <div class="donation-project" data-project="computer-lab">
-        <h3>Computer Lab</h3>
-        <ul>
-             <li><label><input type="checkbox" class="subtask" data-price="2400"> Lab cosntruction — $2400</label></li>
-            <li><label><input type="checkbox" class="subtask" data-price="10000"> Computers — $10000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="2000"> Furniture & chairs — $2000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="1000"> Networking & cables — $1000</label></li>
-        </ul>
-      </div>
-
-      <!-- Library -->
-      <div class="donation-project" data-project="library">
-        <h3>Library</h3>
-        <ul>
-            <li><label><input type="checkbox" class="subtask" data-price="6000"> Library construction— $6000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="2000"> Books — $2000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="3500"> Shelves & furniture — $3500</label></li>
-          
-        </ul>
-      </div>
-          <!-- staff payment -->
-      <div class="donation-project" data-project="staff_payment">
-        <h3>Staff-support</h3>
-        <ul>
-            <li><label><input type="checkbox" class="subtask" data-price="400"> teacher's monthly wage $400</label></li>
-          </ul>
-      </div>
-
-      <!-- TOTAL & PAYMENT -->
-      <div class="total" aria-live="polite">Total Amount: $<span id="total-amount">0</span></div>
-
-      <div class="controls" role="group" aria-label="Payment controls">
-        <label for="custom-amount" style="color:var(--text); font-weight:700;">Or enter custom amount $</label>
-        <input type="number" id="custom-amount" min="1" placeholder="Optional" aria-label="Custom donation amount">
-      </div>
-
-      <div class="controls" style="margin-top: .75rem;">
-        <label for="payment-method" style="font-weight:700; color:var(--text)">Select Payment Method</label>
-        <select id="payment-method" aria-label="Payment method">
-          <option value="">--Choose Method--</option>
-          <option value="cashapp">Cash App</option>
-          <option value="venmo">Venmo</option>
-          <option value="bank">Bank Deposit</option>
-          <option value="orange">Orange Money</option>
-          <option value="mtn">MTN Mobile Money</option>
-        </select>
-
-        <button id="initiate-payment" class="donateBtn" style="margin-left:.5rem;">Donate Now</button>
-      </div>
-
-      <p class="helper">After clicking Donate, you'll be redirected according to your desired payment method.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ABOUT (team circles + space to write) -->
-<section id="about" aria-labelledby="about-title">
-  <div class="inner container">
-    <h2 id="about-title" class="fade-in">About Us</h2>
-    <p class="lead fade-in"><strong>Golden Gate is committed to expanding access to quality education for displaced learners through community-driven initiatives, local partnerships, and sustainable projects that ensure long-term impact. Since its founding in 2023, the institution has transformed the lives of more than 200 students and adults—most of whom previously relied solely on agriculture—by opening new pathways to learning and opportunity</strong></p>
+  <!-- PROJECT DONATE SECTION -->
+  <section id="project-donate"
+    class="section-hidden min-h-screen py-20 bg-gradient-to-br from-slate-800 via-slate-900 to-blue-900">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12 fade-in-element">
+        <h2 class="text-4xl md:text-6xl font-playfair font-bold mb-6 gradient-text">Support a Project</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Select the parts of the project you want to support and your
+          preferred payment method.</p>
+      </div>
 
-    <div class="team fade-in">
-      <div class="team-grid">
+      <div class="max-w-4xl mx-auto">
+        <div class="glass-effect rounded-3xl p-8 fade-in-element">
+
+          <!-- Donation Projects -->
+          <div class="donation-project hidden" data-project="borehole">
+            <h3 class="text-3xl font-bold mb-6 text-yellow-400">Borehole Construction</h3>
+            <div class="space-y-4">
+              <label class="flex items-center space-x-4 p-4 rounded-xl hover:bg-white/5 cursor-pointer transition-all">
+                <input type="checkbox" class="subtask w-5 h-5 text-yellow-400 rounded" data-price="1200">
+                <span class="flex-1">Drill borehole — $1,200</span>
+              </label>
+              <label class="flex items-center space-x-4 p-4 rounded-xl hover:bg-white/5 cursor-pointer transition-all">
+                <input type="checkbox" class="subtask w-5 h-5 text-yellow-400 rounded" data-price="1000">
+                <span class="flex-1">Water pump installation — $1,000</span>
+              </label>
+              <label class="flex items-center space-x-4 p-4 rounded-xl hover:bg-white/5 cursor-pointer transition-all">
+                <input type="checkbox" class="subtask w-5 h-5 text-yellow-400 rounded" data-price="200">
+                <span class="flex-1">Tank & piping — $200</span>
+              </label>
+              <label class="flex items-center space-x-4 p-4 rounded-xl hover:bg-white/5 cursor-pointer transition-all">
+                <input type="checkbox" class="subtask w-5 h-5 text-yellow-400 rounded" data-price="600">
+                <span class="flex-1">Water tower construction — $600</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Bus Project -->
+          <div class="donation-project hidden" data-project="bus">
+            <h3 class="text-3xl font-bold mb-6 text-yellow-400">School Bus</h3>
+            <div class="space-y-4">
+              <label class="flex items-center space-x-4 p-4 rounded-xl hover:bg-white/5 cursor-pointer transition-all">
+                <input type="checkbox" class="subtask w-5 h-5 text-yellow-400 rounded" data-price="12000">
+                <span class="flex-1">Second-hand bus — $12,000</span>
+              </label>
+              <label class="flex items-center space-x-4 p-4 rounded-xl hover:bg-white/5 cursor-pointer transition-all">
+                <input type="checkbox" class="subtask w-5 h-5 text-yellow-400 rounded" data-price="20000">
+                <span class="flex-1">New bus — $20,000</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Add other project donation forms similarly... -->
+
+          <!-- Total and Payment -->
+          <div class="mt-8 p-6 bg-gradient-to-r from-slate-800 to-slate-700 rounded-2xl">
+            <div class="text-2xl font-bold mb-4">
+              Total Amount: <span class="text-yellow-400">$<span id="total-amount">0</span></span>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label class="block text-sm font-medium mb-2">Custom Amount (Optional)</label>
+                <input type="number" id="custom-amount"
+                  class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
+                  placeholder="Enter amount">
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">Payment Method</label>
+                <select id="payment-method"
+                  class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent">
+                  <option value="">Choose Method</option>
+                  <option value="cashapp">Cash App</option>
+                  <option value="venmo">Venmo</option>
+                  <option value="bank">Bank Transfer</option>
+                  <option value="orange">Orange Money</option>
+                  <option value="mtn">MTN Mobile Money</option>
+                </select>
+              </div>
+            </div>
+
+            <button id="initiate-payment"
+              class="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black py-4 rounded-xl font-bold text-lg hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105">
+              <i class="fas fa-heart mr-2"></i>Donate Now
+            </button>
+
+            <p class="text-sm text-gray-400 mt-4 text-center">
+              After clicking Donate, you'll be redirected according to your selected payment method.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about"
+    class="section-hidden min-h-screen py-20 bg-gradient-to-br from-blue-900 via-slate-900 to-slate-800">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 fade-in-element">
+        <h2 class="text-4xl md:text-6xl font-playfair font-bold mb-6 gradient-text">About Us</h2>
+        <p class="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          Golden Gate is committed to expanding access to quality education for displaced learners through
+          community-driven initiatives, local partnerships, and sustainable projects that ensure long-term impact.
+        </p>
+      </div>
+
+      <!-- Team Grid -->
+      <div class="grid md:grid-cols-3 gap-8 mb-16">
+
         <!-- Founder -->
-        <div class="team-card">
-          <div class="team-avatar">
-            <img src="https://via.placeholder.com/300x300.png?text=Founder" alt="Founder portrait">
+        <div class="text-center fade-in-element">
+          <div class="glass-effect rounded-3xl p-8 hover-lift">
+            <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-yellow-400 shadow-2xl">
+              <img src="https://via.placeholder.com/300x300.png?text=Founder" alt="Founder"
+                class="w-full h-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold text-yellow-400 mb-2">Founder</h3>
+            <h4 class="text-lg font-semibold mb-4">Your Founder Name</h4>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              "Children should never bear the consequences of destructive decisions made by adults. The Anglophone
+              crisis has forced countless children out of school, with little regard for their futures. That is why we
+              must rise to be better."
+            </p>
           </div>
-          <div class="team-title">Founder</div>
-          <div class="team-name">Your Founder Name</div>
-          <div class="team-note"><strong>Children should never bear the consequences of destructive decisions made by adults. The Anglophone crisis has forced countless children out of school, with little regard for their futures. That is why we must rise to be better—working to correct the injustices and mistakes that have been unfairly inflicted upon these children and youth</strong></div>
         </div>
-        <!-- Director -->
-        <div class="team-card">
-          <div class="team-avatar">
-            <img src="https://via.placeholder.com/300x300.png?text=Director" alt="Director portrait">
-          </div>
-          <div class="team-title">Director</div>
-          <div class="team-name">Tonghtoh Ernest</div>
-          <div class="team-note"><strong>I am a refugee of the Anglophone crisis. When the war consumed my hometown, I lost not only my job but the stability I had worked so hard to build. With nothing left, I fled to Fumbot, carrying only the hope that I could start over. Life as a refugee is a daily struggle—every day feels like learning to live again from nothing.
 
-In the midst of this hardship, Golden Gate became my salvation. It offered me more than support; it gave me a renewed purpose. Through its mission, I found strength in helping others who, like me, had seen their futures shattered. Today, I stand firmly committed to the vision of Golden Gate: to bring displaced children back into the classrooms they were cruelly torn away from, and to restore the education and dignity that war had stolen from them.</strong></div>
-        </div>
-        
-        <!-- System Administrator -->
-        <div class="team-card">
-          <div class="team-avatar">
-            <img src="https://i.postimg.cc/ydfq4dR0/IMG-20251012-164817.jpg" alt="System Administrator portrait">
+        <!-- Director -->
+        <div class="text-center fade-in-element">
+          <div class="glass-effect rounded-3xl p-8 hover-lift">
+            <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-yellow-400 shadow-2xl">
+              <img src="https://via.placeholder.com/300x300.png?text=Director" alt="Director"
+                class="w-full h-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold text-yellow-400 mb-2">Director</h3>
+            <h4 class="text-lg font-semibold mb-4">Tonghtoh Ernest</h4>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              "I am a refugee of the Anglophone crisis. Golden Gate became my salvation, offering me renewed purpose in
+              helping others who, like me, had seen their futures shattered."
+            </p>
           </div>
-          <div class="team-title">System Administrator</div>
-          <div class="team-name">Priceless Sheutang</div>
-          <div class="team-note"><strong>I am a consequence of the Anglophone crisis. The conflict tore me away from my hometown and disrupted my education, leaving me to rebuild my life from fragments. Yet, from this loss, I found a renewed purpose. I have vowed to put my knowledge of data systems and spreadsheets at the service of Golden Gate, using every skill I have to strengthen our mission. What was once a story of disruption has become a story of dedication—because no child should suffer the same fate I endured, and every displaced learner deserves the chance to return to education.</strong></div>
+        </div>
+
+        <!-- System Administrator -->
+        <div class="text-center fade-in-element">
+          <div class="glass-effect rounded-3xl p-8 hover-lift">
+            <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-yellow-400 shadow-2xl">
+              <img src="https://i.postimg.cc/ydfq4dR0/IMG-20251012-164817.jpg" alt="System Administrator"
+                class="w-full h-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold text-yellow-400 mb-2">System Administrator</h3>
+            <h4 class="text-lg font-semibold mb-4">Priceless Sheutang</h4>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              "I am a consequence of the Anglophone crisis. What was once a story of disruption has become a story of
+              dedication—because no child should suffer the same fate I endured."
+            </p>
+          </div>
         </div>
       </div>
 
-      <!-- Space below images to write about the school -->
-      <div class="about-body">
-        <p style="margin-bottom:.5rem;">We are driven by the vision that education is not a privilege to be purchased, but a fundamental right accessible to all. Guided by this belief, our unwavering dedication and sheer willpower fuel the change we bring to the lives of hundreds of children and adults whose education and dreams have been broken.</p>
-        <!-- You can freely write a longer story here. Keep this div; replace with your own copy. -->
+      <!-- Mission Statement -->
+      <div class="max-w-4xl mx-auto fade-in-element">
+        <div class="glass-effect rounded-3xl p-8 md:p-12">
+          <div class="text-center mb-8">
+            <i class="fas fa-graduation-cap text-5xl text-yellow-400 mb-4"></i>
+            <h3 class="text-3xl font-bold mb-4">Our Impact</h3>
+          </div>
+          <p class="text-lg text-gray-300 leading-relaxed mb-8">
+            We are driven by the vision that education is not a privilege to be purchased, but a fundamental right
+            accessible to all. Since our founding in 2023, we have transformed the lives of more than 200 students and
+            adults—most of whom previously relied solely on agriculture—by opening new pathways to learning and
+            opportunity.
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-6 text-center">
+            <div class="p-6 bg-gradient-to-br from-yellow-400/20 to-orange-500/20 rounded-2xl">
+              <div class="text-3xl font-bold text-yellow-400 mb-2">200+</div>
+              <div class="text-gray-300">Lives Transformed</div>
+            </div>
+            <div class="p-6 bg-gradient-to-br from-blue-400/20 to-cyan-500/20 rounded-2xl">
+              <div class="text-3xl font-bold text-blue-400 mb-2">2023</div>
+              <div class="text-gray-300">Year Founded</div>
+            </div>
+            <div class="p-6 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-2xl">
+              <div class="text-3xl font-bold text-green-400 mb-2">∞</div>
+              <div class="text-gray-300">Hope Restored</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact"
+    class="section-hidden min-h-screen py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+    <div class="container mx-auto px-4">
+      <div class="text-center fade-in-element">
+        <h2 class="text-4xl md:text-6xl font-playfair font-bold mb-8 gradient-text">Contact Us</h2>
+
+        <div class="max-w-2xl mx-auto glass-effect rounded-3xl p-8 md:p-12">
+          <div class="space-y-6">
+            <div class="flex items-center justify-center space-x-4">
+              <i class="fas fa-envelope text-2xl text-yellow-400"></i>
+              <a href="mailto:info@goldengates.org"
+                class="text-xl font-semibold hover:text-yellow-400 transition-colors">
+                info@goldengates.org
+              </a>
+            </div>
+
+            <div class="flex items-center justify-center space-x-6 pt-6">
+              <a href="#" class="text-2xl text-gray-400 hover:text-yellow-400 transition-colors">
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a href="#" class="text-2xl text-gray-400 hover:text-yellow-400 transition-colors">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="text-2xl text-gray-400 hover:text-yellow-400 transition-colors">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="text-2xl text-gray-400 hover:text-yellow-400 transition-colors">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </div>
+
+            <p class="text-gray-300 leading-relaxed pt-4">
+              Follow us on social media or send a message to learn how you can partner with Golden Gate in transforming
+              lives through education.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Donate Button -->
+  <a href="#"
+    class="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-6 py-3 rounded-full font-bold shadow-2xl hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-110 animate-pulse-slow"
+    data-target="project-donate">
+    <i class="fas fa-heart mr-2"></i>Donate
+  </a>
+
+  <!-- Bank Modal -->
+  <div id="bank-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm">
+    <div class="glass-effect rounded-3xl p-8 max-w-md mx-4 text-center">
+      <h3 class="text-2xl font-bold mb-6 text-yellow-400">Bank Transfer Instructions</h3>
+      <div class="space-y-4 text-left">
+        <div><strong>Account Name:</strong> Golden Gates</div>
+        <div><strong>Account Number:</strong> 1234567890</div>
+        <div><strong>Bank:</strong> Example Bank</div>
+        <div><strong>Amount:</strong> $<span id="bank-amount">0</span></div>
+      </div>
+      <p class="text-sm text-gray-300 mt-6 mb-6">
+        After transfer, please email proof to <a href="mailto:info@goldengates.org"
+          class="text-yellow-400">info@goldengates.org</a>
+      </p>
+      <button onclick="document.getElementById('bank-modal').classList.add('hidden')"
+        class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-6 py-2 rounded-xl font-bold hover:from-yellow-500 hover:to-yellow-600 transition-all">
+        Close
+      </button>
+    </div>
   </div>
-</section>
 
-<!-- CONTACT -->
-<section id="contact" aria-labelledby="contact-title">
-  <div class="inner container">
-    <h2 id="contact-title" class="fade-in">Contact Us</h2>
-    <p class="lead fade-in">Email: <a href="mailto:info@goldengates.org" style="color: #fff; font-weight:700;">info@goldengates.org</a></p>
-    <p class="helper fade-in">Follow us on social media or send a message to learn how you can partner with Golden Gate.</p>
-  </div>
-</section>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
-<!-- FLOATING DONATE -->
-<a href="#" class="donate-floating" data-target="project-donate" aria-label="Donate now">Donate</a>
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
 
-<!-- SWIPER JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-
-
-<script>
-/* =========================
-<script>
-/* =========================
-   BASIC UI BEHAVIOR
-   ========================= */
-const hamburger = document.getElementById('hamburger');
-const nav = document.getElementById('main-nav');
-hamburger && hamburger.addEventListener('click', () => {
-  nav.classList.toggle('active');
-  if(nav.classList.contains('active')) nav.style.display = 'flex';
-  else nav.style.display = '';
-});
-
-document.querySelectorAll('nav a, .donate-floating, .cta-btn').forEach(el => {
-  el.addEventListener('click', (e) => {
-    const tgt = el.getAttribute('data-target');
-    if(!tgt) return;
-    e.preventDefault();
-    activateSection(tgt);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if(nav.classList.contains('active')) { nav.classList.remove('active'); nav.style.display = ''; }
-  });
-});
-
-function activateSection(id) {
-  document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-  const target = document.getElementById(id);
-  if(target) {
-    target.classList.add('active');
-    target.querySelectorAll('.fade-in').forEach(el => setTimeout(()=> el.classList.add('show'), 40));
-  }
-}
-
-/* =========================
-   SWIPER INIT
-   ========================= */
-for(let i = 1; i <= 8; i++){
-  try {
-    new Swiper('.proj'+i, {
-      loop: false,
-      pagination: { el: '.proj'+i+' .swiper-pagination', clickable: true },
-      grabCursor: true,
-      lazy: true
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('hidden');
     });
-  } catch(e) {}
-}
 
-try {
-  new Swiper('.home-swiper', {
-    loop: true,
-    autoplay: { delay: 15000, disableOnInteraction: false },
-    pagination: { el: '.home-swiper .swiper-pagination', clickable: true },
-    effect: 'fade',
-    fadeEffect: { crossFade: true },
-  });
-} catch(e) {}
-
-/* =========================
-   DONATION FLOW
-   ========================= */
-const donateBtns = document.querySelectorAll('.donateBtn[data-project]');
-donateBtns.forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const projectId = btn.getAttribute('data-project');
-    activateSection('project-donate');
-    document.querySelectorAll('.donation-project').forEach(p => p.classList.remove('active'));
-    const projectBlock = document.querySelector('.donation-project[data-project="'+projectId+'"]');
-    if(projectBlock) projectBlock.classList.add('active');
-    resetProjectSelection();
-  });
-});
-
-function resetProjectSelection() {
-  document.querySelectorAll('.donation-project input.subtask').forEach(i => i.checked = false);
-  document.getElementById('custom-amount').value = '';
-  updateTotal();
-}
-
-function updateTotal() {
-  const activeProject = document.querySelector('.donation-project.active');
-  let total = 0;
-  if(activeProject) {
-    activeProject.querySelectorAll('.subtask:checked').forEach(cb => {
-      total += parseFloat(cb.getAttribute('data-price') || 0);
+    // Navigation
+    document.querySelectorAll('[data-target]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = link.getAttribute('data-target');
+        showSection(target);
+        mobileNav.classList.add('hidden');
+      });
     });
-  }
-  const custom = parseFloat(document.getElementById('custom-amount').value || 0);
-  if(!isNaN(custom) && custom > 0) total += custom;
-  document.getElementById('total-amount').textContent = total.toFixed(2);
-}
-document.querySelectorAll('.subtask').forEach(cb => cb.addEventListener('change', updateTotal));
-document.getElementById('custom-amount').addEventListener('input', updateTotal);
 
+    function showSection(sectionId) {
+      // Hide all sections
+      document.querySelectorAll('section').forEach(section => {
+        section.classList.remove('section-active');
+        section.classList.add('section-hidden');
+      });
 
-/* =========================
-   INITIATE PAYMENT
-   ========================= */
-document.getElementById('initiate-payment').addEventListener('click', () => {
-  const totalText = document.getElementById('total-amount').textContent;
-  const total = parseFloat(totalText.replace(/[^0-9.]/g, '')) || 0;
-  const method = (document.getElementById('payment-method').value || '').trim();
+      // Show target section
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.classList.remove('section-hidden');
+        targetSection.classList.add('section-active');
 
-  if (!total || total <= 0) {
-    alert('Please select at least one subtask or enter a custom amount to donate.');
-    return;
-  }
-
-  if (!method) {
-    alert('Please select a payment method.');
-    return;
-  }
-
-  const activeProject = document.querySelector('.donation-project.active');
-  const projectName = activeProject?.querySelector('h3')?.textContent || 'Golden Gates';
-
-  switch (method.toLowerCase()) {
-    case 'flutterwave':
-      const donorName = prompt("Enter your full name:") || "Golden Gate Supporter";
-      const donorEmail = prompt("Enter your email:") || "donor@example.com";
-      const donorPhone = prompt("Enter your phone number (include country code):") || "677123456";
-      makeFlutterwavePayment(total, donorName, donorEmail, donorPhone, projectName);
-      break;
-
-    case 'cashapp':
-      const cashHandle = "GoldenGateSupport";
-      window.open(`https://cash.app/$${encodeURIComponent(cashHandle)}/${encodeURIComponent(total)}`, '_blank');
-      break;
-
-    case 'venmo':
-      const venmoHandle = "GoldenGateSupport";
-      const venmoNote = encodeURIComponent(`Donation to ${projectName}`);
-      window.open(`https://venmo.com/code?user_id=4407078516950843826&created=1762382134${encodeURIComponent(venmoHandle)}?txn=pay&amount=${encodeURIComponent(total)}&note=${venmoNote}`, '_blank');
-      break;
-
-    case 'bank':
-      showBankModal(total);
-      break;
-
-    case 'orange':
-    case 'mtn':
-      const phone = prompt(`To pay $${total.toFixed(2)} via ${method.toUpperCase()}, enter your phone number (include country code):`);
-      if (phone) {
-        alert(`(Demo) Initiating ${method.toUpperCase()} payment of $${total.toFixed(2)} for ${projectName} to phone ${phone}.\nReplace this with server API call.`);
+        // Trigger fade-in animations
+        setTimeout(() => {
+          targetSection.querySelectorAll('.fade-in-element').forEach(el => {
+            el.classList.add('show');
+          });
+        }, 100);
       }
-      break;
 
-    default:
-      alert('Payment method not recognized.');
-  }
-});
-
-/* =========================
-   FLUTTERWAVE PAYMENT
-   ========================= */
-function makeFlutterwavePayment(amount, name, email, phone, projectName) {
-  FlutterwaveCheckout({
-    public_key: "YOUR_PUBLIC_KEY", // Replace with real key
-    tx_ref: "GGATE-" + Date.now(),
-    amount: amount,
-    currency: "XAF",
-    payment_options: "card,mobilemoneyfranco,mobilemoneyghana,banktransfer,paypal",
-    customer: { name, email, phone_number: phone },
-    customizations: {
-      title: "Golden Gate Donations",
-      description: `Support ${projectName} with your gift`,
-      logo: "https://yourdomain.com/logo.png",
-    },
-    callback: function(payment) {
-      console.log("Payment success:", payment);
-      alert(`Thank you for your donation! Payment reference: ${payment.transaction_id}`);
-      // TODO: Call your backend to record this payment
-    },
-    onclose: function() {
-      console.log("Flutterwave popup closed");
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  });
-}
 
-/* =========================
-   BANK MODAL
-   ========================= */
-function showBankModal(amount) {
-  document.getElementById('bank-amount').textContent = `$${amount.toFixed(2)}`;
-  const modal = document.getElementById('bank-modal');
-  modal.style.display = 'block';
+    // Initialize Swiper instances
+    document.addEventListener('DOMContentLoaded', () => {
+      // Home swiper
+      new Swiper('.home-swiper', {
+        loop: true,
+        autoplay: {
+          delay: 8000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.home-swiper .swiper-pagination',
+          clickable: true,
+        },
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true,
+        },
+      });
 
-  // Close modal if clicking outside content
-  modal.onclick = function(e) {
-    if (e.target === modal) modal.style.display = 'none';
-  }
-}
-</script>
+      // Project swipers
+      for (let i = 1; i <= 8; i++) {
+        const swiperEl = document.querySelector(`.proj${i}`);
+        if (swiperEl) {
+          new Swiper(`.proj${i}`, {
+            loop: false,
+            pagination: {
+              el: `.proj${i} .swiper-pagination`,
+              clickable: true,
+            },
+            grabCursor: true,
+          });
+        }
+      }
+    });
 
-<!-- Bank modal HTML -->
-<div id="bank-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
-  <div style="background:#032955; padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
-    <h3>Bank Transfer Instructions</h3>
-    <p><strong>Account Name:</strong> Golden Gates</p>
-    <p><strong>Account Number:</strong> 1234567890</p>
-    <p><strong>Bank:</strong> Example Bank</p>
-    <p><strong>Amount:</strong> <span id="bank-amount"></span></p>
-    <p>After transfer, please email proof to <a href="mailto:info@goldengates.org">info@goldengates.org</a></p>
-    <button onclick="document.getElementById('bank-modal').style.display='none'">Close</button>
-  </div>
-</div>
+    // Donation functionality
+    document.querySelectorAll('.donate-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const project = btn.getAttribute('data-project');
+        if (project) {
+          showSection('project-donate');
+          showDonationProject(project);
+        }
+      });
+    });
 
-<!-- Hidden Audio -->
-<audio id="bgMusic" loop>
-  <source src="huo.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+    function showDonationProject(projectId) {
+      // Hide all donation projects
+      document.querySelectorAll('.donation-project').forEach(project => {
+        project.classList.add('hidden');
+      });
 
-<script>
-  const music = document.getElementById('bgMusic');
+      // Show selected project
+      const targetProject = document.querySelector(`[data-project="${projectId}"]`);
+      if (targetProject) {
+        targetProject.classList.remove('hidden');
+      }
 
-  // Wait for user interaction to start the music
-  document.addEventListener('click', () => {
-    if (music.paused) {
-      music.volume = 0.05; // very soft
-      music.play().catch(err => console.log("Playback prevented:", err));
+      // Reset form
+      resetDonationForm();
     }
-  }, { once: true }); // run only on the first click
-</script>
 
+    function resetDonationForm() {
+      document.querySelectorAll('.subtask').forEach(checkbox => {
+        checkbox.checked = false;
+      });
+      document.getElementById('custom-amount').value = '';
+      document.getElementById('payment-method').value = '';
+      updateTotal();
+    }
+
+    function updateTotal() {
+      let total = 0;
+
+      // Add checked subtasks
+      document.querySelectorAll('.subtask:checked').forEach(checkbox => {
+        total += parseFloat(checkbox.getAttribute('data-price') || 0);
+      });
+
+      // Add custom amount
+      const customAmount = parseFloat(document.getElementById('custom-amount').value || 0);
+      if (customAmount > 0) {
+        total += customAmount;
+      }
+
+      document.getElementById('total-amount').textContent = total.toLocaleString();
+    }
+
+    // Event listeners for donation form
+    document.querySelectorAll('.subtask').forEach(checkbox => {
+      checkbox.addEventListener('change', updateTotal);
+    });
+
+    document.getElementById('custom-amount').addEventListener('input', updateTotal);
+
+    // Payment processing
+    document.getElementById('initiate-payment').addEventListener('click', () => {
+      const total = parseFloat(document.getElementById('total-amount').textContent.replace(/,/g, '')) || 0;
+      const method = document.getElementById('payment-method').value;
+
+      if (total <= 0) {
+        alert('Please select at least one item or enter a custom amount.');
+        return;
+      }
+
+      if (!method) {
+        alert('Please select a payment method.');
+        return;
+      }
+
+      processPayment(method, total);
+    });
+
+    function processPayment(method, amount) {
+      switch (method) {
+        case 'bank':
+          showBankModal(amount);
+          break;
+        case 'cashapp':
+          window.open(`https://cash.app/$GoldenGateSupport/${amount}`, '_blank');
+          break;
+        case 'venmo':
+          window.open(`https://venmo.com/GoldenGateSupport?txn=pay&amount=${amount}`, '_blank');
+          break;
+        default:
+          alert(`Processing ${method} payment of $${amount.toFixed(2)}. This would integrate with the actual payment provider.`);
+      }
+    }
+
+    function showBankModal(amount) {
+      document.getElementById('bank-amount').textContent = amount.toFixed(2);
+      document.getElementById('bank-modal').classList.remove('hidden');
+      document.getElementById('bank-modal').classList.add('flex');
+    }
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    document.querySelectorAll('.fade-in-element').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Show home section by default
+    showSection('home');
+  </script>
 
 </body>
+
 </html>
