@@ -227,7 +227,7 @@ h4 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 500; }
   cursor: pointer;
   border: none;
 }
-.donateBtn:hover { background: #153a93; }
+.donateBtn:hover { background: #ffe607; }
 
 /* floating CTA */
 .donate-floating {
@@ -322,7 +322,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 <header role="banner" aria-label="Main header">
   <div class="brand" aria-hidden="false">
     <div class="brand__logo" aria-hidden="true">
-      <img src="https://i.imgur.com/v5HBQSK.jpg" alt="Golden Gates logo">
+      <img src="https://i.imgur.com/v5HBQSK.jpg" alt="Golden Gate logo">
     </div>
     <span>GOLDEN GATE</span>
   </div>
@@ -404,7 +404,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         </div>
          <!-- Slide 6 -->
         <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/7P3GnppL/Untitled.png')"></div>
+          <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/x1mFS0Z6/cover000.png')"></div>
           <div class="home-slide__content">
             <h1 id="home-title">Milestones Achieved</h1>
             <p class="lead">By the end of our first year, we had not only taught lessons, but nurtured souls. Over 180 children had found a safe haven, a place where knowledge met care, and dreams could take their first flight.</p>
@@ -1016,6 +1016,23 @@ function showBankModal(amount) {
   </div>
 </div>
 
+<audio id="bgMusic" autoplay loop hidden>
+  <source src="huo.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const music = document.getElementById('bgMusic');
+
+  // Start muted (browsers may require this)
+  music.muted = true;
+
+  // Wait until audio is ready to play
+  music.addEventListener('canplaythrough', () => {
+    music.muted = false;       // unmute
+    music.volume = 0.05;       // very soft background
+    music.play();              // ensure it starts
+  });
+</script>
 
 
 </body>
