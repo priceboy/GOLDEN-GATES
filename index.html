@@ -1016,22 +1016,22 @@ function showBankModal(amount) {
   </div>
 </div>
 
-<audio id="bgMusic" autoplay loop hidden>
+<!-- Hidden Audio -->
+<audio id="bgMusic" loop>
   <source src="huo.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
 </audio>
 
 <script>
   const music = document.getElementById('bgMusic');
 
-  // Start muted (browsers may require this)
-  music.muted = true;
-
-  // Wait until audio is ready to play
-  music.addEventListener('canplaythrough', () => {
-    music.muted = false;       // unmute
-    music.volume = 0.05;       // very soft background
-    music.play();              // ensure it starts
-  });
+  // Wait for user interaction to start the music
+  document.addEventListener('click', () => {
+    if (music.paused) {
+      music.volume = 0.05; // very soft
+      music.play().catch(err => console.log("Playback prevented:", err));
+    }
+  }, { once: true }); // run only on the first click
 </script>
 
 
