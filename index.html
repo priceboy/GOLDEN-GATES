@@ -1028,7 +1028,7 @@ function showBankModal(amount) {
   // Wait for user interaction to start the music
   document.addEventListener('click', () => {
     if (music.paused) {
-      music.volume = 0.1; // very soft
+      music.volume = 0.3; // very soft
       music.play().catch(err => console.log("Playback prevented:", err));
     }
   }, { once: true }); // run only on the first click
