@@ -955,32 +955,26 @@ document.getElementById('initiate-payment').addEventListener('click', () => {
       showBankModal(total);
       break;
 
-   case 'orange':
+  case 'orange':
 case 'mtn':
   if (phone) {
     let ussdCode = '';
-    const totalAmount = parseInt(total); // ensure total is a valid number
+    const totalAmount = parseInt(total); // ensure total is numeric
 
     if (method.toLowerCase() === 'mtn') {
-      // MTN MoMo USSD pattern: *126*9*RECEIVER*AMOUNT#
-      const receivingNumber = "671519072"; // your MTN receiving number
+      const receivingNumber = "671519072";
       ussdCode = `*126*9*${receivingNumber}*${totalAmount}#`;
     } else if (method.toLowerCase() === 'orange') {
-      // Orange Money Cameroon USSD pattern: *150*1*RECEIVER*AMOUNT#
-      const receivingNumber = "689279394"; // your Orange receiving number
+      const receivingNumber = "689279394";
       ussdCode = `*150*1*${receivingNumber}*${totalAmount}#`;
     }
 
-    // Encode USSD for tel: URI
-    const encodedUSSD = encodeURIComponent(ussdCode);
-
-    // Open phone dialer with pre-filled USSD
-    window.location.href = `tel:${encodedUSSD}`;
+    // Open dialer WITHOUT encoding
+    window.location.href = `tel:${ussdCode}`;
   } else {
     alert('Please enter your phone number before proceeding.');
   }
   break;
-
 
 
     default:
