@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Golden Gate —Education for Every Path</title>
+<title>Golden Gate — Education for Displaced Learners</title>
 
 <!-- Swiper -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
@@ -34,7 +34,9 @@
 html,body { height: auto }
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+             Roboto, "Helvetica Neue", Arial, sans-serif;
+
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -153,6 +155,17 @@ section::before {
 }
 
 /* per-section background placeholders (removed `fixed`) */
+
+#fundraise,
+#project-donate,
+#about,
+#contact {
+  min-height: 100vh; 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 #home { background: rgb(5, 19, 32); }
 #fundraise { background: url('https://i.imgur.com/GIfidXr.png') center center/200% auto no-repeat; }
 #project-donate { background: url('https://i.imgur.com/CHIYsK9.jpeg') center center/cover no-repeat; }
@@ -177,9 +190,9 @@ h4 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 300; }
 .home-slide { width: 100%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; }
 .home-slide::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)); z-index: 1; }
 .home-slide__bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: saturate(1.1); }
-.home-slide__content { position: relative; z-index: 2; text-align: center; max-width: 900px; padding: 0 1rem; color: #fff; }
-.home-slide__content h1 { font-size: clamp(28px, 4.5vw, 56px); margin-bottom: .2rem; }
-.home-slide__content p { font-size: clamp(14px, 2vw, 18px); opacity: .96; margin-bottom: 1rem; }
+.home-slide__content { position: absolute; z-index: 2; text-align: center; max-width: 900px; padding: 0rem; color: #fff; }
+.home-slide__content h1 { font-size: clamp(28px, 4.5vw, 56px); margin-bottom: .6rem; }
+.home-slide__content p { font-size: clamp(14px, 2vw, 18px); opacity: .96; margin-bottom: 0rem; }
 .cta-btn { display: inline-block; background: #fbbf24; color: #111827; padding: .6rem 1rem; border-radius: 9999px; font-weight: 800; text-decoration: none; box-shadow: 0 10px 24px rgba(0,0,0,.18); }
 .cta-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
 
@@ -351,13 +364,13 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           <div class="home-slide__content">
                    <p class="helper fade-in"><strong><em>Welcome to the Golden Gate Initiative. Explore our progress, witness our impact, and  join us in shaping brighter futures.</strong></em></p>
             <h4 id="home-title"><strong><em> MISSION</em></strong></h4>
-                <p class="helper fade-in"><strong><em>Our mission is to bridge educational gaps between underprivileged and other student groups by providing equitable access to learning opportunities. We are committed to cultivating a supportive environment that empowers students to learn, achieve, and excel. Our success is defined by the impact we create in the community and the inspiring stories of those we serve.</em></strong></p>
+                <p class="helper fade-in"><em>Our mission is to bridge educational gaps between underprivileged and other student groups by providing equitable access to learning opportunities. We are committed to cultivating a supportive environment that empowers students to learn, achieve, and excel. Our success is defined by the impact we create in the community and the inspiring stories of those we serve.</em></strong></p>
           <h4 id="home-title"> <strong><em>VISION</em></strong></h4>
 
-                                <p class="helper fade-in"><strong><em>Golden Gate envisions an educational hub that serves as a beacon of hope and opportunity, empowering every learner to overcome challenges, thrive, and create a brighter future, regardless of circumstance.</em></strong></p>
+                                <p class="helper fade-in"><em>Golden Gate envisions an educational hub that serves as a beacon of hope and opportunity, empowering every learner to overcome challenges, thrive, and create a brighter future, regardless of circumstance.</em></strong></p>
            <h4 id="home-title"> <strong><em>VALUES </em></strong></h4>
 
-            <p class="helper fade-in"><strong><em>Guided by honesty, integrity, and respect, we foster trust, embrace fairness, and honor the contributions of every member of our community.</em></strong></p></em></p>
+            <p class="helper fade-in"><em>Guided by honesty, integrity, and respect, we foster trust, embrace fairness, and honor the contributions of every member of our community.</em></strong></p></em></p>
                                                                                                                                                                                                                                            
           </div> 
         </div>
@@ -751,7 +764,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 <section id="about" aria-labelledby="about-title">
   <div class="inner container">
     <h2 id="about-title" class="fade-in"><em>About Us</em></h2>
-    <p class="lead fade-in"><strong><em>Golden Gate is committed to empowering every child through education. We provide a nurturing, inclusive environment that fosters growth, compassion, and a sense of social responsibility, helping students build a brighter future for themselves and their communities. </em></strong></p>
+    <p class="lead fade-in"><strong><em>Golden Gate is committed to empowering every child through education. We provide a nurturing, inclusive environment that fosters growth, compassion, and a sense of social responsibility, helping students build a brighter future for themselves and their communities.</em></strong></p>
 
     <div class="team fade-in">
       <div class="team-grid">
@@ -762,7 +775,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           </div>
           <div class="team-title"><em>Founder</em></div>
           <div class="team-name"><em>Your Founder Name</em></div>
-          <div class="team-note"><em><strong>Children should never bear the consequences of destructive decisions made by adults. The Anglophone crisis has forced countless children out of school, with little regard for their futures. That is why we must rise to be better—working to correct the injustices and mistakes that have been unfairly inflicted upon these children and youth</strong></em></div>
+          <div class="team-note"><em><strong>Children should never bear the consequences of destructive decisions made by adults. The Anglophone crisis has forced countless children out of school, with little regard for their futures. That is why we must rise to be better—working to correct the injustices and mistakes that have been unfairly inflicted upon these children and youth.</strong></em></div>
         </div>
         <!-- Director -->
         <div class="team-card">
