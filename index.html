@@ -1036,8 +1036,8 @@ document.getElementById('initiate-payment').addEventListener('click', () => {
   case 'orange':
 case 'mtn':
   if (phone) {
+    const totalAmount = parseInt(total); // or parseFloat(total) if needed
     let ussdCode = '';
-    const totalAmount = parseInt(total); // ensure total is numeric
 
     if (method.toLowerCase() === 'mtn') {
       const receivingNumber = "671519072";
@@ -1047,8 +1047,9 @@ case 'mtn':
       ussdCode = `*150*1*${receivingNumber}*${totalAmount}#`;
     }
 
-    // Open dialer WITHOUT encoding
-    window.location.href = `tel:${ussdCode}`;
+    // Encode for safe dialing
+    const encodedUSSD = encodeURIComponent(ussdCode);
+    window.location.href = `tel:${encodedUSSD}`;
   } else {
     alert('Please enter your phone number before proceeding.');
   }
