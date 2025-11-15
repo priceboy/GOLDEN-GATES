@@ -12,6 +12,63 @@
 
 
 <style>
+  /* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  animation: fadeIn 0.4s ease forwards;
+  opacity: 0;
+}
+
+/* Popup Fade-out */
+.popup-overlay.fade-out {
+  animation: fadeOut 0.4s ease forwards;
+}
+
+/* Popup Box */
+.popup-box {
+  background: rgb(3, 11, 18);
+  padding: 25px 35px;
+  border-radius: 12px;
+  text-align: center;
+  width: 80%;
+  max-width: 350px;
+  animation: popIn 0.4s ease;
+}
+
+/* Close Button */
+.popup-box button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  background: #0a2a43;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes popIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
 /* =========================
    THEME & RESET
    ========================= */
@@ -167,9 +224,13 @@ section::before {
 }
 
 #home { background: rgb(5, 19, 32); }
-#fundraise { background: url('https://i.imgur.com/GIfidXr.png') center center/200% auto no-repeat; }
-#project-donate { background: url('https://i.imgur.com/CHIYsK9.jpeg') center center/cover no-repeat; }
-#about { background: url('https://i.postimg.cc/CL2QW1t1/Chat-GPT-Image-Nov-10-2025-02-16-58-PM.png') center center/130% auto no-repeat; }
+#fundraise { 
+  background: linear-gradient(135deg, #077bff, #ffff2a); 
+}
+#project-donate { background: url('https://i.postimg.cc/DZss4YJv/Chat-GPT-Image-Nov-15-2025-02-26-39-AM.png') center center/cover no-repeat; }
+#about { 
+  background: linear-gradient(135deg, #0debeb, #022a43); 
+}
 #contact { background: url('https://i.imgur.com/CoCKRlV.jpg') center center/cover no-repeat; }
 
 /* headings and readable text */
@@ -1071,6 +1132,35 @@ function showBankModal(amount) {
     }
   }, { once: true }); // run only on the first click
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('welcomePopup');
+    const btn = document.getElementById('closePopup');
+
+    function closePopup() {
+      popup.classList.add('fade-out');
+      setTimeout(() => popup.style.display = 'none', 380);
+    }
+
+    btn.addEventListener('click', closePopup);
+
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        closePopup();
+      }
+    });
+  });
+</script>
+
+
+<!-- Welcome Popup -->
+<div id="welcomePopup" class="popup-overlay">
+  <div class="popup-box">
+    <h2>Thank you for dedicating your time and energy to advancing the mission of Golden Gate.</h2>
+    
+    <button id="closePopup">Continue</button>
+  </div>
+</div>
 
 
 </body>
