@@ -239,6 +239,7 @@ h1 { font-size: clamp(26px, 4vw, 42px); font-weight: 800; }
 h2 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 700; }
 h3 { font-size: clamp(16px, 2.2vw, 20px); font-weight: 700; color: var(--secondary); }
 h4 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 300; }
+h5 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 100; }
 
 /* small paragraph */
 .lead { color: rgba(255,255,255,0.95); font-size: clamp(14px, 1.9vw, 16px); margin-bottom: 1rem; }
@@ -407,34 +408,113 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
   </div>
 
   <nav role="navigation" aria-label="Primary navigation" id="main-nav">
-    <a href="#" data-target="home"><em>Home</em></a>
-    <a href="#" data-target="fundraise"><em>Help_us_fund a_project</em></a>
+    <a href="#" data-target="mission"><em>Our mission</em></a>
+    <a href="#" data-target="home"><em>Memory lane</em></a>
+    <a href="#" data-target="fundraise"><em>Fuel a Dream</em></a>
     <a href="#" data-target="about"><em>About</em></a>
     <a href="#" data-target="contact"><em>Contact</em></a>
   </nav>
 </header>
+<section id="mission" aria-labelledby="mission-title">
+  <div class="inner container" style="text-align: center;">
+<h5 id="mission-title" class="fade-in">
+  <em>Welcome to the Golden Gate Initiative. Explore our progress, witness our impact, and join us in shaping brighter futures.</em>
+  <br>
+  <small><em>tap a heading to reveal more details</em></small>
+</h5>
+
+    <div class="mission-container" style="display: inline-block; text-align: left; max-width: 700px;">
+      <!-- Mission -->
+      <div class="accordion-item">
+        <h4 class="accordion-header">MISSION</h4>
+        <p class="accordion-content fade-in">
+          Our mission is to bridge educational gaps between underprivileged and other student groups by providing equitable access to learning opportunities. We are committed to cultivating a supportive environment that empowers students to learn, achieve, and excel. Our success is defined by the impact we create in the community and the inspiring stories of those we serve.
+        </p>
+      </div>
+
+      <!-- Vision -->
+      <div class="accordion-item">
+        <h4 class="accordion-header">VISION</h4>
+        <p class="accordion-content fade-in">
+          Golden Gate envisions an educational hub that serves as a beacon of hope and opportunity, empowering every learner to overcome challenges, thrive, and create a brighter future, regardless of circumstance.
+        </p>
+      </div>
+
+      <!-- Values -->
+      <div class="accordion-item">
+        <h4 class="accordion-header">VALUES</h4>
+        <p class="accordion-content fade-in">
+          Guided by honesty, integrity, and respect, we foster trust, embrace fairness, and honor the contributions of every member of our community.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const headers = document.querySelectorAll('#mission .accordion-header');
+
+      headers.forEach(header => {
+        header.addEventListener('click', () => {
+          const item = header.parentElement;
+
+          // Close all other items
+          headers.forEach(h => h.parentElement !== item && h.parentElement.classList.remove('active'));
+
+          // Toggle clicked item
+          item.classList.toggle('active');
+        });
+      });
+    })();
+  </script>
+
+  <style>
+    /* Accordion default styling */
+    #mission .accordion-item {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      border: 1px solid #fff706;
+      text-align: left;
+    }
+
+    #mission .accordion-header {
+      padding: 1rem;
+      cursor: pointer;
+      font-weight: 700;
+      background-color: #0091ff;
+      text-align: center; /* Center header text */
+    }
+
+    #mission .accordion-header:hover {
+      background-color: #00eeff;
+    }
+
+    #mission .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 1rem;
+      transition: max-height 0.5s ease, padding 0.5s ease;
+      line-height: 1.6;
+      text-align: justify; /* Paragraph justified for readability */
+    }
+
+    #mission .accordion-item.active .accordion-content {
+      max-height: 1000px; /* Ensure enough space for long text */
+      padding: 1rem;
+    }
+  </style>
+</section>
+
+
 
 <!-- HOME (with auto-glider) -->
 <section id="home" class="active" aria-labelledby="home-title">
   <div class="inner container">
     <div class="swiper home-swiper">
       <div class="swiper-wrapper">
-         <!-- Slide o -->
-        <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/DolIePP.png')"></div>
-          <div class="home-slide__content">
-                   <p class="helper fade-in"><strong><em>Welcome to the Golden Gate Initiative. Explore our progress, witness our impact, and  join us in shaping brighter futures.</strong></em></p>
-            <h4 id="home-title"><strong><em> MISSION</em></strong></h4>
-                <p class="helper fade-in"><em>Our mission is to bridge educational gaps between underprivileged and other student groups by providing equitable access to learning opportunities. We are committed to cultivating a supportive environment that empowers students to learn, achieve, and excel. Our success is defined by the impact we create in the community and the inspiring stories of those we serve.</em></strong></p>
-          <h4 id="home-title"> <strong><em>VISION</em></strong></h4>
-
-                                <p class="helper fade-in"><em>Golden Gate envisions an educational hub that serves as a beacon of hope and opportunity, empowering every learner to overcome challenges, thrive, and create a brighter future, regardless of circumstance.</em></strong></p>
-           <h4 id="home-title"> <strong><em>VALUES </em></strong></h4>
-
-            <p class="helper fade-in"><em>Guided by honesty, integrity, and respect, we foster trust, embrace fairness, and honor the contributions of every member of our community.</em></strong></p></em></p>
-                                                                                                                                                                                                                                           
-          </div> 
-        </div>
+         
         <!-- Slide 1 -->
         <div class="swiper-slide home-slide">
           <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/DolIePP.png')"></div>
@@ -1162,6 +1242,8 @@ function showBankModal(amount) {
     <button id="closePopup">Continue</button>
   </div>
 </div>
+
+
 
 
 </body>
