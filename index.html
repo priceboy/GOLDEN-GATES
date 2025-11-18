@@ -1202,48 +1202,47 @@ function showBankModal(amount) {
   Your browser does not support the audio element.
 </audio>
 
+<!-- Music Consent Popup -->
+<div id="welcomePopup" class="popup-overlay">
+  <div class="popup-box">
+    <h2>Welcome to Golden Gate!</h2>
+    <p>Would you like background music while exploring the site?</p>
+    
+    <button id="agreeMusic">Yes</button>
+    <button id="declineMusic">No</button>
+  </div>
+</div>
+
 <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('welcomePopup');
+  const agreeBtn = document.getElementById('agreeMusic');
+  const declineBtn = document.getElementById('declineMusic');
   const music = document.getElementById('bgMusic');
 
-  // Wait for user interaction to start the music
-  document.addEventListener('click', () => {
+  function closePopup() {
+    popup.classList.add('fade-out');
+    setTimeout(() => popup.style.display = 'none', 380);
+  }
+
+  // User clicks Yes → start music
+  agreeBtn.addEventListener('click', () => {
     if (music.paused) {
       music.volume = 0.3; // very soft
       music.play().catch(err => console.log("Playback prevented:", err));
     }
-  }, { once: true }); // run only on the first click
-</script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const popup = document.getElementById('welcomePopup');
-    const btn = document.getElementById('closePopup');
-
-    function closePopup() {
-      popup.classList.add('fade-out');
-      setTimeout(() => popup.style.display = 'none', 380);
-    }
-
-    btn.addEventListener('click', closePopup);
-
-    popup.addEventListener('click', (e) => {
-      if (e.target === popup) {
-        closePopup();
-      }
-    });
+    closePopup();
   });
+
+  // User clicks No → just close popup
+  declineBtn.addEventListener('click', closePopup);
+
+  // Optional: click outside the box closes popup
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) closePopup();
+  });
+});
 </script>
-
-
-<!-- Welcome Popup -->
-<div id="welcomePopup" class="popup-overlay">
-  <div class="popup-box">
-    <h2>Your support changes lives. </h2>
-    <p>Thank you for being part of this journey!</p>
-    
-    <button id="closePopup">Continue</button>
-  </div>
-</div>
-
 
 
 
