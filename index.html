@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,7 +95,7 @@ body {
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
              Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  background: linear-gradient(135deg, #0debeb, #022a43);  
+  background: linear-gradient(135deg, #022a43, #022a43);  
   color: var(--text);
   line-height: 1.6;
   font-size: clamp(14px, 2vw, 18px);
@@ -122,7 +123,7 @@ header {
   display: flex;
   align-items: center;
   gap: .75rem;
-  color: rgb(255, 221, 0);
+  color: rgb(255, 255, 255);
   font-weight: 700;
   letter-spacing: 0.2px;
 }
@@ -312,7 +313,7 @@ h5 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 100; }
   position: fixed;
   right: 1rem;
   bottom: 1rem;
-  background: var(--primary);
+  background:  #ffe607;
   color: #031327;
   padding: .7rem 1rem;
   border-radius: 9999px;
@@ -420,7 +421,8 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 <section id="mission" aria-labelledby="mission-title">
   <div class="inner container" style="text-align: center;">
 <h5 id="mission-title" class="fade-in">
-  <em>Welcome to the Golden Gate Initiative. Explore our progress, witness our impact, and join us in shaping brighter futures.</em>
+  <em><strong>Welcome to the Golden Gate Initiative. Explore our progress, witness our impact,<br> 
+    and join us in shaping brighter futures.</strong></em>
   <br>
   <small><em>tap a heading to reveal more details</em></small>
 </h5>
@@ -449,7 +451,13 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           Guided by honesty, integrity, and respect, we foster trust, embrace fairness, and honor the contributions of every member of our community.
         </p>
       </div>
+
     </div>
+
+     <h2 id="contact-title" class="fade-in">School Contact</h2>
+        <p class="helper fade-in"><li><em>US Contact_:</em>
+    <li><em>📍 Cameroon
+📱 +237 678 523 696 / +237 659 108 907</em></p>
   </div>
 
   <script>
@@ -1091,12 +1099,7 @@ document.getElementById('initiate-payment').addEventListener('click', () => {
   const projectName = activeProject?.querySelector('h3')?.textContent || 'Golden Gates';
 
   switch (method.toLowerCase()) {
-    case 'flutterwave':
-      const donorName = prompt("Enter your full name:") || "Golden Gate Supporter";
-      const donorEmail = prompt("Enter your email:") || "donor@example.com";
-      const donorPhone = prompt("Enter your phone number (include country code):") || "677123456";
-      makeFlutterwavePayment(total, donorName, donorEmail, donorPhone, projectName);
-      break;
+    
 
     case 'cashapp':
       const cashHandle = "GoldenGateSupport";
@@ -1113,27 +1116,14 @@ document.getElementById('initiate-payment').addEventListener('click', () => {
       showBankModal(total);
       break;
 
-  case 'orange':
-case 'mtn':
-  if (phone) {
-    const totalAmount = parseInt(total); // or parseFloat(total) if needed
-    let ussdCode = '';
+      case 'mtn':
+      showmtnModal(total);
+      break;
 
-    if (method.toLowerCase() === 'mtn') {
-      const receivingNumber = "671519072";
-      ussdCode = `*126*9*${receivingNumber}*${totalAmount}#`;
-    } else if (method.toLowerCase() === 'orange') {
-      const receivingNumber = "689279394";
-      ussdCode = `*150*1*${receivingNumber}*${totalAmount}#`;
-    }
-
-    // Encode for safe dialing
-    const encodedUSSD = encodeURIComponent(ussdCode);
-    window.location.href = `tel:${encodedUSSD}`;
-  } else {
-    alert('Please enter your phone number before proceeding.');
-  }
-  break;
+       case 'orange':
+      showorangeModal(total);
+      break;
+  
 
 
     default:
@@ -1141,32 +1131,7 @@ case 'mtn':
   }
 });
 
-/* =========================
-   FLUTTERWAVE PAYMENT
-   ========================= */
-function makeFlutterwavePayment(amount, name, email, phone, projectName) {
-  FlutterwaveCheckout({
-    public_key: "YOUR_PUBLIC_KEY", // Replace with real key
-    tx_ref: "GGATE-" + Date.now(),
-    amount: amount,
-    currency: "XAF",
-    payment_options: "card,mobilemoneyfranco,mobilemoneyghana,banktransfer,paypal",
-    customer: { name, email, phone_number: phone },
-    customizations: {
-      title: "Golden Gate Donations",
-      description: `Support ${projectName} with your gift`,
-      logo: "https://yourdomain.com/logo.png",
-    },
-    callback: function(payment) {
-      console.log("Payment success:", payment);
-      alert(`Thank you for your donation! Payment reference: ${payment.transaction_id}`);
-      // TODO: Call your backend to record this payment
-    },
-    onclose: function() {
-      console.log("Flutterwave popup closed");
-    }
-  });
-}
+
 
 /* =========================
    BANK MODAL
@@ -1176,7 +1141,35 @@ function showBankModal(amount) {
   const modal = document.getElementById('bank-modal');
   modal.style.display = 'block';
 
-  // Close modal if clicking outside content
+   // Close modal if clicking outside content
+  modal.onclick = function(e) {
+    if (e.target === modal) modal.style.display = 'none';
+  }
+}
+
+/* =========================
+   MTN MODAL
+   ========================= */
+function showmtnModal(amount) {
+  document.getElementById('mtn-amount').textContent = `$${amount.toFixed(2)}`;
+  const modal = document.getElementById('mtn-modal');
+  modal.style.display = 'block';
+
+   // Close modal if clicking outside content
+  modal.onclick = function(e) {
+    if (e.target === modal) modal.style.display = 'none';
+  }
+}
+
+/* =========================
+   ORANGE MODAL
+   ========================= */
+function showorangeModal(amount) {
+  document.getElementById('orange-amount').textContent = `$${amount.toFixed(2)}`;
+  const modal = document.getElementById('orange-modal');
+  modal.style.display = 'block';
+
+   // Close modal if clicking outside content
   modal.onclick = function(e) {
     if (e.target === modal) modal.style.display = 'none';
   }
@@ -1185,12 +1178,38 @@ function showBankModal(amount) {
 
 <!-- Bank modal HTML -->
 <div id="bank-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
-  <div style="background:#032955; padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
+  <div style="background:#119bb0; padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
     <h3>Bank Transfer Instructions</h3>
-    <p><strong>Account Name:</strong> Golden Gates</p>
+    <p><strong>Account Name:</strong> Golden Gate</p>
     <p><strong>Account Number:</strong> 1234567890</p>
-    <p><strong>Bank:</strong> Example Bank</p>
+    <p><strong>Bank:</strong> police Credit union</p>
     <p><strong>Amount:</strong> <span id="bank-amount"></span></p>
+    <p>After transfer, please email proof to <a href="mailto:info@goldengates.org">info@goldengates.org</a></p>
+    <button onclick="document.getElementById('mtn-modal').style.display='none'">Close</button>
+  </div>
+</div>
+
+<!-- MTN MODAL -->
+<div id="mtn-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
+  <div style="background:#119bb0;  padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
+    <h3>Mobile money Info</h3>
+    <p><strong>Account Name:</strong> Stephanie jinui</p>
+    <p><strong>Account Number:</strong> +237 652796507</p>
+ 
+    <p><strong>Amount:</strong> <span id="mtn-amount"></span></p>
+    <p>After transfer, please message prof to  <a href="mailto:info@goldengates.org">info@goldengates.org</a></p>
+    <button onclick="document.getElementById('bank-modal').style.display='none'">Close</button>
+  </div>
+</div>
+
+<!-- ORANGE MODAL -->
+<div id="orange-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
+  <div style="background:#119bb0; padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
+    <h3>Bank Transfer Instructions</h3>
+    <p><strong>OM account Name:</strong> stephanie Jinui</p>
+    <p><strong> OM account number:</strong> 237 652796507</p>
+    <p><strong>Bank:</strong> Example Bank</p>
+    <p><strong>Amount:</strong> <span id="orange-amount"></span></p>
     <p>After transfer, please email proof to <a href="mailto:info@goldengates.org">info@goldengates.org</a></p>
     <button onclick="document.getElementById('bank-modal').style.display='none'">Close</button>
   </div>
