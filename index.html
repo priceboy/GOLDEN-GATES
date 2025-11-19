@@ -454,7 +454,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 
     </div>
 
-     <h2 id="contact-title" class="fade-in">School Contact</h2>
+     <h2 id="contact-title" class="fade-in">Contact us</h2>
         <p class="helper fade-in"><li><em>US Contact_:</em>
     <li><em>📍 Cameroon
 📱 +237 678 523 696 / +237 659 108 907</em></p>
@@ -493,12 +493,12 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
       padding: 1rem;
       cursor: pointer;
       font-weight: 700;
-      background-color: #0091ff;
+      background-color: #0091ff77;
       text-align: center; /* Center header text */
     }
 
     #mission .accordion-header:hover {
-      background-color: #00eeff;
+      background-color: #00eeff69;
     }
 
     #mission .accordion-content {
@@ -606,7 +606,8 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 <section id="fundraise" aria-labelledby="fundraise-title">
   <div class="inner container">
     <h2 id="fundraise-title" class="fade-in"><em><strong>Current Fundraising Projects</strong></em></h2>
-    <p class="lead fade-in"><strong><em>Choose a project and click Donate to support a specific part of that project.</br>
+    <p class="lead fade-in"><strong><em>Choose a project and click Donate to support a specific part of that project.<br>
+      Your support changes lives. Thank you for being part of this journey!</br>
     (The progress bars indicate how close we are to luanching the project.)</em></strong></p>
 
     <div class="projects fade-in" id="projects-grid" style="margin-top:1.25rem;">
@@ -935,7 +936,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           </div>
           <div class="team-title"><em>Director</em></div>
           <div class="team-name"><em>Tonghtoh Ernest</em></div>
-          <div class="team-note"><strong><em>Lost everything in 2012. Fled to Fumbot and tilled the soil just to survive. Life felt empty until I found Golden Gate. They gave me purpose, and now I help children who, like me, had their futures stolen by war.</em></strong></div>
+          <div class="team-note"><strong><em>In 2018, everything I knew was taken from me. My family fled to Fumbot with nothing, and survival meant tilling the soil day after day, trying to rebuild from the ashes of conflict. For years, life felt directionless — until I discovered Golden Gate. They gave me more than education; they restored my sense of purpose. Today, I dedicate myself to supporting children whose futures, like mine once was, have been threatened by war. Helping them heal and dream again is the mission that now defines me.</em></strong></div>
         </div>
         
         <!-- System Administrator -->
@@ -1141,6 +1142,10 @@ function showBankModal(amount) {
   const modal = document.getElementById('bank-modal');
   modal.style.display = 'block';
 
+     // Close modal if clicking outside content
+  modal.onclick = function(e) {
+    if (e.target === modal) modal.style.display = 'close';
+  }
    // Close modal if clicking outside content
   modal.onclick = function(e) {
     if (e.target === modal) modal.style.display = 'none';
@@ -1178,39 +1183,57 @@ function showorangeModal(amount) {
 
 <!-- Bank modal HTML -->
 <div id="bank-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
-  <div style="background:#119bb0; padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
-    <h3>Bank Transfer Instructions</h3>
-    <p><strong>Account Name:</strong> Golden Gate</p>
-    <p><strong>Account Number:</strong> 1234567890</p>
-    <p><strong>Bank:</strong> police Credit union</p>
-    <p><strong>Amount:</strong> <span id="bank-amount"></span></p>
-    <p>After transfer, please email proof to <a href="mailto:info@goldengates.org">info@goldengates.org</a></p>
+  <div style="background:#e714096a; padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
+    <h3><em>Bank Transfer Instructions</em></h3>
+    <p><strong><em>Account Name:</em></strong> <em>Golden Gate</em></p>
+    <p><strong><em>Account Number:</em></strong><em> 1234567890</em></p>
+    <p><strong><em>Bank:</em></strong> <em>police Credit union</em></p>
+    <p><strong><em>Amount:</em></strong> <span id="bank-amount"></span></p>
+<p>
+  <em>After transfer, please reach out on WhatsApp to </em>
+  <a href="https://wa.me/237652796507" target="_blank" rel="noopener noreferrer">
+    +237 652 796 507
+  </a>
+</p>
+
     <button onclick="document.getElementById('mtn-modal').style.display='none'">Close</button>
   </div>
 </div>
 
 <!-- MTN MODAL -->
 <div id="mtn-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
-  <div style="background:#119bb0;  padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
-    <h3>Mobile money Info</h3>
-    <p><strong>Account Name:</strong> Stephanie jinui</p>
-    <p><strong>Account Number:</strong> +237 652796507</p>
+  <div style="background:#fff700cc;  padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
+    <h3><em>MTN Mobile money Info</em></h3>
+    <p><strong><em>Account Name:</em></strong> Stephanie jinui</p>
+    <p><strong><em>Account Number:</em></strong> +237 652796507</p>
  
-    <p><strong>Amount:</strong> <span id="mtn-amount"></span></p>
-    <p>After transfer, please message prof to  <a href="mailto:info@goldengates.org">info@goldengates.org</a></p>
+    <p><strong><em>Amount:</em></strong> <span id="mtn-amount"></span></p>
+<p>
+  <em>After transfer, please reach out on WhatsApp to </em>
+  <a href="https://wa.me/237652796507" target="_blank" rel="noopener noreferrer">
+    +237 652 796 507
+  </a>
+</p>
+
     <button onclick="document.getElementById('bank-modal').style.display='none'">Close</button>
   </div>
 </div>
 
 <!-- ORANGE MODAL -->
 <div id="orange-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
-  <div style="background:#119bb0; padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
-    <h3>Bank Transfer Instructions</h3>
-    <p><strong>OM account Name:</strong> stephanie Jinui</p>
-    <p><strong> OM account number:</strong> 237 652796507</p>
-    <p><strong>Bank:</strong> Example Bank</p>
-    <p><strong>Amount:</strong> <span id="orange-amount"></span></p>
-    <p>After transfer, please email proof to <a href="mailto:info@goldengates.org">info@goldengates.org</a></p>
+  <div style="background:#fea900c2; padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
+    <h3><em>OM Account details</em></h3>
+    <p><strong><em>Account Name:</em></strong> stephanie Jinui</p>
+    <p><strong><em> OM account number:</em></strong> 237 652796507</p>
+  
+    <p><strong><em>Amount:</em></strong> <span id="orange-amount"></span></p>
+<p>
+  <em>After transfer, please reach out on WhatsApp to </em>
+  <a href="https://wa.me/237652796507" target="_blank" rel="noopener noreferrer">
+    +237 652 796 507
+  </a>
+</p>
+
     <button onclick="document.getElementById('bank-modal').style.display='none'">Close</button>
   </div>
 </div>
@@ -1261,6 +1284,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === popup) closePopup();
   });
 });
+
+
 </script>
 
 
