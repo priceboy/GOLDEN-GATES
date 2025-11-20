@@ -138,7 +138,7 @@ header {
   align-items: center;
   justify-content: center;
 }
-.brand__logo img { width: 80%; height: 80%; object-fit: cover; display:block; }
+.brand__logo img { width: 80%; height: 80%; object-fit: 80%; display:block; }
 nav {
   display: flex;
   gap: .5rem;
@@ -168,6 +168,25 @@ nav a:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
   background-color: rgba(1, 10, 28, 0.849);
   border-radius: 3px;
 }
+
+/* Show hamburger on screens <= 768px */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  nav {
+    display: none; /* hidden by default on mobile */
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    background: rgba(13, 18, 77, 0.8);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 1rem 0;
+  }
+  nav.active { display: flex; }
+  nav a { padding: .8rem 1rem; width: 100%; }
+}
+
 
 /* =========================
    SECTIONS BASE + BACKGROUNDS
@@ -359,9 +378,68 @@ h5 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 100; }
 .team-avatar { width: 140px; height: 140px; border-radius: 9999px; overflow: hidden; margin: 0 auto .75rem; border: 5px solid rgba(11, 30, 126, 0.553); box-shadow: 0 6px 16px rgba(2,6,23,0.08) inset; }
 .team-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .team-title { font-weight: 800; color: var(--secondary); margin-bottom: .25rem; }
-.team-name { color: #ffee31; font-weight: 700; margin-bottom: .25rem; }
+.team-name { color: #ffee31db; font-weight: 700; margin-bottom: .25rem; }
 .team-note { color: #ffffff; font-size: .95rem; }
 .about-body { max-width: 980px; margin: 1rem auto 0; background: rgba(203, 159, 26, 0.183); color: var(--ttext); border-radius: 12px; padding: 1rem; box-shadow: 0 8px 24px rgba(2,6,23,0.08); }
+
+.gallery-section {
+  position: relative; /* needed for overlay if we add any */
+  padding: 4rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #0c7daaf7,  #022741,#0088ff);
+  color: #ffffff; /* ensures text is visible */
+  overflow: hidden;
+}
+
+/* override section overlay for gallery */
+.gallery-section::before {
+  content: none; /* remove global overlay */
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #ffffff; /* bright heading */
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img,
+.gallery-item video {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.995);
+}
+
+.play-btn {
+  position: absolute;
+  font-size: 3rem;
+  color: rgba(255,255,255,0.9);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
 
 /* =========================
    ANIMATIONS
@@ -416,6 +494,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
     <a href="#" data-target="fundraise"><em>Fuel a Dream</em></a>
     <a href="#" data-target="about"><em>Advocacies</em></a>
     <a href="#" data-target="contact"><em>Contact</em></a>
+     <a href="#" data-target="gallery"><em>Gallery</em></a>
   </nav>
 </header>
 <section id="mission" aria-labelledby="mission-title">
@@ -771,7 +850,9 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="project__media">
           <div class="swiper proj7">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://via.placeholder.com/960x520.png?text=Before+Computer+Lab" alt="Oor dedicated teachers"></div>
+              <div class="swiper-slide"><img src="https://i.postimg.cc/ZqJNpNsC/IMG-20251119-WA0063.jpg" alt="Oor dedicated teachers"></div>
+                            <div class="swiper-slide"><img src="https://i.postimg.cc/JnnBdLWf/IMG-20251119-WA0070.jpg" alt="Oor dedicated teachers"></div>
+                             <div class="swiper-slide"><img src="https://i.postimg.cc/zLbvDqzT/IMG-20251119-WA0068.jpg" alt="Oor dedicated teachers"></div>
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -936,7 +1017,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           </div>
           <div class="team-title"><em>Director</em></div>
           <div class="team-name"><em>Tonghtoh Ernest</em></div>
-          <div class="team-note"><strong><em>In 2018, everything I knew was taken from me. My family fled to Fumbot with nothing, and survival meant tilling the soil day after day, trying to rebuild from the ashes of conflict. Life felt empty — until I discovered Golden Gate. They gave me more than an job. they restored my purpose. Today, I support children whose education were halted by war, helping them heal and dream again</em></strong></div>
+          <div class="team-note"><strong><em>In 2018, everything I knew was taken from me. My family fled to Fumbot with nothing, and survival meant tilling the soil day after day, trying to rebuild from the ashes of conflict. Life felt empty — until I discovered Golden Gate. They gave me more than an job; they restored my purpose. Today, I support children whose futures, like mine once was, were threatened by war, helping them heal and dream again</em></strong></div>
         </div>
         
         <!-- System Administrator -->
@@ -975,6 +1056,51 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
   </div>
 </section>
 
+<!-- GALLERY SECTION -->
+<section id="gallery" class="gallery-section">
+  <h2 class="section-title">Gallery</h2>
+  <div class="gallery-grid">
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/fb59Kb6N/IMG-20251119-WA0066.jpg" class="gallery-item glightbox" data-glightbox="title: our teachers and students">
+      <img src="https://i.postimg.cc/fb59Kb6N/IMG-20251119-WA0066.jpg" alt="Image 1">
+    </a>
+
+    <!-- VIDEO ITEM -->
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="gallery-item glightbox" data-glightbox="type: video; title: Amazing Video">
+      <img src="https://i.imgur.com/video-thumbnail.jpg" alt="Video 1">
+      <span class="play-btn">&#9658;</span>
+    </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/y8m9Djj1/IMG-20251119-WA0014.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/y8m9Djj1/IMG-20251119-WA0014.jpg" alt="Image 2">
+    </a>
+
+    <!-- VIDEO ITEM -->
+    <a href="https://www.youtube.com/watch?v=another-video" class="gallery-item glightbox" data-glightbox="type: video; title: Second Video">
+      <img src="https://i.imgur.com/video-thumbnail2.jpg" alt="Video 2">
+      <span class="play-btn">&#9658;</span>
+    </a>
+ <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/k57SKSYt/IMG-20251119-WA0062.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/k57SKSYt/IMG-20251119-WA0062.jpg" alt="Image 2">
+    </a>
+
+     <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/JnnBdLWf/IMG-20251119-WA0070.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/JnnBdLWf/IMG-20251119-WA0070.jpg" alt="Image 2">
+    </a>
+
+     <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/KYQMNYdS/IMG-20251119-WA0069.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/KYQMNYdS/IMG-20251119-WA0069.jpg" alt="Image 2">
+    </a>
+    <!-- Add more items as needed -->
+
+  </div>
+</section>
+
 <!-- FLOATING DONATE -->
 <a href="#" class="donate-floating" data-target="project-donate" aria-label="Donate now">Donate</a>
 
@@ -990,31 +1116,34 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
    ========================= */
 const hamburger = document.getElementById('hamburger');
 const nav = document.getElementById('main-nav');
+
 hamburger && hamburger.addEventListener('click', () => {
   nav.classList.toggle('active');
-  if(nav.classList.contains('active')) nav.style.display = 'flex';
-  else nav.style.display = '';
 });
 
 document.querySelectorAll('nav a, .donate-floating, .cta-btn').forEach(el => {
   el.addEventListener('click', (e) => {
     const tgt = el.getAttribute('data-target');
-    if(!tgt) return;
+    if (!tgt) return;
     e.preventDefault();
     activateSection(tgt);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    if(nav.classList.contains('active')) { nav.classList.remove('active'); nav.style.display = ''; }
+
+    if (nav.classList.contains('active')) {
+      nav.classList.remove('active');
+    }
   });
 });
 
 function activateSection(id) {
   document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
   const target = document.getElementById(id);
-  if(target) {
+  if(target){
     target.classList.add('active');
-    target.querySelectorAll('.fade-in').forEach(el => setTimeout(()=> el.classList.add('show'), 40));
+    target.querySelectorAll('.fade-in').forEach(el => setTimeout(() => el.classList.add('show'), 40));
   }
 }
+
 
 /* =========================
    SWIPER INIT
@@ -1288,7 +1417,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </script>
 
-
+<!-- GLightbox JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>
+const lightbox = GLightbox({
+  selector: '.glightbox',
+  touchNavigation: true,
+  loop: true,
+  autoplayVideos: false
+});
+</script>
 
 </body>
 </html>
