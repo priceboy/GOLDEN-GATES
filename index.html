@@ -95,7 +95,7 @@ body {
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
              Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  background: linear-gradient(135deg, #022a43, #022a43);  
+  background: linear-gradient(135deg, #022a43,  #009dffc0);  
   color: var(--text);
   line-height: 1.6;
   font-size: clamp(14px, 2vw, 18px);
@@ -153,7 +153,7 @@ nav a {
   transition: background .18s ease, transform .08s ease;
   opacity: .95;
 }
-nav a:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+nav a:hover { background: rgba(255, 255, 255, 0.015); transform: translateY(-1px); }
 
 /* Hamburger */
 .hamburger {
@@ -177,7 +177,7 @@ nav a:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
     flex-direction: column;
     width: 100%;
     gap: 0;
-    background: rgba(0, 115, 255, 0);
+    background: argba(2, 16, 32, 0.711);
     position: absolute;
     top: 100%;
     left: 0;
@@ -427,13 +427,13 @@ h5 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 100; }
 
 .gallery-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.995);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.924);
 }
 
 .play-btn {
   position: absolute;
-  font-size: 3rem;
-  color: rgba(255,255,255,0.9);
+  font-size: 4rem;
+  color: rgb(255, 255, 255);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -530,14 +530,6 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           Guided by honesty, integrity, and respect, we foster trust, embrace fairness, and honor the contributions of every member of our community.
         </p>
       </div>
-
-    </div>
-
-     <h2 id="contact-title" class="fade-in">Contact us</h2>
-        
-    <li><em>📍 Cameroon
-📱 +237 678 523 696 / +237 659 108 907             US:</em></p>
-  </div>
 
   <script>
     (function(){
@@ -643,7 +635,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         </div>
          <!-- Slide 4 -->
         <div class="swiper-slide home-slide">
-          <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/1XfJpmZm/IMG-20251120-WA0005.jpg')"></div>
+          <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/nL6JB0WZ/IMG-20251025-WA0013.jpg')"></div>
           <div class="home-slide__content">
             <h1 id="home-title"><em>Triumphs and Tears</em></h1>
             <p class="lead"><em><strong>There were tears of struggle and joy of discovery. Lessons learned weren’t only in books—they were in courage, patience, and the quiet victories of children who had once been denied the chance to learn.</strong></em></p>
@@ -850,9 +842,9 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="project__media">
           <div class="swiper proj7">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.postimg.cc/ZqJNpNsC/IMG-20251119-WA0063.jpg" alt="Oor dedicated teachers"></div>
-                            <div class="swiper-slide"><img src="https://i.postimg.cc/JnnBdLWf/IMG-20251119-WA0070.jpg" alt="Oor dedicated teachers"></div>
-                             <div class="swiper-slide"><img src="https://i.postimg.cc/zLbvDqzT/IMG-20251119-WA0068.jpg" alt="Oor dedicated teachers"></div>
+              <div class="swiper-slide"><img src="https://i.postimg.cc/bY2rxJH9/IMG-20251119-WA0063.jpg" alt="Oor dedicated teachers"></div>
+                            <div class="swiper-slide"><img src="https://i.postimg.cc/P5dqnMGy/IMG-20251119-WA0064.jpg" alt="Oor dedicated teachers"></div>
+                             <div class="swiper-slide"><img src="https://i.postimg.cc/bwqvfRXH/IMG-20251119-WA0069.jpg" alt="Oor dedicated teachers"></div>
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -1017,7 +1009,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           </div>
           <div class="team-title"><em>Director</em></div>
           <div class="team-name"><em>Tonghtoh Ernest</em></div>
-          <div class="team-note"><strong><em>In 2018, everything I knew was taken from me. My family fled to Fumbot with nothing, and survival meant tilling the soil day after day, trying to rebuild from the ashes of conflict. Life felt empty — until I discovered Golden Gate. They gave me more than an job; they restored my purpose. Today, I support children whose futures, like mine once was, were threatened by war, helping them heal and dream again</em></strong></div>
+          <div class="team-note"><strong><em>In 2018, everything I knew was taken from me. My family fled to Fumbot with nothing, and survival meant tilling the soil day after day, trying to rebuild from the ashes of conflict. Life felt empty — until I discovered Golden Gate. They gave me more than a job; they restored my purpose. Today, I support children whose futures were threatened by war, helping them heal and dream again.</em></strong></div>
         </div>
         
         <!-- System Administrator -->
@@ -1044,12 +1036,12 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 <section id="contact" aria-labelledby="contact-title">
   <div class="inner container">
       <p class="helper fade-in"><strong><em>Golden Gate is located in Foumbot, a small town and commune in the Noun Division of Cameroon’s West Region. The town has an estimated population of about 130,000 residents, with agriculture serving as the primary source of livelihood.</em></strong></p>
+          <p class="helper fade-in"><strong><em>Follow us on social media or send a message to learn how you can partner with Golden Gate.</em></strong></p>
     <h2 id="contact-title" class="fade-in">Contact Us</h2>
     <p class="lead fade-in"><strong>Email:</strong> <a href="mailto:info@goldengates.org" style="color: #fff; font-weight:700;">info@goldengates.org</a></p>
-    <p class="helper fade-in"><strong><em>Follow us on social media or send a message to learn how you can partner with Golden Gate.</em></strong></p>
-
-      <h2 id="contact-title" class="fade-in">School Contact</h2>
-        <p class="helper fade-in"><li><em>US Contact_:</em>
+  
+  
+    <p class="helper fade-in"><li><em>US Contact_:</em>
     <li><em>📍 Cameroon
 📱 +237 678 523 696 / +237 659 108 907</em></p>
        
@@ -1096,6 +1088,77 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
     <a href="https://i.postimg.cc/KYQMNYdS/IMG-20251119-WA0069.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
       <img src="https://i.postimg.cc/KYQMNYdS/IMG-20251119-WA0069.jpg" alt="Image 2">
     </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/D01vNq1L/IMG-20251025-WA0003.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/D01vNq1L/IMG-20251025-WA0003.jpg" alt="Image 2">
+    </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/tR647Hwr/IMG-20251025-WA0005.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/tR647Hwr/IMG-20251025-WA0005.jpg" alt="Image 2">
+    </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/8kvzsVxT/IMG-20251025-WA0009.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/8kvzsVxT/IMG-20251025-WA0009.jpg" alt="Image 2">
+    </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/fWdRkh1N/IMG-20251025-WA0010.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/fWdRkh1N/IMG-20251025-WA0010.jpg" alt="Image 2">
+    </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/gch2rP10/IMG-20251025-WA0011.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/gch2rP10/IMG-20251025-WA0011.jpg" alt="Image 2">
+    </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/DyKyXMKF/IMG-20251025-WA0013.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/DyKyXMKF/IMG-20251025-WA0013.jpg" alt="Image 2">
+    </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/MK8KQF81/IMG-20251025-WA0014.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/MK8KQF81/IMG-20251025-WA0014.jpg" alt="Image 2">
+    </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/Mp66sfT4/IMG-20251025-WA0020.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/Mp66sfT4/IMG-20251025-WA0020.jpg" alt="Image 2">
+    </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/DwvvC40K/IMG-20251119-WA0058.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/DwvvC40K/IMG-20251119-WA0058.jpg" alt="Image 2">
+    </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/9Qmmxw04/IMG-20251120-WA0002.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/9Qmmxw04/IMG-20251120-WA0002.jpg" alt="Image 2">
+    </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/4yvGPXTy/Whats-App-Image-2025-11-20-at-05-36-39-ed446c07.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/4yvGPXTy/Whats-App-Image-2025-11-20-at-05-36-39-ed446c07.jpg" alt="Image 2">
+    </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/sxPzm3Rj/Whats-App-Image-2025-11-20-at-05-35-49-17e2a2ea.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/sxPzm3Rj/Whats-App-Image-2025-11-20-at-05-35-49-17e2a2ea.jpg" alt="Image 2">
+    </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/9XycCYwN/Whats-App-Image-2025-11-20-at-05-46-34-9e93260e.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/9XycCYwN/Whats-App-Image-2025-11-20-at-05-46-34-9e93260e.jpg" alt="Image 2">
+    </a>
+
+    <!-- IMAGE ITEM -->
+    <a href="https://i.postimg.cc/66CBtf4D/Whats-App-Image-2025-11-20-at-05-47-37-e9da97ba.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+      <img src="https://i.postimg.cc/66CBtf4D/Whats-App-Image-2025-11-20-at-05-47-37-e9da97ba.jpg" alt="Image 2">
+    </a>
+
     <!-- Add more items as needed -->
 
   </div>
@@ -1319,7 +1382,7 @@ function showorangeModal(amount) {
     <p><strong><em>Bank:</em></strong> <em>police Credit union</em></p>
     <p><strong><em>Amount:</em></strong> <span id="bank-amount"></span></p>
 <p>
-  <em>After transfer, please reach out on WhatsApp to </em>
+  <em>After transfer, please reach out on WhatsApp to so we can confirm reception and keep track of all the benevolent people who help us in making this dream a reality.</em>
   <a href="https://wa.me/237652796507" target="_blank" rel="noopener noreferrer">
     +237 652 796 507
   </a>
@@ -1338,7 +1401,7 @@ function showorangeModal(amount) {
  
     <p><strong><em>Amount:</em></strong> <span id="mtn-amount"></span></p>
 <p>
-  <em>After transfer, please reach out on WhatsApp to </em>
+  <em>After transfer, please reach out on WhatsApp to so we can confirm reception and keep track of all the benevolent people who help us in making this dream a reality.</em>
   <a href="https://wa.me/237652796507" target="_blank" rel="noopener noreferrer">
     +237 652 796 507
   </a>
@@ -1352,12 +1415,12 @@ function showorangeModal(amount) {
 <div id="orange-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
   <div style="background:#fea900c2; padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
     <h3><em>OM Account details</em></h3>
-    <p><strong><em>Account Name:</em></strong> stephanie Jinui</p>
-    <p><strong><em> OM account number:</em></strong> 237 652796507</p>
+    <p><strong><em>Account Name:</em></strong>  Tambua Vivian Mbinui</p>
+    <p><strong><em> OM account number:</em></strong>+237 656930904</p>
   
     <p><strong><em>Amount:</em></strong> <span id="orange-amount"></span></p>
 <p>
-  <em>After transfer, please reach out on WhatsApp to </em>
+  <em>After transfer, please reach out on WhatsApp to so we can confirm reception and keep track of all the benevolent people who help us in making this dream a reality. </em>
   <a href="https://wa.me/237652796507" target="_blank" rel="noopener noreferrer">
     +237 652 796 507
   </a>
