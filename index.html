@@ -14,6 +14,17 @@
 
 
 <style>
+  .icon-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;  /* remove if you don't want it round */
+  transition: 0.2s;
+}
+
+.icon-link:hover {
+  transform: scale(1.1);
+}
+
   /* Popup Overlay */
 .popup-overlay {
   position: fixed;
@@ -603,7 +614,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           <div class="home-slide__content">
             <h1 id="home-title"><em>The Gate of Hope</em></h1>
             <p class="lead"><strong><em>In 2023, a dream took its first breath.Under the  vision of our founder, our dedicted team set out on a mission:
-              <li>To rebuild the education of the internally displaced and vulnerable children.</li>
+              <li>To rebuild the broken education of the internally displaced and vulnerable children.</li>
              <li> To make education A reality not just a dream:</li>
              <li> To open the gate of hope, the gate of equality, the gate of education-THE GOLDEN GATE.
              </em></strong>  </p>
@@ -866,7 +877,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 <section id="project-donate" aria-labelledby="donate-title">
   <div class="inner container">
     <h2 id="donate-title" class="fade-in">Support a Project</h2>
-    <p class="lead fade-in">Select the parts of the project you want to support and your preferred payment method.</p>
+    <p class="lead fade-in">Please, select the parts of the project you want to support and your preferred payment method, or enter your desired amount below.</p>
 
     <div class="panel fade-in">
       <!-- Donation Projects (all eight) -->
@@ -875,100 +886,111 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <h3>Borehole Construction</h3>
         <ul>
           <li><label><input type="checkbox" class="subtask" data-price="1200"> Drill borehole — $1200</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="1000"> Water pump installation — $1000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="200"> Tank & piping — $200</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="600"> water tower cosntruction — $600</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="1000"> Water pump installation — $1600</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="200"> Tank & piping — $1600</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="600"> water tower cosntruction — $2,200</label></li>
         </ul>
+        <p>A total of $6,600  is needed for us to build a sustainable water system for the pupil and students on campus.</p>
       </div>
 
       <!-- School Bus -->
       <div class="donation-project" data-project="bus">
         <h3>School Bus</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="12000"> Buying a  second hand bus — $12000</label></li>
-        <li><label><input type="checkbox" class="subtask" data-price="20000"> Buying a new bus — $20000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="12000"> Fairly used bus— $25,000</label></li>
+        <li><label><input type="checkbox" class="subtask" data-price="20000"> Buying a new bus — $60,000</label></li>
         </ul>
+
       </div>
 
       <!-- Classroom Completion -->
       <div class="donation-project" data-project="classroom">
         <h3>Classroom Completion</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="350"> Walls plastering per class(13 total classes) — $350</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="200"> Windows & doors-per classroom(13 classes in total) — $200</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="150">  painting a classroom(13 clases) — $150</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="350"> Flooring & plastering — $1000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="200"> Windows & doors — $350</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="150">  painting a classroom — $500</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="150">  Ceiling and knockings— $800</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="150">  Electrification — $350</label></li>
         </ul>
+        <p><em> Cost per classroom: $3000,<br> With 13 classroom, a total of $39000 is required for completion of all classrooms.</em></p>
       </div>
 
       <!-- Landscaping -->
       <div class="donation-project" data-project="landscaping">
         <h3>School Landscaping</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="50"> Plant trees — $50</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="30"> Playground setup — $30</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="20"> Garden maintenance — $20</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="50"> Plant trees — $1000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="30"> Playground setup — $2000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="20"> Garden maintenance — $1000</label></li>
         </ul>
+         <p><em>A total of :$4000 would enable us to redefine the shcool environment into a favourable learning and playing ground.</em></p>
       </div>
 
       <!-- Electrification -->
       <div class="donation-project" data-project="electrification">
         <h3>Electrification</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="1200"> Wiring — 1200</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="700"> electric poles— $700</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="300"> Switches & outlets — $300</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="1200"> Wiring — 1500</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="700"> electric poles— $1500</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="300"> Switches & outlets — $1500</label></li>
         </ul>
+        <p><em> Total cost of Making electricity available on campus: $4500.</em></p>
       </div>
 
       <!-- Science Lab -->
       <div class="donation-project" data-project="lab">
         <h3>Science Lab</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="3500"> Lab construction — $3500</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="8000"> Equipment — $8000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="4000"> Safety gear & materials — $4000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="3500"> Lab construction — $1500</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="8000"> Equipment — $10000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="4000"> Safety gear & materials — $5000</label></li>
         </ul>
+        <p><em>Total cost to aquire a standard and functional science laboratory:$16500.</em></p>
       </div>
 
       <!-- Computer Lab -->
       <div class="donation-project" data-project="computer-lab">
         <h3>Computer Lab</h3>
         <ul>
-             <li><label><input type="checkbox" class="subtask" data-price="2400"> Lab cosntruction — $2400</label></li>
+             <li><label><input type="checkbox" class="subtask" data-price="2400"> Lab cosntruction — $10000</label></li>
             <li><label><input type="checkbox" class="subtask" data-price="10000"> Computers — $10000</label></li>
           <li><label><input type="checkbox" class="subtask" data-price="2000"> Furniture & chairs — $2000</label></li>
           <li><label><input type="checkbox" class="subtask" data-price="1000"> Networking & cables — $1000</label></li>
         </ul>
+         <p><em> Total cost of constructing a modern and sustainalbe computer science laboratory enabling  <br> pupil and student alike to have acess to digital education: $23000.</em></p>
       </div>
 
       <!-- Library -->
       <div class="donation-project" data-project="library">
         <h3>Library</h3>
         <ul>
-            <li><label><input type="checkbox" class="subtask" data-price="6000"> Library construction— $6000</label></li>
+            <li><label><input type="checkbox" class="subtask" data-price="6000"> Library construction— $10000</label></li>
           <li><label><input type="checkbox" class="subtask" data-price="2000"> Books — $2000</label></li>
           <li><label><input type="checkbox" class="subtask" data-price="3500"> Shelves & furniture — $3500</label></li>
           
         </ul>
+         <p><em>Total cost of constructing and furnishing a modern library: $15500</em></p>
       </div>
           <!-- staff payment -->
       <div class="donation-project" data-project="staff_payment">
         <h3>Staff-support</h3>
         <ul>
-            <li><label><input type="checkbox" class="subtask" data-price="400"> teacher's monthly wage $400</label></li>
+            <li><label><input type="checkbox" class="subtask" data-price="400">  15 teachers with salares ranging between: $100-$250</label></li>
           </ul>
+           <p><em>Aproximate total monthly wage for entire staff: $3500.</em></p>
       </div>
 
       <!-- TOTAL & PAYMENT -->
       <div class="total" aria-live="polite">Total Amount: $<span id="total-amount">0</span></div>
 
       <div class="controls" role="group" aria-label="Payment controls">
-        <label for="custom-amount" style="color:var(--text); font-weight:700;">Or enter custom amount $</label>
+        <label for="custom-amount" style="color:var(--text); font-weight:700;">please enter your desired amount $</label>
         <input type="number" id="custom-amount" min="1" placeholder="Optional" aria-label="Custom donation amount">
       </div>
 
       <div class="controls" style="margin-top: .75rem;">
-        <label for="payment-method" style="font-weight:700; color:var(--text)">Select Payment Method</label>
+        <label for="payment-method" style="font-weight:700; color:var(--text)">please seletec a suitable donation  Method</label>
         <select id="payment-method" aria-label="Payment method">
           <option value="">--Choose Method--</option>
           <option value="cashapp">Cash App</option>
@@ -997,7 +1019,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <!-- Founder -->
         <div class="team-card">
           <div class="team-avatar">
-            <img src="https://via.placeholder.com/300x300.png?text=Founder" alt="Founder portrait">
+            <img src="https://i.postimg.cc/c45TYNfG/founder.jpg" alt="Founder portrait">
           </div>
           <div class="team-title"><em>Founder</em></div>
           <div class="team-name"><em>Your Founder Name</em></div>
@@ -1006,7 +1028,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <!-- Director -->
         <div class="team-card">
           <div class="team-avatar">
-            <img src="https://via.placeholder.com/300x300.png?text=Director" alt="Director portrait">
+            <img src="https://i.postimg.cc/7PRTnPQx/ernest.jpg" alt="Director portrait">
           </div>
           <div class="team-title"><em>Director</em></div>
           <div class="team-name"><em>Tonghtoh Ernest</em></div>
@@ -1044,10 +1066,23 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
   
     <p class="helper fade-in"><li><em>US Contact_:</em>
     <li><em>📍 Cameroon
-📱 +237 678 523 696 / +237 659 108 907</em></p>
+   📱 +237 678 523 696 / +237 659 108 907</em></p>
 
 
-    <p class="helper fade-in"><strong><em>Follow us on social media or send a message to learn how you can partner with Golden Gate.</em></strong></p>
+    <p class="helper fade-in"><strong><em>Follow us on social media or send a message to learn how you can partner with us.</em></strong></p>
+    <div class="social media links">
+        <a href="https://www.facebook.com/share/177yXH5C6A/"> <img src="https://i.postimg.cc/g22VgtHk/facebook.png" class="icon-link">     <span><em>:Golden Gate Bilingual International Complex</em></span>
+  
+    </div>
+
+     <div class="social media links">
+       <a href=""> <img src="">     <p class="helper fade-in"><strong><em>Golden Gate.</em></strong></p></a>
+  
+    </div>
+     <div class="social media links">
+      <a href=""> <img src="">     <p class="helper fade-in"><strong><em>Golden Gate.</em></strong></p></a>
+  
+    </div>
        
   </div>
   
@@ -1064,48 +1099,48 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
     </a>
 
     <!-- VIDEO ITEM -->
-    <a href="https://youtu.be/XoGGi8EuNSQ" class="gallery-item glightbox"  data-glightbox="type: video; title: Amazing Video">
+    <a href="https://youtu.be/XoGGi8EuNSQ" class="gallery-item glightbox"  data-glightbox="type: video; title: Our students proudly marching during the national day">
       <img src="https://i.postimg.cc/265DNYr1/IMG-20251025-WA0003.jpg" alt="Video 1">
       <span class="play-btn">&#9658;</span>
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/y8m9Djj1/IMG-20251119-WA0014.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
-      <img src="https://i.postimg.cc/y8m9Djj1/IMG-20251119-WA0014.jpg" alt="Image 2">
+    <a href="https://i.postimg.cc/y8m9Djj1/IMG-20251119-WA0014.jpg" class="gallery-item glightbox" data-glightbox="title:  Our youngest pupil a week into their reinstatement into shcool">
+      <img src="https://i.postimg.cc/y8m9Djj1/IMG-20251119-WA0014.jpg" alt=" ">
     </a>
 
     <!-- VIDEO ITEM -->
-    <a href="https://youtube.com/shorts/W5yWt21sJPU" class="gallery-item glightbox" data-glightbox="type: video; title: Second Video" class="gallery-item glightbox" data-glightbox="type: video; title: Second Video">
+    <a href="https://youtube.com/shorts/W5yWt21sJPU" class="gallery-item glightbox" data-glightbox="type: video; title: Second Video" class="gallery-item glightbox" data-glightbox="type: video; title: Inoguration and end of year ceremoney for the beginning of our journey.">
       <img src="https://i.postimg.cc/sxPzm3Rj/Whats-App-Image-2025-11-20-at-05-35-49-17e2a2ea.jpg" alt="Video 2">
       <span class="play-btn">&#9658;</span>
     </a>
  <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/k57SKSYt/IMG-20251119-WA0062.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/k57SKSYt/IMG-20251119-WA0062.jpg" class="gallery-item glightbox" data-glightbox="title: more of our lovely kids">
       <img src="https://i.postimg.cc/k57SKSYt/IMG-20251119-WA0062.jpg" alt="Image 2">
     </a>
 
      <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/JnnBdLWf/IMG-20251119-WA0070.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/JnnBdLWf/IMG-20251119-WA0070.jpg" class="gallery-item glightbox" data-glightbox="title: Our first batch of form 5 students expexted to take the national secondary exams by the end of the academic year.">
       <img src="https://i.postimg.cc/JnnBdLWf/IMG-20251119-WA0070.jpg" alt="Image 2">
     </a>
 
      <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/KYQMNYdS/IMG-20251119-WA0069.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/KYQMNYdS/IMG-20251119-WA0069.jpg" class="gallery-item glightbox" data-glightbox="title: Our dedicated and higly valued teachers or as  the students  call them, Our canldes">
       <img src="https://i.postimg.cc/KYQMNYdS/IMG-20251119-WA0069.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/D01vNq1L/IMG-20251025-WA0003.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/D01vNq1L/IMG-20251025-WA0003.jpg" class="gallery-item glightbox" data-glightbox="title: National day march past celebration">
       <img src="https://i.postimg.cc/D01vNq1L/IMG-20251025-WA0003.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/tR647Hwr/IMG-20251025-WA0005.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/tR647Hwr/IMG-20251025-WA0005.jpg" class="gallery-item glightbox" data-glightbox="title: Firt batch of nursery studens">
       <img src="https://i.postimg.cc/tR647Hwr/IMG-20251025-WA0005.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/8kvzsVxT/IMG-20251025-WA0009.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/8kvzsVxT/IMG-20251025-WA0009.jpg" class="gallery-item glightbox" data-glightbox="title: Parent orientation and welcoming to the golden gate familly.">
       <img src="https://i.postimg.cc/8kvzsVxT/IMG-20251025-WA0009.jpg" alt="Image 2">
     </a>
 
@@ -1115,62 +1150,62 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/gch2rP10/IMG-20251025-WA0011.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/gch2rP10/IMG-20251025-WA0011.jpg" class="gallery-item glightbox" data-glightbox="title: Primary  six graduates taking their vows and making promises to uphoald the education they were onece denied">
       <img src="https://i.postimg.cc/gch2rP10/IMG-20251025-WA0011.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/DyKyXMKF/IMG-20251025-WA0013.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/DyKyXMKF/IMG-20251025-WA0013.jpg" class="gallery-item glightbox" data-glightbox="title: More of our graduates">
       <img src="https://i.postimg.cc/DyKyXMKF/IMG-20251025-WA0013.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/MK8KQF81/IMG-20251025-WA0014.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/MK8KQF81/IMG-20251025-WA0014.jpg" class="gallery-item glightbox" data-glightbox="title: Our soon to become primary freshers">
       <img src="https://i.postimg.cc/MK8KQF81/IMG-20251025-WA0014.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/Mp66sfT4/IMG-20251025-WA0020.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/Mp66sfT4/IMG-20251025-WA0020.jpg" class="gallery-item glightbox" data-glightbox="title: Recreation and sporting activities.">
       <img src="https://i.postimg.cc/Mp66sfT4/IMG-20251025-WA0020.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/DwvvC40K/IMG-20251119-WA0058.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/DwvvC40K/IMG-20251119-WA0058.jpg" class="gallery-item glightbox" data-glightbox="title: Monday morning assembly">
       <img src="https://i.postimg.cc/DwvvC40K/IMG-20251119-WA0058.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/9Qmmxw04/IMG-20251120-WA0002.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/9Qmmxw04/IMG-20251120-WA0002.jpg" class="gallery-item glightbox" data-glightbox="title: Secondary school students during their free periods">
       <img src="https://i.postimg.cc/9Qmmxw04/IMG-20251120-WA0002.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/4yvGPXTy/Whats-App-Image-2025-11-20-at-05-36-39-ed446c07.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/4yvGPXTy/Whats-App-Image-2025-11-20-at-05-36-39-ed446c07.jpg" class="gallery-item glightbox" data-glightbox="title: ">
       <img src="https://i.postimg.cc/4yvGPXTy/Whats-App-Image-2025-11-20-at-05-36-39-ed446c07.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/sxPzm3Rj/Whats-App-Image-2025-11-20-at-05-35-49-17e2a2ea.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/sxPzm3Rj/Whats-App-Image-2025-11-20-at-05-35-49-17e2a2ea.jpg" class="gallery-item glightbox" data-glightbox="title: ">
       <img src="https://i.postimg.cc/sxPzm3Rj/Whats-App-Image-2025-11-20-at-05-35-49-17e2a2ea.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/9XycCYwN/Whats-App-Image-2025-11-20-at-05-46-34-9e93260e.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/9XycCYwN/Whats-App-Image-2025-11-20-at-05-46-34-9e93260e.jpg" class="gallery-item glightbox" data-glightbox="title: ">
       <img src="https://i.postimg.cc/9XycCYwN/Whats-App-Image-2025-11-20-at-05-46-34-9e93260e.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/66CBtf4D/Whats-App-Image-2025-11-20-at-05-47-37-e9da97ba.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/66CBtf4D/Whats-App-Image-2025-11-20-at-05-47-37-e9da97ba.jpg" class="gallery-item glightbox" data-glightbox="title: ">
       <img src="https://i.postimg.cc/66CBtf4D/Whats-App-Image-2025-11-20-at-05-47-37-e9da97ba.jpg" alt="Image 2">
     </a>
 
       <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/vZDZmZBq/cover.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/vZDZmZBq/cover.jpg" class="gallery-item glightbox" data-glightbox="title: ">
       <img src="https://i.postimg.cc/vZDZmZBq/cover.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/9fvJgbzD/Whats-App-Image-2025-11-20-at-05-41-28-6a02eb35.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/9fvJgbzD/Whats-App-Image-2025-11-20-at-05-41-28-6a02eb35.jpg" class="gallery-item glightbox" data-glightbox="title: ">
       <img src="https://i.postimg.cc/9fvJgbzD/Whats-App-Image-2025-11-20-at-05-41-28-6a02eb35.jpg" alt="Image 2">
     </a>
     <!-- Add more items as needed -->
