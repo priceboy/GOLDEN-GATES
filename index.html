@@ -14,6 +14,45 @@
 
 
 <style>
+@media (max-width: 600px) {
+  .social-link span {
+    display: none; /* show icon only on small screens */
+  }
+}
+
+
+.social-media-links {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 9999;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  padding: 8px 12px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  font-size: 14px;
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+  transition: 0.2s ease;
+}
+
+.icon-link {
+  width: 22px;
+  height: 22px;
+}
+
+
+
   a {
   color: inherit;
   text-decoration: none;
@@ -112,7 +151,7 @@ body {
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
              Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  background: linear-gradient(135deg, #022a43,  #009dffc0);  
+  background: linear-gradient(135deg, #072c4dd7,  #03b7ff);  
   color: var(--text);
   line-height: 1.6;
   font-size: clamp(14px, 2vw, 18px);
@@ -194,7 +233,7 @@ nav a:hover { background: rgba(255, 255, 255, 0.344); transform: translateY(-1px
     flex-direction: column;
     width: 100%;
     gap: 0;
-  background-color: rgba(7, 22, 53, 0.356);
+  background-color: rgba(7, 22, 53, 0.632);
     position: absolute;
     top: 100%;
     left: 0;
@@ -262,13 +301,13 @@ section::before {
   background-repeat: no-repeat;
 }
 #mission { background: url('https://i.postimg.cc/vZDZmZBq/cover.jpg') center center/cover no-repeat; }
-#home { background: linear-gradient(115deg, #077bff, #ffff2a);  }
+#home { background: linear-gradient(115deg, #0267da, #ffffff);  }
 #fundraise { 
   background: linear-gradient(135deg, #077bff, #ffff2a); 
 }
 #project-donate { background: url('https://i.postimg.cc/DZss4YJv/Chat-GPT-Image-Nov-15-2025-02-26-39-AM.png') center center/cover no-repeat; }
 #about { 
-  background: linear-gradient(135deg, #0debeb, #022a43); 
+  background: linear-gradient(135deg, #068b8b, #09486fa2); 
 }
 #contact { background: url('https://i.imgur.com/CoCKRlV.jpg') center center/cover no-repeat; }
 
@@ -990,12 +1029,12 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
       <div class="total" aria-live="polite">Total Amount: $<span id="total-amount">0</span></div>
 
       <div class="controls" role="group" aria-label="Payment controls">
-        <label for="custom-amount" style="color:var(--text); font-weight:700;">please enter your desired amount $</label>
+        <label for="custom-amount" style="color:var(--text); font-weight:700;">Please enter your desired amount $</label>
         <input type="number" id="custom-amount" min="1" placeholder="Optional" aria-label="Custom donation amount">
       </div>
 
       <div class="controls" style="margin-top: .75rem;">
-        <label for="payment-method" style="font-weight:700; color:var(--text)">please seletec a suitable donation  Method</label>
+        <label for="payment-method" style="font-weight:700; color:var(--text)">Please select a suitable donation  Method</label>
         <select id="payment-method" aria-label="Payment method">
           <option value="">--Choose Method--</option>
           <option value="cashapp">Cash App</option>
@@ -1075,19 +1114,13 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 
 
     <p class="helper fade-in"><strong><em>Follow us on social media or send a message to learn how you can partner with us.</em></strong></p>
-    <div class="social media links">
-        <a href="https://www.facebook.com/share/177yXH5C6A/"> <img src="https://i.postimg.cc/g22VgtHk/facebook.png" class="icon-link">     <span><em>:Golden Gate Bilingual International Complex</em></span>
-  
-    </div>
 
-     <div class="social media links">
-       <a href=""> <img src="">     <p class="helper fade-in"><strong><em>Golden Gate.</em></strong></p></a>
-  
-    </div>
-     <div class="social media links">
-      <a href=""> <img src="">     <p class="helper fade-in"><strong><em>Golden Gate.</em></strong></p></a>
-  
-    </div>
+   <div class="social-media-links">
+  <a href="https://www.facebook.com/share/177yXH5C6A/" class="social-link" target="_blank">
+    <img src="https://i.postimg.cc/g22VgtHk/facebook.png" class="icon-link" alt="Facebook">
+    <span><em>Golden Gate Bilingual International Complex</em></span>
+  </a>
+</div>
        
   </div>
   
@@ -1099,12 +1132,12 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
   <div class="gallery-grid">
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/fb59Kb6N/IMG-20251119-WA0066.jpg" class="gallery-item glightbox" data-glightbox="title: our teachers and students">
+    <a href="https://i.postimg.cc/fb59Kb6N/IMG-20251119-WA0066.jpg" class="gallery-item glightbox" data-glightbox="title: Our teachers and students.">
       <img src="https://i.postimg.cc/fb59Kb6N/IMG-20251119-WA0066.jpg" alt="Image 1">
     </a>
 
     <!-- VIDEO ITEM -->
-    <a href="https://youtu.be/XoGGi8EuNSQ" class="gallery-item glightbox"  data-glightbox="type: video; title: Our students proudly marching during the national day">
+    <a href="https://youtu.be/XoGGi8EuNSQ" class="gallery-item glightbox"  data-glightbox="type: video; title: Our students proudly marching during the celebration of the national day.">
       <img src="https://i.postimg.cc/265DNYr1/IMG-20251025-WA0003.jpg" alt="Video 1">
       <span class="play-btn">&#9658;</span>
     </a>
@@ -1116,67 +1149,67 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 
     
  <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/k57SKSYt/IMG-20251119-WA0062.jpg" class="gallery-item glightbox" data-glightbox="title: more of our lovely kids">
+    <a href="https://i.postimg.cc/k57SKSYt/IMG-20251119-WA0062.jpg" class="gallery-item glightbox" data-glightbox="title: More of our loveley kids.">
       <img src="https://i.postimg.cc/k57SKSYt/IMG-20251119-WA0062.jpg" alt="Image 2">
     </a>
 
      <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/JnnBdLWf/IMG-20251119-WA0070.jpg" class="gallery-item glightbox" data-glightbox="title: Our first batch of form 5 students expexted to take the national secondary exams by the end of the academic year.">
+    <a href="https://i.postimg.cc/JnnBdLWf/IMG-20251119-WA0070.jpg" class="gallery-item glightbox" data-glightbox="title: Our first batch of form 5 students expected to take the national secondary exams by the end of the academic year.">
       <img src="https://i.postimg.cc/JnnBdLWf/IMG-20251119-WA0070.jpg" alt="Image 2">
     </a>
 
      <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/KYQMNYdS/IMG-20251119-WA0069.jpg" class="gallery-item glightbox" data-glightbox="title: Our dedicated and higly valued teachers or as  the students  call them, Our canldes">
+    <a href="https://i.postimg.cc/KYQMNYdS/IMG-20251119-WA0069.jpg" class="gallery-item glightbox" data-glightbox="title: Our dedicated and higly valued teachers or as  the students  call them, Our candles">
       <img src="https://i.postimg.cc/KYQMNYdS/IMG-20251119-WA0069.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/D01vNq1L/IMG-20251025-WA0003.jpg" class="gallery-item glightbox" data-glightbox="title: National day march past celebration">
+    <a href="https://i.postimg.cc/D01vNq1L/IMG-20251025-WA0003.jpg" class="gallery-item glightbox" data-glightbox="title: National day  celebration.">
       <img src="https://i.postimg.cc/D01vNq1L/IMG-20251025-WA0003.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/tR647Hwr/IMG-20251025-WA0005.jpg" class="gallery-item glightbox" data-glightbox="title: Firt batch of nursery studens">
+    <a href="https://i.postimg.cc/tR647Hwr/IMG-20251025-WA0005.jpg" class="gallery-item glightbox" data-glightbox="title: Firt batch of nursery studens.">
       <img src="https://i.postimg.cc/tR647Hwr/IMG-20251025-WA0005.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/8kvzsVxT/IMG-20251025-WA0009.jpg" class="gallery-item glightbox" data-glightbox="title: Parent orientation and welcoming to the golden gate familly.">
+    <a href="https://i.postimg.cc/8kvzsVxT/IMG-20251025-WA0009.jpg" class="gallery-item glightbox" data-glightbox="title: Parents' orientation and welcoming to the Golden Gate familly.">
       <img src="https://i.postimg.cc/8kvzsVxT/IMG-20251025-WA0009.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/fWdRkh1N/IMG-20251025-WA0010.jpg" class="gallery-item glightbox" data-glightbox="title: Another Image">
+    <a href="https://i.postimg.cc/fWdRkh1N/IMG-20251025-WA0010.jpg" class="gallery-item glightbox" data-glightbox="title: Primary  six graduates taking their graduation vows and making promises to uphoald the education they were onece denied.">
       <img src="https://i.postimg.cc/fWdRkh1N/IMG-20251025-WA0010.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/gch2rP10/IMG-20251025-WA0011.jpg" class="gallery-item glightbox" data-glightbox="title: Primary  six graduates taking their vows and making promises to uphoald the education they were onece denied">
+    <a href="https://i.postimg.cc/gch2rP10/IMG-20251025-WA0011.jpg" class="gallery-item glightbox" data-glightbox="title:More of our graduates. ">
       <img src="https://i.postimg.cc/gch2rP10/IMG-20251025-WA0011.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/DyKyXMKF/IMG-20251025-WA0013.jpg" class="gallery-item glightbox" data-glightbox="title: More of our graduates">
+    <a href="https://i.postimg.cc/DyKyXMKF/IMG-20251025-WA0013.jpg" class="gallery-item glightbox" data-glightbox="title:Our soon to become primary freshers. ">
       <img src="https://i.postimg.cc/DyKyXMKF/IMG-20251025-WA0013.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/MK8KQF81/IMG-20251025-WA0014.jpg" class="gallery-item glightbox" data-glightbox="title: Our soon to become primary freshers">
+    <a href="https://i.postimg.cc/MK8KQF81/IMG-20251025-WA0014.jpg" class="gallery-item glightbox" data-glightbox="title: Recreation and sporting activities.">
       <img src="https://i.postimg.cc/MK8KQF81/IMG-20251025-WA0014.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/Mp66sfT4/IMG-20251025-WA0020.jpg" class="gallery-item glightbox" data-glightbox="title: Recreation and sporting activities.">
+    <a href="https://i.postimg.cc/Mp66sfT4/IMG-20251025-WA0020.jpg" class="gallery-item glightbox" data-glightbox="title: Monday morning assembly ">
       <img src="https://i.postimg.cc/Mp66sfT4/IMG-20251025-WA0020.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/DwvvC40K/IMG-20251119-WA0058.jpg" class="gallery-item glightbox" data-glightbox="title: Monday morning assembly">
+    <a href="https://i.postimg.cc/DwvvC40K/IMG-20251119-WA0058.jpg" class="gallery-item glightbox" data-glightbox="title:Secondary school students during their free periods.">
       <img src="https://i.postimg.cc/DwvvC40K/IMG-20251119-WA0058.jpg" alt="Image 2">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/9Qmmxw04/IMG-20251120-WA0002.jpg" class="gallery-item glightbox" data-glightbox="title: Secondary school students during their free periods">
+    <a href="https://i.postimg.cc/9Qmmxw04/IMG-20251120-WA0002.jpg" class="gallery-item glightbox" data-glightbox="title: ">
       <img src="https://i.postimg.cc/9Qmmxw04/IMG-20251120-WA0002.jpg" alt="Image 2">
     </a>
 
@@ -1465,8 +1498,8 @@ function showorangeModal(amount) {
 <div id="orange-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
   <div style="background:#fea900c2; padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
     <h3><em>OM Account details</em></h3>
-    <p><strong><em>Account Name:</em></strong>  Tambua Vivian Mbinui</p>
-    <p><strong><em> OM account number:</em></strong>+237 656930904</p>
+    <p><strong><em>Account Name:</em></strong>  Priceless Mbuongho Sheutang</p>
+    <p><strong><em> OM account number:</em></strong>+237 689279394</p>
   
     <p><strong><em>Amount:</em></strong> <span id="orange-amount"></span></p>
 <p>
