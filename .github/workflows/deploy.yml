@@ -23,4 +23,4 @@ jobs:
           source: "./"          # change to "website/" if files are in a folder
           target: ${{ secrets.FTP_TARGET }}
           rm: true
-          overwrite: true
+          overwrite: true  
