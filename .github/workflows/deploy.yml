@@ -1,6 +1,6 @@
 
 
-name: Deploy to IONOS via SFTP
+name: Deploy to IONOS via SFTP 
 
 on:
   push:
