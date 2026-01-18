@@ -1,0 +1,27 @@
+
+
+name: Deploy to IONOS via SFTP
+
+on:
+  push:
+    branches:
+      - main   # deploy whenever you push to main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy via SFTP to IONOS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /htdocs/
+          protocol: sftp
+          port: 22
+          dangerous-clean-slate: true
