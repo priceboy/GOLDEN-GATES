@@ -1,4 +1,4 @@
-name: Deploy to IONOS (FTPS)
+name: Deploy to IONOS (FTP)
 
 on:
   push:
@@ -13,14 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy via FTPS to IONOS
+      - name: Deploy via FTP to IONOS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
+          protocol: ftp
           port: 21
-          security: loose
           local-dir: ./
           server-dir: /
