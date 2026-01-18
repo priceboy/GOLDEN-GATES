@@ -10,17 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy via SFTP to IONOS
-        uses: appleboy/scp-action@master
+      - name: Deploy via SFTP
+        uses: appleboy/scp-action@v1
         with:
-          host: ${{ secrets.SFTP_HOST }}
-          port: ${{ secrets.SFTP_PORT }}      # usually 22
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          source: "./"                        # change to folder if needed
-          target: ${{ secrets.SFTP_TARGET }}  # usually "/"
-          rm: true                            # removes server files not in repo
-          recursive: true
+          host: ${{ secrets.FTP_HOST }}
+          port: 22
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          source: "./"          # change to "website/" if files are in a folder
+          target: ${{ secrets.FTP_TARGET }}
+          rm: true
+          overwrite: true
