@@ -1,11 +1,9 @@
-
-
-name: Deploy to IONOS via SFTP 
+name: Deploy to IONOS (FTPS)
 
 on:
   push:
     branches:
-      - main   # deploy whenever you push to main branch
+      - main
 
 jobs:
   deploy:
@@ -15,13 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy via SFTP to IONOS
+      - name: Deploy via FTPS to IONOS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /htdocs/
-          protocol: ftpS
-          port: 22
-          dangerous-clean-slate: true
+          server: ${{ secrets.IONOS_FTP_SERVER }}
+          username: ${{ secrets.IONOS_FTP_USERNAME }}
+          password: ${{ secrets.IONOS_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          security: loose
+          local-dir: website/
+          server-dir: /
