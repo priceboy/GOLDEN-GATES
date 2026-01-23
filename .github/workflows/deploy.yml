@@ -14,16 +14,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Deploy via SFTP (IONOS compatible)
-      - name: Upload via SFTP
-        uses: shivammathur/sftp-deploy@v1.0.0
-        with:
-          host: ${{ secrets.IONOS_HOST }}
-          username: ${{ secrets.IONOS_USER }}
-          password: ${{ secrets.IONOS_PASS }}
-          port: 22
-          local_dir: "."
-          remote_dir: ${{ secrets.IONOS_PATH }}
-          exclude: |
-            .git/
-            .github/
+      # Step 2: Install lftp (optional, better than sftp for recursive upload)
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      # Step 3: Deploy via lftp to IONOS SFTP
+      - name: Deploy via SFTP
+        env:
+          IONOS_HOST: ${{ secrets.IONOS_HOST }}
+          IONOS_USER: ${{ secrets.IONOS_USER }}
+          IONOS_PASS: ${{ secrets.IONOS_PASS }}
+          IONOS_PATH: ${{ secrets.IONOS_PATH }}
+        run: |
+          lftp -c "
+          open -u $IONOS_USER,$IONOS_PASS sftp://$IONOS_HOST
+          mirror -R --delete --verbose ./ $IONOS_PATH
+          "
