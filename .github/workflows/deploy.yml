@@ -1,5 +1,6 @@
-name: Deploy to IONOS (SFTP)
+name: Deploy to IONOS (FTPS)
 
+# Trigger deployment on every push to main branch
 on:
   push:
     branches:
@@ -10,15 +11,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout your repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy via SFTP to IONOS
+      # Step 2: Deploy via FTPS to IONOS
+      - name: Deploy via FTPS to IONOS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.IONOS_HOST }}
           username: ${{ secrets.IONOS_USER }}
           password: ${{ secrets.IONOS_PASS }}
-          protocol: sftp
-          port: 22
+          protocol: ftps
+          port: 21
           server-dir: ${{ secrets.IONOS_PATH }}
+          exclude: |
+            .git/
+            .github/
