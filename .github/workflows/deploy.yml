@@ -1,4 +1,4 @@
-name: Deploy to IONOS via SFTP
+name: Deploy to IONOS
 
 on:
   push:
@@ -10,17 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy via SFTP
+      - name: Upload files via SFTP
         uses: appleboy/scp-action@v1
         with:
-          host: ${{ secrets.FTP_HOST }}
-          port: 22
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          source: "./"          # change to "website/" if files are in a folder
-          target: ${{ secrets.FTP_TARGET }}
-          rm: true
-          overwrite: true  
+          host: ${{ secrets.IONOS_HOST }}
+          username: ${{ secrets.IONOS_USER }}
+          password: ${{ secrets.IONOS_PASS }}
+          source: "."
+          target: ${{ secrets.IONOS_PATH }}
