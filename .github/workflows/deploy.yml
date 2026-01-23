@@ -1,4 +1,4 @@
-name: Deploy to IONOS
+name: Deploy to IONOS (SFTP)
 
 on:
   push:
@@ -13,12 +13,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy via SFTP (IONOS compatible)
-        uses: appleboy/sftp-action@v1
+      - name: Deploy via SFTP to IONOS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          host: ${{ secrets.IONOS_HOST }}
+          server: ${{ secrets.IONOS_HOST }}
           username: ${{ secrets.IONOS_USER }}
           password: ${{ secrets.IONOS_PASS }}
+          protocol: sftp
           port: 22
-          source: "."
-          target: ${{ secrets.IONOS_PATH }}
+          server-dir: ${{ secrets.IONOS_PATH }}
