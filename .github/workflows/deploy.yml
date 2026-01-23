@@ -10,22 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout repo
+      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Install lftp
-      - name: Install lftp
+      # Step 2: Install lftp and SSH client
+      - name: Install lftp and SSH client
         run: sudo apt-get update && sudo apt-get install -y lftp openssh-client
 
-      # Step 3: Add IONOS host to known_hosts
+      # Step 3: Create .ssh folder and add IONOS host key
       - name: Add IONOS host key
         env:
           IONOS_HOST: ${{ secrets.IONOS_HOST }}
         run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
           ssh-keyscan -H $IONOS_HOST >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
 
-      # Step 4: Deploy via SFTP
+      # Step 4: Deploy via SFTP using lftp
       - name: Deploy via SFTP
         env:
           IONOS_HOST: ${{ secrets.IONOS_HOST }}
