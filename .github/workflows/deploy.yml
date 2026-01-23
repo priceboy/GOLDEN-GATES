@@ -13,11 +13,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Upload files via SFTP
-        uses: appleboy/scp-action@v1
+      - name: Deploy via SFTP (IONOS compatible)
+        uses: appleboy/sftp-action@v1
         with:
           host: ${{ secrets.IONOS_HOST }}
           username: ${{ secrets.IONOS_USER }}
           password: ${{ secrets.IONOS_PASS }}
+          port: 22
           source: "."
           target: ${{ secrets.IONOS_PATH }}
