@@ -14,11 +14,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Install lftp (optional, better than sftp for recursive upload)
+      # Step 2: Install lftp
       - name: Install lftp
-        run: sudo apt-get update && sudo apt-get install -y lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp openssh-client
 
-      # Step 3: Deploy via lftp to IONOS SFTP
+      # Step 3: Add IONOS host to known_hosts
+      - name: Add IONOS host key
+        env:
+          IONOS_HOST: ${{ secrets.IONOS_HOST }}
+        run: |
+          ssh-keyscan -H $IONOS_HOST >> ~/.ssh/known_hosts
+
+      # Step 4: Deploy via SFTP
       - name: Deploy via SFTP
         env:
           IONOS_HOST: ${{ secrets.IONOS_HOST }}
