@@ -10,22 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout repository
+      # Step 1: Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
       # Step 2: Deploy via SFTP (IONOS compatible)
       - name: Upload via SFTP
-        uses: appleboy/scp-action@v0.1.5
+        uses: shivammathur/sftp-deploy@v1.0.0
         with:
           host: ${{ secrets.IONOS_HOST }}
           username: ${{ secrets.IONOS_USER }}
           password: ${{ secrets.IONOS_PASS }}
           port: 22
-          source: "."
-          target: ${{ secrets.IONOS_PATH }}
-          protocol: sftp
-          rm: false
+          local_dir: "."
+          remote_dir: ${{ secrets.IONOS_PATH }}
           exclude: |
             .git/
             .github/
