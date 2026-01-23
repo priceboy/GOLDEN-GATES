@@ -10,20 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout repo
-      - name: Checkout repository
+      - name: Check out repository
         uses: actions/checkout@v4
 
-      # Step 2: Deploy via SFTP
       - name: Deploy via SFTP
-        uses: atymic/sftp-deploy@v1.0.6
+        uses: peaceiris/actions-sftp-deploy@v3
         with:
-          server: ${{ secrets.IONOS_HOST }}
+          host: ${{ secrets.IONOS_HOST }}
           username: ${{ secrets.IONOS_USER }}
           password: ${{ secrets.IONOS_PASS }}
           port: 22
-          local-dir: "."        # Upload the entire repo
-          remote-dir: ${{ secrets.IONOS_PATH }}
+          local_dir: "./"
+          remote_dir: ${{ secrets.IONOS_PATH }}
           exclude: |
             .git/
             .github/
