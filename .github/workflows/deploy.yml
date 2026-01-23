@@ -1,4 +1,4 @@
-name: Deploy to IONOS via SFTP
+name: Deploy React Build to IONOS via SFTP
 
 on:
   push:
@@ -14,11 +14,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Install lftp and SSH client
+      # Step 2: Install Node.js (for React build) and lftp
+      - name: Setup Node.js and lftp
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20' # or your project node version
       - name: Install lftp and SSH client
         run: sudo apt-get update && sudo apt-get install -y lftp openssh-client
 
-      # Step 3: Create .ssh folder and add IONOS host key
+      # Step 3: Install dependencies and build React
+      - name: Install dependencies
+        run: npm ci
+      - name: Build project
+        run: npm run build
+
+      # Step 4: Create .ssh folder and add IONOS host key
       - name: Add IONOS host key
         env:
           IONOS_HOST: ${{ secrets.IONOS_HOST }}
@@ -28,8 +38,8 @@ jobs:
           ssh-keyscan -H $IONOS_HOST >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
-      # Step 4: Deploy via SFTP using lftp
-      - name: Deploy via SFTP
+      # Step 5: Deploy build folder via SFTP
+      - name: Deploy build folder
         env:
           IONOS_HOST: ${{ secrets.IONOS_HOST }}
           IONOS_USER: ${{ secrets.IONOS_USER }}
@@ -38,5 +48,8 @@ jobs:
         run: |
           lftp -c "
           open -u $IONOS_USER,$IONOS_PASS sftp://$IONOS_HOST
-          mirror -R --delete --verbose ./ $IONOS_PATH
+          mirror -R --verbose \
+            --exclude .git/ \
+            --exclude .github/ \
+            ./build $IONOS_PATH
           "
