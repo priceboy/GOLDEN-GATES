@@ -14,22 +14,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Install Node.js (for React build) and lftp
-      - name: Setup Node.js and lftp
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20' # or your project node version
+          node-version: '20'
+
+      # Step 3: Install lftp and SSH client
       - name: Install lftp and SSH client
         run: sudo apt-get update && sudo apt-get install -y lftp openssh-client
 
-      # Step 3: Install dependencies and build React
-     - name: Install dependencies
-  run: npm install
+      # Step 4: Install dependencies
+      - name: Install dependencies
+        run: npm install
 
+      # Step 5: Build React project
       - name: Build project
         run: npm run build
 
-      # Step 4: Create .ssh folder and add IONOS host key
+      # Step 6: Create .ssh folder and add IONOS host key
       - name: Add IONOS host key
         env:
           IONOS_HOST: ${{ secrets.IONOS_HOST }}
@@ -39,7 +42,7 @@ jobs:
           ssh-keyscan -H $IONOS_HOST >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
-      # Step 5: Deploy build folder via SFTP
+      # Step 7: Deploy build folder via SFTP
       - name: Deploy build folder
         env:
           IONOS_HOST: ${{ secrets.IONOS_HOST }}
