@@ -1,29 +1,40 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#062a4a" />
+  <meta name="description" content="Golden Gate is an education initiative for displaced learners in Foumbot, Cameroon. Explore our projects, witness our impact, and support our mission." />
+  <meta name="google-site-verification" content="YAH5CFREGoP4Ng77FHozfNLDglHszx2IhP-EUM5E99E" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Golden Gate — Education for Displaced Learners" />
+  <meta property="og:description" content="Bridging educational gaps for displaced learners in Foumbot, Cameroon. Support our mission." />
+  <meta property="og:url" content="https://goldengate-foumbot.org/" />
+  <meta property="og:image" content="https://i.imgur.com/v5HBQSK.jpg" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
+  <title>Golden Gate — Education for Displaced Learners</title>
+
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Golden Gate Foumbot",
   "url": "https://goldengate-foumbot.org",
-  "logo": "https://i.imgur.com/v5HBQSK.jpeg"
+  "logo": "https://i.imgur.com/v5HBQSK.jpg"
 }
 </script>
 
-  <meta<meta name="google-site-verification" content="YAH5CFREGoP4Ng77FHozfNLDglHszx2IhP-EUM5E99E" />
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Golden Gate — Education for Displaced Learners</title>
-
-<!-- Swiper -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
-<script src="https://checkout.flutterwave.com/v3.js"></script>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://i.imgur.com">
+  <link rel="preconnect" href="https://i.postimg.cc">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
 
 <style>
@@ -40,37 +51,32 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #ffffff;
+  background: var(--cream);
   padding: 8px 12px;
   border-radius: 25px;
   text-decoration: none;
-  color: #000;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  color: var(--ink);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
   font-size: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .social-link:hover {
   transform: translateY(-2px);
-  transition: 0.2s ease;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
 }
-
-.icon-link {
-  width: 22px;
-  height: 22px;
-}
-
-
 
   a {
   color: inherit;
   text-decoration: none;
 }
 
-  .icon-link {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;  /* remove if you don't want it round */
-  transition: 0.2s;
+.icon-link {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  object-fit: cover;
+  transition: transform 0.2s ease;
 }
 
 .icon-link:hover {
@@ -97,26 +103,41 @@
 
 /* Popup Box */
 .popup-box {
-  background: rgb(3, 11, 18);
-  padding: 25px 35px;
-  border-radius: 12px;
+  background: linear-gradient(180deg, #0d3b68, #07213c);
+  padding: 30px 36px;
+  border-radius: 16px;
   text-align: center;
   width: 100%;
   max-width: 600px;
   animation: popIn 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: var(--shadow);
 }
 
 /* Close Button */
+.popup-box .popup-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 18px;
+}
+
 .popup-box button {
-  margin-top: 15px;
+  flex: 1;
+  max-width: 170px;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
-  background: #0a2a43;
-  color: white;
-  border-radius: 8px; 
+  background: var(--secondary);
+  color: var(--ink);
+  border-radius: 999px;
   font-weight: bold;
+  transition: transform .15s ease, filter .15s ease;
 }
+
+.popup-box button:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+.popup-box button.decline { background: rgba(253, 251, 245, 0.14); color: #fff; }
 
 /* Animations */
 @keyframes fadeIn {
@@ -138,33 +159,42 @@
    THEME & RESET
    ========================= */
 :root {
-  --primary: rgb(12, 59, 107);
-  --ter: rgba(18, 205, 252, 0.747);
-  --secondary: rgb(255, 251, 4);
-  --bg: #02101f;
-  --text: #ffffff;
-  --ttext: #000000;
-  --muted: #ffffff;
-  --overlay: rgba(0, 0, 0, 0.306);
-  --card-bg: rgba(0, 1, 16, 0.88);
-  --radius: 12px;
+  --primary: #0e5aa7;
+  --secondary: #fbbf24;
+  --gold: #fde68a;
+  --cream: #faf6ee;
+  --ink: #16222e;
+  --text: #fdfbf5;
+  --ttext: #16222e;
+  --muted: rgba(253, 251, 245, 0.78);
+  --overlay: rgba(3, 15, 28, 0.38);
+  --card-bg: rgba(253, 251, 245, 0.08);
+  --card-border: rgba(253, 251, 245, 0.16);
+  --radius: 14px;
   --container-w: 1200px;
+  --shadow: 0 18px 44px rgba(2, 12, 24, 0.35);
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html,body { height: auto }
+html { scroll-behavior: smooth; }
 
 body {
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-             Roboto, "Helvetica Neue", Arial, sans-serif;
-
-  background: linear-gradient(135deg, #072c4dd7,  #03b7ff);  
+  font-family: var(--font-body);
+  background: radial-gradient(1200px 800px at 20% -10%, #0a3d6b 0%, #062a4a 45%, #031523 100%);
   color: var(--text);
   line-height: 1.6;
   font-size: clamp(14px, 2vw, 18px);
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, .brand, .section-title, .accordion-header {
+  font-family: var(--font-display);
+  letter-spacing: 0.2px;
 }
 
 /* =========================
@@ -175,8 +205,9 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.25rem;
-  background: linear-gradient(60deg, var(--ter), hsla(216, 89%, 19%, 0.363));
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  background: linear-gradient(90deg, rgba(6, 26, 46, 0.97), rgba(12, 59, 107, 0.97));
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+  border-bottom: 1px solid rgba(251, 191, 36, 0.35);
   position: sticky;
   top: 0;
   z-index: 1200;
@@ -187,7 +218,7 @@ header {
   display: flex;
   align-items: center;
   gap: .75rem;
-  color: rgb(255, 255, 255);
+  color: var(--text);
   font-weight: 700;
   letter-spacing: 0.2px;
 }
@@ -196,8 +227,9 @@ header {
   height: 48px;
   border-radius: 999px;
   overflow: hidden;
-  background: #fefeff;
-  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+  background: var(--cream);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
+  border: 2px solid rgba(251, 191, 36, 0.7);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -209,7 +241,7 @@ nav {
   align-items: center;
 }
 nav a {
-  color: white;
+  color: var(--text);
   text-decoration: none;
   font-weight: 600;
   padding: .35rem .6rem;
@@ -241,7 +273,7 @@ nav a:hover { background: rgba(255, 255, 255, 0.344); transform: translateY(-1px
     flex-direction: column;
     width: 100%;
     gap: 0;
-  background-color: rgba(7, 22, 53, 0.632);
+    background-color: rgba(6, 26, 46, 0.97);
     position: absolute;
     top: 100%;
     left: 0;
@@ -273,7 +305,24 @@ section {
   margin-left: calc(-50vw + 50%); /* prevent being boxed */
 }
 
-section.active { display: block; }
+section.active {
+  display: block;
+  animation: sectionIn 0.45s ease;
+}
+
+@keyframes sectionIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 /* make text appear above overlay */
 section .inner {
@@ -282,7 +331,7 @@ section .inner {
   max-width: var(--container-w);
   margin: 0 auto;
   padding: 0 1rem;
-  color: #fff;
+  color: var(--text);
 }
 
 /* overlay for text readability */
@@ -300,32 +349,27 @@ section::before {
 #fundraise,
 #project-donate,
 #about,
-#contact
-#mission
-{
-  min-height: 100vh; 
+#contact,
+#mission {
+  min-height: 100vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 #mission { background: url('https://i.postimg.cc/vZDZmZBq/cover.jpg') center center/cover no-repeat; }
-#home { background: linear-gradient(115deg, #0267da, #ffffff);  }
-#fundraise { 
-  background: linear-gradient(135deg, #001935c1, #ffff2a); 
-}
+#home { background: linear-gradient(115deg, #0267da, #062a4a); }
+#fundraise { background: linear-gradient(150deg, #072a4d, #0b3d6d 55%, #05202f); }
 #project-donate { background: url('https://i.postimg.cc/h4NjtH3Z/fundraiser-background.jpg') center center/cover no-repeat; }
-#about { 
-  background: linear-gradient(135deg, #068b8b, #09486fa2); 
-}
+#about { background: linear-gradient(150deg, #063b4d, #0a2f52 60%, #05202f); }
 #contact { background: url('https://i.imgur.com/CoCKRlV.jpg') center center/cover no-repeat; }
 
 /* headings and readable text */
-h1,h2,h3 { margin-bottom: .5rem; line-height: 1.1; }
+h1,h2,h3 { margin-bottom: .5rem; line-height: 1.15; text-wrap: balance; }
 h1 { font-size: clamp(26px, 4vw, 42px); font-weight: 800; }
 h2 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 700; }
 h3 { font-size: clamp(16px, 2.2vw, 20px); font-weight: 700; color: var(--secondary); }
-h4 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 300; }
-h5 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 100; }
+h4 { font-size: clamp(18px, 2.6vw, 24px); font-weight: 700; }
+h5 { font-size: clamp(20px, 3vw, 30px); font-weight: 400; }
 
 /* small paragraph */
 .lead { color: rgba(255,255,255,0.95); font-size: clamp(14px, 1.9vw, 16px); margin-bottom: 1rem; }
@@ -338,14 +382,21 @@ h5 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 100; }
 .home-slide { width: 100%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; }
 .home-slide::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)); z-index: 1; }
 .home-slide__bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: saturate(1.1); }
-.home-slide__content { position: absolute; z-index: 2; text-align: center; max-width: 900px; padding: 0rem; color: #fff; }
+.home-slide__content { position: absolute; z-index: 2; text-align: center; max-width: 900px; padding: 0 1.25rem; color: #fff; }
 .home-slide__content h1 { font-size: clamp(28px, 4.5vw, 56px); margin-bottom: .6rem; }
 .home-slide__content p { font-size: clamp(14px, 2vw, 18px); opacity: .96; margin-bottom: 0rem; }
-.cta-btn { display: inline-block; background: #fbbf24; color: #111827; padding: .6rem 1rem; border-radius: 9999px; font-weight: 800; text-decoration: none; box-shadow: 0 10px 24px rgba(0,0,0,.18); }
+.home-list { list-style: none; margin: .6rem 0 0; padding: 0; }
+.home-list li { margin: .3rem 0; font-weight: 700; font-style: italic; }
+.cta-btn { display: inline-block; background: var(--secondary); color: var(--ink); padding: .6rem 1rem; border-radius: 9999px; font-weight: 800; text-decoration: none; box-shadow: 0 10px 24px rgba(0,0,0,.18); margin-top: 1rem; transition: transform .15s ease, filter .15s ease; }
 .cta-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
 
+.home-swiper .swiper-pagination-bullet { background: var(--gold); opacity: .55; }
+.home-swiper .swiper-pagination-bullet-active { background: var(--secondary); opacity: 1; }
+.projects .swiper-pagination-bullet { background: var(--gold); }
+.projects .swiper-pagination-bullet-active { background: var(--secondary); }
+
 /* =========================
-   PROJECT CARDS (white cards over background)
+   PROJECT CARDS (glass cards over background)
    ========================= */
 .projects {
   display: grid;
@@ -355,66 +406,100 @@ h5 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 100; }
 }
 .project {
   background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 8px 26px rgba(3, 71, 71, 0.511);
+  box-shadow: 0 10px 30px rgba(2, 12, 24, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   transition: transform .18s ease, box-shadow .18s ease;
 }
-.project:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(255, 255, 255, 0.12); }
+.project:hover { transform: translateY(-6px); box-shadow: 0 22px 48px rgba(2, 12, 24, 0.5); }
 .project__media img { width: 100%; height: 180px; object-fit: cover; display:block; }
 .project__body { padding: 1rem; }
 .project__body p { color: var(--muted); margin: .35rem 0 1rem; }
 
 /* progress bar */
 .progress-container {
-  background: #070b1439;
-  border-radius: 20px;
+  background: rgba(253, 251, 245, 0.16);
+  border-radius: 999px;
   overflow: hidden;
-  height: 12px;
+  height: 10px;
   margin-bottom: .9rem;
 }
-.progress-bar { height: 100%; background: var(--primary); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--secondary), var(--gold)); border-radius: 999px; }
 
 /* donate buttons */
 .donateBtn {
   display: inline-block;
-  background: var(--secondary);
-  color: #07011b;
-  padding: .5rem .85rem;
-  border-radius: 8px;
-  font-weight: 700;
+  background: linear-gradient(90deg, var(--gold), var(--secondary));
+  color: var(--ink);
+  padding: .55rem .95rem;
+  border-radius: 999px;
+  font-weight: 800;
   text-decoration: none;
   cursor: pointer;
   border: none;
+  box-shadow: 0 8px 20px rgba(251, 191, 36, 0.25);
+  transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
 }
-.donateBtn:hover { background: #ffe607; }
+.donateBtn:hover { background: linear-gradient(90deg, var(--secondary), var(--gold)); filter: brightness(1.05); transform: translateY(-1px); box-shadow: 0 12px 26px rgba(251, 191, 36, 0.35); }
 
 /* floating CTA */
 .donate-floating {
   position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  background:  #ffe607;
-  color: #031327;
-  padding: .7rem 1rem;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  background: linear-gradient(90deg, #0b3668, #062a4a);
+  color: var(--gold);
+  border: 1px solid rgba(251, 191, 36, 0.55);
+  padding: .7rem 1.1rem;
   border-radius: 9999px;
   font-weight: 800;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  box-shadow: 0 10px 30px rgba(2, 12, 24, 0.5);
   z-index: 1400;
   text-decoration: none;
+  transition: transform .15s ease, box-shadow .15s ease;
 }
+.donate-floating:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(2, 12, 24, 0.65); }
+
+/* music toggle */
+.music-toggle {
+  position: fixed;
+  right: 1.35rem;
+  bottom: 4.9rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  cursor: pointer;
+  background: rgba(6, 26, 46, 0.92);
+  color: var(--gold);
+  font-size: 1.15rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  z-index: 1400;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: transform .15s ease;
+}
+.music-toggle.visible { display: flex; }
+.music-toggle:hover { transform: scale(1.1); }
 
 /* =========================
    DONATION DETAILS
    ========================= */
 #project-donate .panel {
-  background: rgba(5, 1, 1, 0.55);
-  padding: 1rem;
-  border-radius: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius);
   color: var(--text);
-  box-shadow: 0 10px 30px rgba(2,6,23,0.08);
+  box-shadow: var(--shadow);
 }
 .donation-project { display: none; margin-bottom: 1rem; }
 .donation-project.active { display: block; }
@@ -427,31 +512,37 @@ h5 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 100; }
 .controls select, .controls button, .controls input[type="number"] {
   padding: .5rem .6rem;
   border-radius: 8px;
-  border: 1px solid #d1d5db;
+  border: 1px solid rgba(253, 251, 245, 0.22);
+  background: rgba(253, 251, 245, 0.12);
+  color: #fff;
+  max-width: 100%;
 }
+.controls select option { background: #0d3b68; color: #fff; }
+.donation-project li label { display: inline-flex; gap: .5rem; align-items: center; cursor: pointer; }
 
 /* small note */
-.helper { font-size: .9rem; color: rgba(255,255,255,0.85); margin-top: .5rem; }
+.helper { font-size: .9rem; color: rgba(253,251,245,0.85); margin-top: .5rem; }
 
 /* =========================
    ABOUT: TEAM CIRCLES
    ========================= */
 .team { margin-top: 1rem; }
 .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 980px; margin: 1rem auto 1.25rem; }
-.team-card { background: rgba(0, 0, 0, 0.306); color: var(--ttext); border-radius: 16px; padding: 1rem; text-align: center; box-shadow: 0 8px 24px rgba(2,6,23,0.08); }
-.team-avatar { width: 140px; height: 140px; border-radius: 9999px; overflow: hidden; margin: 0 auto .75rem; border: 5px solid rgba(11, 30, 126, 0.553); box-shadow: 0 6px 16px rgba(2,6,23,0.08) inset; }
+.team-card { background: var(--cream); color: var(--ttext); border-radius: 18px; padding: 1.25rem; text-align: center; box-shadow: var(--shadow); border: 1px solid rgba(253, 251, 245, 0.2); }
+.team-avatar { width: 140px; height: 140px; border-radius: 9999px; overflow: hidden; margin: 0 auto .75rem; border: 5px solid var(--secondary); box-shadow: 0 8px 20px rgba(2, 6, 23, 0.18); }
 .team-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.team-title { font-weight: 800; color: var(--secondary); margin-bottom: .25rem; }
-.team-name { color: #ffee31db; font-weight: 700; margin-bottom: .25rem; }
-.team-note { color: #ffffff; font-size: .95rem; }
-.about-body { max-width: 980px; margin: 1rem auto 0; background: rgba(203, 159, 26, 0.183); color: var(--ttext); border-radius: 12px; padding: 1rem; box-shadow: 0 8px 24px rgba(2,6,23,0.08); }
+.team-title { font-weight: 800; color: var(--primary); margin-bottom: .25rem; }
+.team-name { color: var(--primary); font-weight: 800; margin-bottom: .25rem; }
+.team-note { color: #334152; font-size: .95rem; text-align: left; }
+.about-body { max-width: 980px; margin: 1rem auto 0; background: var(--cream); color: var(--ttext); border-radius: 16px; padding: 1.25rem; box-shadow: var(--shadow); }
+.about-body .helper { color: #334152; }
 
 .gallery-section {
-  position: relative; /* needed for overlay if we add any */
-  padding: 4rem 2rem;
+  position: relative;
+  padding: 4rem 1.5rem;
   text-align: center;
-  background: linear-gradient(135deg, #000709af,  #000204a5,#0000004e);
-  color: #ffffff; /* ensures text is visible */
+  background: linear-gradient(150deg, #020d18, #06253f 60%, #04131f);
+  color: #ffffff;
   overflow: hidden;
 }
 
@@ -523,18 +614,117 @@ h5 { font-size: clamp(20px, 3.2vw, 30px); font-weight: 100; }
    ========================= */
 @media (max-width: 900px) {
   .project__media img { height: 160px; }
-  .hamburger { display: flex; }
-  nav { display: none; }
   .team-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
-  header { padding: .75rem 0.9rem; }
+  header { padding: .75rem .9rem; }
   .project__media img { height: 140px; }
   section { padding: 3rem 0; }
 }
 
+/* =========================
+   MODALS
+   ========================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 10, 20, 0.72);
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.modal-overlay.open { display: flex; }
+.modal-card {
+  width: 100%;
+  max-width: 430px;
+  background: linear-gradient(180deg, #0d3b68, #07213c);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 1.75rem 1.75rem 1.5rem;
+  text-align: center;
+  color: #fff;
+  box-shadow: var(--shadow);
+  position: relative;
+  animation: popIn .35s ease;
+}
+.modal-card h3 { color: var(--gold); }
+.modal-card p { margin: .45rem 0; }
+.modal-card .modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.14);
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+.modal-card .modal-close:hover { background: rgba(255, 255, 255, 0.28); }
+.modal-card a { color: var(--gold); font-weight: 700; }
+.modal-card .btn {
+  display: inline-block;
+  margin-top: .5rem;
+  background: var(--secondary);
+  color: var(--ink);
+  padding: .5rem 1rem;
+  border-radius: 999px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .15s ease, filter .15s ease;
+}
+.modal-card .btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.modal-card .btn.btn-ghost {
+  background: rgba(253, 251, 245, 0.14);
+  color: #fff;
+}
+.modal-card .confirm-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.modal-card .confirm-actions .btn { margin-top: 0; }
+.copy-btn {
+  display: inline-block;
+  margin-left: 8px;
+  background: rgba(251, 191, 36, 0.18);
+  color: var(--gold);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  font-size: .8rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .15s ease;
+  vertical-align: middle;
+}
+.copy-btn:hover { background: rgba(251, 191, 36, 0.32); }
+
+/* =========================
+   FOOTER
+   ========================= */
+.site-footer {
+  background: linear-gradient(90deg, rgba(4, 16, 28, 0.97), rgba(8, 36, 66, 0.97));
+  border-top: 1px solid rgba(251, 191, 36, 0.25);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: rgba(253, 251, 245, 0.72);
+  font-size: .9rem;
+}
+.site-footer a { color: var(--gold); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+
 /* small accessible focus */
-a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,130,246,0.25); outline-offset: 3px; }
+a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(251, 191, 36, 0.45); outline-offset: 3px; }
 </style>
 
 </head>
@@ -573,24 +763,24 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
     <div class="mission-container" style="display: inline-block; text-align: left; max-width: 700px;">
       <!-- Mission -->
       <div class="accordion-item">
-        <h4 class="accordion-header">MISSION</h4>
-        <p class="accordion-content fade-in">
+        <h4 class="accordion-header" id="mission-hd" aria-expanded="false" aria-controls="mission-panel" tabindex="0">MISSION</h4>
+        <p class="accordion-content fade-in" id="mission-panel">
           Our mission is to bridge educational gaps between underprivileged and other student groups by providing equitable access to learning opportunities. We are committed to cultivating a supportive environment that empowers students to learn, achieve, and excel. Our success is defined by the impact we create in the community and the inspiring stories of those we serve.
         </p>
       </div>
 
       <!-- Vision -->
       <div class="accordion-item">
-        <h4 class="accordion-header">VISION</h4>
-        <p class="accordion-content fade-in">
+        <h4 class="accordion-header" id="vision-hd" aria-expanded="false" aria-controls="vision-panel" tabindex="0">VISION</h4>
+        <p class="accordion-content fade-in" id="vision-panel">
           Golden Gate envisions an educational hub that serves as a beacon of hope and opportunity, empowering every learner to overcome challenges, thrive, and create a brighter future, regardless of circumstance.
         </p>
       </div>
 
       <!-- Values -->
       <div class="accordion-item">
-        <h4 class="accordion-header">VALUES</h4>
-        <p class="accordion-content fade-in">
+        <h4 class="accordion-header" id="values-hd" aria-expanded="false" aria-controls="values-panel" tabindex="0">VALUES</h4>
+        <p class="accordion-content fade-in" id="values-panel">
           Guided by honesty, integrity, and respect, we foster trust, embrace fairness, and honor the contributions of every member of our community.
         </p>
       </div>
@@ -604,10 +794,23 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           const item = header.parentElement;
 
           // Close all other items
-          headers.forEach(h => h.parentElement !== item && h.parentElement.classList.remove('active'));
+          headers.forEach(h => {
+            if (h.parentElement !== item) {
+              h.parentElement.classList.remove('active');
+              h.setAttribute('aria-expanded', 'false');
+            }
+          });
 
           // Toggle clicked item
           item.classList.toggle('active');
+          header.setAttribute('aria-expanded', item.classList.contains('active'));
+        });
+
+        header.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            header.click();
+          }
         });
       });
     })();
@@ -617,37 +820,41 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
     /* Accordion default styling */
     #mission .accordion-item {
       width: 100%;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
       margin-bottom: 1rem;
-      border: 1px solid #fff706;
+      border: 1px solid rgba(251, 191, 36, 0.55);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(6px);
       text-align: left;
     }
 
     #mission .accordion-header {
-      padding: 1rem;
+      padding: 1rem 1.25rem;
       cursor: pointer;
-      font-weight: 700;
-      background-color: #0091ff77;
-      text-align: center; /* Center header text */
+      font-weight: 800;
+      background: rgba(251, 191, 36, 0.14);
+      text-align: center;
+      transition: background .2s ease;
     }
 
     #mission .accordion-header:hover {
-      background-color: #00eeff69;
+      background: rgba(251, 191, 36, 0.22);
     }
 
     #mission .accordion-content {
       max-height: 0;
       overflow: hidden;
-      padding: 0 1rem;
+      padding: 0 1.25rem;
       transition: max-height 0.5s ease, padding 0.5s ease;
-      line-height: 1.6;
-      text-align: justify; /* Paragraph justified for readability */
+      line-height: 1.7;
+      text-align: left;
+      color: rgba(253, 251, 245, 0.92);
     }
 
     #mission .accordion-item.active .accordion-content {
-      max-height: 1000px; /* Ensure enough space for long text */
-      padding: 1rem;
+      max-height: 1200px;
+      padding: 1rem 1.25rem;
     }
   </style>
 </section>
@@ -665,18 +872,19 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/DolIePP.png')"></div>
           <div class="home-slide__content">
             <h1 id="home-title"><em>The Gate of Hope</em></h1>
-            <p class="lead"><strong><em>In 2023, a dream took its first breath.Under the  vision of our founder, our dedicted team set out on a mission:
+            <p class="lead"><strong><em>In 2023, a dream took its first breath. Under the vision of our founder, our dedicated team set out on a mission:</em></strong></p>
+            <ul class="home-list">
               <li>To rebuild the broken education of the internally displaced and vulnerable children.</li>
-             <li> To make education A reality not just a dream:</li>
-             <li> To open the gate of hope, the gate of equality, the gate of education-THE GOLDEN GATE.
-             </em></strong>  </p>
+              <li>To make education a reality, not just a dream.</li>
+              <li>To open the gate of hope, the gate of equality, the gate of education — THE GOLDEN GATE.</li>
+            </ul>
           </div>
         </div>
        <!-- Slide 2 -->
         <div class="swiper-slide home-slide">
           <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/0jnZRzdw/IMG-20251120-WA0023.jpg')"></div>
           <div class="home-slide__content">
-            <h1 id="home-title"><em>The First Step of Courage</em></h1>
+            <h1 ><em>The First Step of Courage</em></h1>
             <p class="lead"><em><strong>On our  first year, 100 parents found the courage to entrust their precious children to us. Fear of the unknown weighed heavily on their hearts, yet their bravery planted the first seeds of hope in our classrooms.</strong></em></p>
           </div>
         </div>
@@ -684,7 +892,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="swiper-slide home-slide">
           <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/5NkxnNgf/IMG-20251025-WA0003.jpg')"></div>
           <div class="home-slide__content">
-            <h1 id="home-title"><em>Little Hands, Big Dreams</em></h1>
+            <h1 ><em>Little Hands, Big Dreams</em></h1>
             <p class="lead"><em><strong>Every child who walks through our doors carries a story of resilience. Tiny hands clutched to pencils as big as the  dreams sparkling in their eyes. Each smile, question, reminds us why every effort matters.</strong></em></p>
           </div>
         </div>
@@ -693,7 +901,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="swiper-slide home-slide">
           <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/y8m9Djj1/IMG-20251119-WA0014.jpg')"></div>
           <div class="home-slide__content">
-            <h1 id="home-title"><em>Growing Together</em></h1>
+            <h1 ><em>Growing Together</em></h1>
             <p class="lead"><em><strong>With each passing day, our classrooms blossomed with curiosity. Children who once hesitated now raised their voices, eager to explore, to ask, to understand. Their courage became our inspiration.</strong></em></p>
           </div>
         </div>
@@ -701,7 +909,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="swiper-slide home-slide">
           <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/nL6JB0WZ/IMG-20251025-WA0013.jpg')"></div>
           <div class="home-slide__content">
-            <h1 id="home-title"><em>Triumphs and Tears</em></h1>
+            <h1 ><em>Triumphs and Tears</em></h1>
             <p class="lead"><em><strong>There were tears of struggle and joy of discovery. Lessons learned weren’t only in books—they were in courage, patience, and the quiet victories of children who had once been denied the chance to learn.</strong></em></p>
           </div>
         </div>
@@ -709,7 +917,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="swiper-slide home-slide">
         <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/tRdKkXLx/Untitled-design-(5).png')"></div>
           <div class="home-slide__content">
-            <h1 id="home-title"><em>Milestones Achieved</em></h1>
+            <h1 ><em>Milestones Achieved</em></h1>
             <p class="lead"><em><strong>By the end of our first year, we had not only taught lessons, but nurtured souls. Over 180 children had found a safe haven, a place where knowledge met care, and dreams could take their first flight.</strong></em></p>
           </div>
         </div>
@@ -717,7 +925,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="swiper-slide home-slide">
           <div class="home-slide__bg" style="background-image:url('https://i.postimg.cc/DZctCyDQ/IMG-20251120-WA0007.jpg')"></div>
           <div class="home-slide__content">
-            <h1 id="home-title"><em>Gratitude in Every Step</em></h1>
+            <h1 ><em>Gratitude in Every Step</em></h1>
             <p class="lead"><em><strong>Every smile captured in these photo tells a story of trust, perseverance, and love. Every parent who believed, every child who dared, brought us one step closer to the mission we hold dear.</strong></em></p>
           </div>
         </div>
@@ -726,7 +934,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
           <div class="home-slide__bg" style="background-image:url('https://i.imgur.com/YToJQBb.jpg')"></div>
           <div class="home-slide__content">
             <h1><em>The Journey Ahead</em></h1>
-            <p class="lead"></em><strong>Golden Gate is more than walls and classrooms. It is hope made tangible, opportunity made real. Every picture, every moment, is a reminder: together, we can transform lives, one child at a time.</strongS></em></p>
+            <p class="lead"><em><strong>Golden Gate is more than walls and classrooms. It is hope made tangible, opportunity made real. Every picture, every moment, is a reminder: together, we can transform lives, one child at a time.</strong></em></p>
             <a href="#" class="cta-btn" data-target="fundraise"><em>Support our mission</em></a>
           </div>
         </div>
@@ -742,8 +950,8 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
   <div class="inner container">
     <h2 id="fundraise-title" class="fade-in"><em><strong>Current Fundraising Projects</strong></em></h2>
     <p class="lead fade-in"><strong><em>Choose a project and click Donate to support a specific part of that project.<br>
-      Your support changes lives. Thank you for being part of this journey!</br>
-    (The progress bars indicate how close we are to luanching the project.)</em></strong></p>
+      Your support changes lives. Thank you for being part of this journey!<br>
+    (The progress bars indicate how close we are to launching the project.)</em></strong></p>
 
     <div class="projects fade-in" id="projects-grid" style="margin-top:1.25rem;">
 
@@ -752,8 +960,8 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="project__media">
           <div class="swiper proj1">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.postimg.cc/6q4NrvjL/Borehole-with-water.jpg" alt="Before Borehole"></div>
-              <div class="swiper-slide"><img src="https://i.postimg.cc/kXHbMvC1/WATER-HOLE.jpg" alt="After Borehole"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.postimg.cc/6q4NrvjL/Borehole-with-water.jpg" alt="Before Borehole"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.postimg.cc/kXHbMvC1/WATER-HOLE.jpg" alt="After Borehole"></div>
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -771,8 +979,8 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="project__media">
           <div class="swiper proj2">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.postimg.cc/Dwm8tJbz/IMG-20251012-WA0025.jpg" alt="Current Bus"></div>
-              <div class="swiper-slide"><img src="https://i.postimg.cc/BntXdL1t/IMG-20251012-WA0026.jpg" alt="Planned Bus"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.postimg.cc/Dwm8tJbz/IMG-20251012-WA0025.jpg" alt="Current Bus"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.postimg.cc/BntXdL1t/IMG-20251012-WA0026.jpg" alt="Planned Bus"></div>
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -790,9 +998,9 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="project__media">
           <div class="swiper proj3">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.imgur.com/wpRPSPP.jpeg" alt="Unfinished Classroom"></div>
-              <div class="swiper-slide"><img src="https://i.imgur.com/Lwru71P.jpeg" alt="Completed Classroom"></div>
-              <div class="swiper-slide"><img src="https://i.imgur.com/qrs36sI.jpeg" alt="Another view"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.imgur.com/wpRPSPP.jpeg" alt="Unfinished Classroom"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.imgur.com/Lwru71P.jpeg" alt="Completed Classroom"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.imgur.com/qrs36sI.jpeg" alt="Another view"></div>
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -810,9 +1018,9 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="project__media">
           <div class="swiper proj4">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.imgur.com/86U8eZt.jpeg" alt="Current shcool ground"></div>
-              <div class="swiper-slide"><img src="https://i.imgur.com/U9ROml0.jpeg" alt="current playyard"></div>
-              <div class="swiper-slide"><img src="https://i.imgur.com/i7y10EZ.png" alt="Donation enabled landscaping"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.imgur.com/86U8eZt.jpeg" alt="Current school ground"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.imgur.com/U9ROml0.jpeg" alt="current playyard"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.imgur.com/i7y10EZ.png" alt="Donation enabled landscaping"></div>
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -830,8 +1038,8 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="project__media">
           <div class="swiper proj5">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.postimg.cc/YCNsB0K7/Chat-GPT-Image-Oct-25-2025-01-00-15-AM.png" alt="Before Electricity"></div>
-              <div class="swiper-slide"><img src="https://i.postimg.cc/XYnTJdgJ/Chat-GPT-Image-Oct-25-2025-01-02-22-AM.png" alt="After Electricity"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.postimg.cc/YCNsB0K7/Chat-GPT-Image-Oct-25-2025-01-00-15-AM.png" alt="Before Electricity"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.postimg.cc/XYnTJdgJ/Chat-GPT-Image-Oct-25-2025-01-02-22-AM.png" alt="After Electricity"></div>
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -849,7 +1057,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="project__media">
           <div class="swiper proj6">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.imgur.com/PlK55l1.png" alt="Before Lab"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.imgur.com/PlK55l1.png" alt="Before Lab"></div>
               
             </div>
             <div class="swiper-pagination"></div>
@@ -868,7 +1076,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="project__media">
           <div class="swiper proj7">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.imgur.com/NXjHAo3.png" alt="Before Computer Lab"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.imgur.com/NXjHAo3.png" alt="Before Computer Lab"></div>
               
             </div>
             <div class="swiper-pagination"></div>
@@ -887,7 +1095,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <div class="project__media">
           <div class="swiper proj8">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.imgur.com/vLqBcyi.png" alt="Before Library"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.imgur.com/vLqBcyi.png" alt="Before Library"></div>
   
             </div>
             <div class="swiper-pagination"></div>
@@ -904,11 +1112,11 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
       <!-- Project 7: Staff payment -->
       <article class="project" aria-labelledby="p_staff">
         <div class="project__media">
-          <div class="swiper proj7">
+          <div class="swiper proj9">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="https://i.postimg.cc/bY2rxJH9/IMG-20251119-WA0063.jpg" alt="Oor dedicated teachers"></div>
-                            <div class="swiper-slide"><img src="https://i.postimg.cc/P5dqnMGy/IMG-20251119-WA0064.jpg" alt="Oor dedicated teachers"></div>
-                             <div class="swiper-slide"><img src="https://i.postimg.cc/bwqvfRXH/IMG-20251119-WA0069.jpg" alt="Oor dedicated teachers"></div>
+              <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.postimg.cc/bY2rxJH9/IMG-20251119-WA0063.jpg" alt="Our dedicated teachers"></div>
+                            <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.postimg.cc/P5dqnMGy/IMG-20251119-WA0064.jpg" alt="Our dedicated teachers"></div>
+                             <div class="swiper-slide"><img loading="lazy" decoding="async" src="https://i.postimg.cc/bwqvfRXH/IMG-20251119-WA0069.jpg" alt="Our dedicated teachers"></div>
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -932,15 +1140,15 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
     <p class="lead fade-in">Please, select the parts of the project you want to support and your preferred payment method, or enter your desired amount below.</p>
 
     <div class="panel fade-in">
-      <!-- Donation Projects (all eight) -->
+      <!-- Donation Projects (all nine) -->
       <!-- Borehole -->
       <div class="donation-project" data-project="borehole">
         <h3>Borehole Construction</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="1200"> Drill borehole — $1200</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="1000"> Water pump installation — $1600</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="200"> Tank & piping — $1600</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="600"> Water tower cosntruction — $2,200</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="1200"> Drill borehole — $1,200</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="1600"> Water pump installation — $1,600</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="1600"> Tank & piping — $1,600</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="2200"> Water tower construction — $2,200</label></li>
         </ul>
         <p>A total of $6,600  is needed for us to build a sustainable water system for the pupil and students on campus.</p>
       </div>
@@ -949,8 +1157,8 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
       <div class="donation-project" data-project="bus">
         <h3>School Bus</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="12000"> Fairly used bus— $25,000</label></li>
-        <li><label><input type="checkbox" class="subtask" data-price="20000"> Brand new bus — $60,000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="25000"> Fairly used bus — $25,000</label></li>
+        <li><label><input type="checkbox" class="subtask" data-price="60000"> Brand new bus — $60,000</label></li>
         </ul>
 
       </div>
@@ -959,11 +1167,11 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
       <div class="donation-project" data-project="classroom">
         <h3>Classroom Completion</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="350"> Flooring & plastering — $1000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="200"> Windows & doors — $350</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="150">  Painting a classroom — $500</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="150">  Ceiling and knockings— $800</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="150">  Electrification — $350</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="1000"> Flooring & plastering — $1,000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="350"> Windows & doors — $350</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="500"> Painting a classroom — $500</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="800"> Ceiling and knockings — $800</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="350"> Electrification — $350</label></li>
         </ul>
         <p><em> Cost per classroom: $3000,<br> With 13 classroom, a total of $39000 is required for completion of all classrooms.</em></p>
       </div>
@@ -972,65 +1180,64 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
       <div class="donation-project" data-project="landscaping">
         <h3>School Landscaping</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="50"> Plant trees — $1000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="30"> Playground setup — $2000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="20"> Garden maintenance — $1000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="1000"> Plant trees — $1,000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="2000"> Playground setup — $2,000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="1000"> Garden maintenance — $1,000</label></li>
         </ul>
-         <p><em>A total of :$4000 would enable us to redefine the shcool environment into a favourable learning and playing ground.</em></p>
+         <p><em>A total of $4,000 would enable us to redefine the school environment into a favourable learning and playing ground.</em></p>
       </div>
 
       <!-- Electrification -->
       <div class="donation-project" data-project="electrification">
         <h3>Electrification</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="1200"> Wiring — $1500</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="700"> Electric poles— $2000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="300"> Switches & outlets — $1500</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="1500"> Wiring — $1,500</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="2000"> Electric poles — $2,000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="1500"> Switches & outlets — $1,500</label></li>
         </ul>
-        <p><em> Total cost of Making electricity available on campus: $5000.</em></p>
+        <p><em>Total cost of making electricity available on campus: $5,000.</em></p>
       </div>
 
       <!-- Science Lab -->
       <div class="donation-project" data-project="lab">
         <h3>Science Lab</h3>
         <ul>
-          <li><label><input type="checkbox" class="subtask" data-price="3500"> Lab construction — $15000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="8000"> Equipment — $10000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="4000"> Safety gear & materials — $5000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="15000"> Lab construction — $15,000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="10000"> Equipment — $10,000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="5000"> Safety gear & materials — $5,000</label></li>
         </ul>
-        <p><em>Total cost to aquire a standard and functional science laboratory:$30000.</em></p>
+        <p><em>Total cost to acquire a standard and functional science laboratory: $30,000.</em></p>
       </div>
 
       <!-- Computer Lab -->
       <div class="donation-project" data-project="computer-lab">
         <h3>Computer Lab</h3>
         <ul>
-             <li><label><input type="checkbox" class="subtask" data-price="2400"> Lab cosntruction — $10000</label></li>
-            <li><label><input type="checkbox" class="subtask" data-price="10000"> Computers — $10000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="2000"> Furniture & chairs — $2000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="1000"> Networking & cables — $3000</label></li>
+             <li><label><input type="checkbox" class="subtask" data-price="10000"> Lab construction — $10,000</label></li>
+            <li><label><input type="checkbox" class="subtask" data-price="10000"> Computers — $10,000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="2000"> Furniture & chairs — $2,000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="3000"> Networking & cables — $3,000</label></li>
         </ul>
-         <p><em> Total cost of constructing a modern and sustainalbe computer science laboratory enabling  <br> pupil and student alike to have acess to digital education: $25000.</em></p>
+         <p><em>Total cost of constructing a modern and sustainable computer science laboratory, enabling<br> pupils and students alike to have access to digital education: $25,000.</em></p>
       </div>
 
       <!-- Library -->
       <div class="donation-project" data-project="library">
         <h3>Library</h3>
         <ul>
-            <li><label><input type="checkbox" class="subtask" data-price="6000"> Library construction— $10000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="2000"> Books — $2000</label></li>
-          <li><label><input type="checkbox" class="subtask" data-price="3500"> Shelves & furniture — $3500</label></li>
-          
+            <li><label><input type="checkbox" class="subtask" data-price="10000"> Library construction — $10,000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="2000"> Books — $2,000</label></li>
+          <li><label><input type="checkbox" class="subtask" data-price="3500"> Shelves & furniture — $3,500</label></li>
         </ul>
-         <p><em>Total cost of constructing and furnishing a modern library: $15500</em></p>
+         <p><em>Total cost of constructing and furnishing a modern library: $15,500</em></p>
       </div>
           <!-- staff payment -->
       <div class="donation-project" data-project="staff_payment">
         <h3>Staff-support</h3>
         <ul>
-            <li><label><input type="checkbox" class="subtask" data-price="400">  15 teachers with salares ranging between: $100-$250</label></li>
+            <li><label><input type="checkbox" class="subtask" data-price="250"> Support a teacher for a month — $250</label></li>
           </ul>
-           <p><em>Aproximate total monthly wage  range for entire staff: $1500-2000</em></p>
+           <p><em>Approximate total monthly wage range for the entire staff: $1,500–$2,000</em></p>
       </div>
 
       <!-- TOTAL & PAYMENT -->
@@ -1071,7 +1278,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <!-- Founder -->
         <div class="team-card">
           <div class="team-avatar">
-            <img src="https://i.postimg.cc/c45TYNfG/founder.jpg" alt="Founder portrait">
+            <img loading="lazy" decoding="async" src="https://i.postimg.cc/c45TYNfG/founder.jpg" alt="Founder portrait">
           </div>
           <div class="team-title"><em>Founder</em></div>
     
@@ -1080,7 +1287,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <!-- Director -->
         <div class="team-card">
           <div class="team-avatar">
-            <img src="https://i.postimg.cc/7PRTnPQx/ernest.jpg" alt="Director portrait">
+            <img loading="lazy" decoding="async" src="https://i.postimg.cc/7PRTnPQx/ernest.jpg" alt="Director portrait">
           </div>
           <div class="team-title"><em>Director</em></div>
           <div class="team-name"><em>Mingoh Emmanuel</em></div>
@@ -1090,7 +1297,7 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
         <!-- System Administrator -->
         <div class="team-card">
           <div class="team-avatar">
-            <img src="https://i.postimg.cc/ydfq4dR0/IMG-20251012-164817.jpg" alt="System Administrator portrait">
+            <img loading="lazy" decoding="async" src="https://i.postimg.cc/ydfq4dR0/IMG-20251012-164817.jpg" alt="System Administrator portrait">
           </div>
           <div class="team-title"><em>System Administrator</em></div>
           <div class="team-name"><em>Priceless Sheutang</em></div>
@@ -1110,28 +1317,21 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 <!-- CONTACT -->
 <section id="contact" aria-labelledby="contact-title">
   <div class="inner container">
-      <p class="helper fade-in"><strong><em>Golden Gate is located in Foumbot, a small town and commune in the Noun Division of Cameroon’s West Region. The town has an estimated population of about 130,000 residents, with agriculture serving as the primary source of livelihood.</em></strong></p>
-       
-      <h2 id="contact-title" class="fade-in"></h5>
-         <p class="lead fade-in"><strong></strong> </p>
-               
-    <h2 id="contact-title" class="fade-in">Contact Us</h5>
+    <h2 id="contact-title" class="fade-in">Contact Us</h2>
     <p class="lead fade-in"><strong>Email:</strong> <a href="mailto:info@goldengate-foumbot.org" style="color: #fff; font-weight:700;">info@goldengate-foumbot.org</a></p>
-      <p class="lead fade-in"><strong>+237 678 523 696</br>+237 659 108 907</strong> </p>
-  
+    <p class="lead fade-in"><strong>Phone:</strong> +237 678 523 696 &nbsp;&bull;&nbsp; +237 659 108 907</p>
 
+    <p class="helper fade-in"><strong><em>Golden Gate is located in Foumbot, a small town and commune in the Noun Division of Cameroon’s West Region. The town has an estimated population of about 130,000 residents, with agriculture serving as the primary source of livelihood.</em></strong></p>
 
     <p class="helper fade-in"><strong><em>Follow us on social media or send a message to learn how you can partner with us.</em></strong></p>
 
-   <div class="social-media-links">
-  <a href="https://www.facebook.com/share/177yXH5C6A/" class="social-link" target="_blank">
-    <img src="https://i.postimg.cc/g22VgtHk/facebook.png" class="icon-link" alt="Facebook">
-    <span><em>Golden Gate Foundation</em></span>
-  </a>
-</div>
-       
+    <div class="social-media-links">
+      <a href="https://www.facebook.com/share/177yXH5C6A/" class="social-link" target="_blank">
+        <img loading="lazy" decoding="async" src="https://i.postimg.cc/g22VgtHk/facebook.png" class="icon-link" alt="Facebook">
+        <span><em>Golden Gate Foundation</em></span>
+      </a>
+    </div>
   </div>
-  
 </section>
 
 <!-- GALLERY SECTION -->
@@ -1141,114 +1341,114 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 
     <!-- IMAGE ITEM -->
     <a href="https://i.postimg.cc/fb59Kb6N/IMG-20251119-WA0066.jpg" class="gallery-item glightbox" data-glightbox="title: Our teachers and students.">
-      <img src="https://i.postimg.cc/fb59Kb6N/IMG-20251119-WA0066.jpg" alt="Image 1">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/fb59Kb6N/IMG-20251119-WA0066.jpg" alt="Golden Gate teachers and students">
     </a>
 
     <!-- VIDEO ITEM -->
     <a href="https://youtu.be/XoGGi8EuNSQ" class="gallery-item glightbox"  data-glightbox="type: video; title: Our students proudly marching during the celebration of the national day.">
-      <img src="https://i.postimg.cc/265DNYr1/IMG-20251025-WA0003.jpg" alt="Video 1">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/265DNYr1/IMG-20251025-WA0003.jpg" alt="Golden Gate national day celebration video">
       <span class="play-btn">&#9658;</span>
     </a>
 
     <!-- IMAGE ITEM -->
     <a href="https://i.postimg.cc/y8m9Djj1/IMG-20251119-WA0014.jpg" class="gallery-item glightbox" data-glightbox="title:  Our youngest pupil a week into their reinstatement into school.">
-      <img src="https://i.postimg.cc/y8m9Djj1/IMG-20251119-WA0014.jpg" alt=" ">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/y8m9Djj1/IMG-20251119-WA0014.jpg" alt="A young pupil settling back into school">
     </a>
 
     
  <!-- IMAGE ITEM -->
     <a href="https://i.postimg.cc/k57SKSYt/IMG-20251119-WA0062.jpg" class="gallery-item glightbox" data-glightbox="title: More of our lovely kids.">
-      <img src="https://i.postimg.cc/k57SKSYt/IMG-20251119-WA0062.jpg" alt="Image 2">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/k57SKSYt/IMG-20251119-WA0062.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
      <!-- IMAGE ITEM -->
     <a href="https://i.postimg.cc/JnnBdLWf/IMG-20251119-WA0070.jpg" class="gallery-item glightbox" data-glightbox="title: Our first batch of form 5 students expected to take the national secondary exams by the end of the academic year.">
-      <img src="https://i.postimg.cc/JnnBdLWf/IMG-20251119-WA0070.jpg" alt="Image 2">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/JnnBdLWf/IMG-20251119-WA0070.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
      <!-- IMAGE ITEM -->
     <a href="https://i.postimg.cc/KYQMNYdS/IMG-20251119-WA0069.jpg" class="gallery-item glightbox" data-glightbox="title: Our dedicated and highly valued teachers or as  the students  call them, our candles.">
-      <img src="https://i.postimg.cc/KYQMNYdS/IMG-20251119-WA0069.jpg" alt="Image 2">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/KYQMNYdS/IMG-20251119-WA0069.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
     <a href="https://i.postimg.cc/D01vNq1L/IMG-20251025-WA0003.jpg" class="gallery-item glightbox" data-glightbox="title: National day  celebration.">
-      <img src="https://i.postimg.cc/D01vNq1L/IMG-20251025-WA0003.jpg" alt="Image 2">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/D01vNq1L/IMG-20251025-WA0003.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
     <a href="https://i.postimg.cc/tR647Hwr/IMG-20251025-WA0005.jpg" class="gallery-item glightbox" data-glightbox="title: First batch of nursery pupils.">
-      <img src="https://i.postimg.cc/tR647Hwr/IMG-20251025-WA0005.jpg" alt="Image 2">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/tR647Hwr/IMG-20251025-WA0005.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/8kvzsVxT/IMG-20251025-WA0009.jpg" class="gallery-item glightbox" data-glightbox="title: Parents' orientation and welcoming to the Golden Gate familly.">
-      <img src="https://i.postimg.cc/8kvzsVxT/IMG-20251025-WA0009.jpg" alt="Image 2">
+    <a href="https://i.postimg.cc/8kvzsVxT/IMG-20251025-WA0009.jpg" class="gallery-item glightbox" data-glightbox="title: Parents' orientation and welcoming to the Golden Gate family.">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/8kvzsVxT/IMG-20251025-WA0009.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
     <a href="https://i.postimg.cc/fWdRkh1N/IMG-20251025-WA0010.jpg" class="gallery-item glightbox" data-glightbox="title: Primary  six graduates taking their graduation vows and making promises to uphold the education they were once denied.">
-      <img src="https://i.postimg.cc/fWdRkh1N/IMG-20251025-WA0010.jpg" alt="Image 2">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/fWdRkh1N/IMG-20251025-WA0010.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
     <a href="https://i.postimg.cc/gch2rP10/IMG-20251025-WA0011.jpg" class="gallery-item glightbox" data-glightbox="title:More of our graduates. ">
-      <img src="https://i.postimg.cc/gch2rP10/IMG-20251025-WA0011.jpg" alt="Image 2">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/gch2rP10/IMG-20251025-WA0011.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
     <a href="https://i.postimg.cc/DyKyXMKF/IMG-20251025-WA0013.jpg" class="gallery-item glightbox" data-glightbox="title:Our soon to become primary freshers. ">
-      <img src="https://i.postimg.cc/DyKyXMKF/IMG-20251025-WA0013.jpg" alt="Image 2">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/DyKyXMKF/IMG-20251025-WA0013.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
     <a href="https://i.postimg.cc/MK8KQF81/IMG-20251025-WA0014.jpg" class="gallery-item glightbox" data-glightbox="title: Recreation and sporting activities.">
-      <img src="https://i.postimg.cc/MK8KQF81/IMG-20251025-WA0014.jpg" alt="Image 2">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/MK8KQF81/IMG-20251025-WA0014.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
     <a href="https://i.postimg.cc/Mp66sfT4/IMG-20251025-WA0020.jpg" class="gallery-item glightbox" data-glightbox="title: Monday morning assembly. ">
-      <img src="https://i.postimg.cc/Mp66sfT4/IMG-20251025-WA0020.jpg" alt="Image 2">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/Mp66sfT4/IMG-20251025-WA0020.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
     <a href="https://i.postimg.cc/DwvvC40K/IMG-20251119-WA0058.jpg" class="gallery-item glightbox" data-glightbox="title:Secondary school students during their free periods.">
-      <img src="https://i.postimg.cc/DwvvC40K/IMG-20251119-WA0058.jpg" alt="Image 2">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/DwvvC40K/IMG-20251119-WA0058.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/9Qmmxw04/IMG-20251120-WA0002.jpg" class="gallery-item glightbox" data-glightbox="title: ">
-      <img src="https://i.postimg.cc/9Qmmxw04/IMG-20251120-WA0002.jpg" alt="Image 2">
+    <a href="https://i.postimg.cc/9Qmmxw04/IMG-20251120-WA0002.jpg" class="gallery-item glightbox" data-glightbox="title: Golden Gate school moments">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/9Qmmxw04/IMG-20251120-WA0002.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/4yvGPXTy/Whats-App-Image-2025-11-20-at-05-36-39-ed446c07.jpg" class="gallery-item glightbox" data-glightbox="title: ">
-      <img src="https://i.postimg.cc/4yvGPXTy/Whats-App-Image-2025-11-20-at-05-36-39-ed446c07.jpg" alt="Image 2">
+    <a href="https://i.postimg.cc/4yvGPXTy/Whats-App-Image-2025-11-20-at-05-36-39-ed446c07.jpg" class="gallery-item glightbox" data-glightbox="title: Golden Gate school moments">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/4yvGPXTy/Whats-App-Image-2025-11-20-at-05-36-39-ed446c07.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/sxPzm3Rj/Whats-App-Image-2025-11-20-at-05-35-49-17e2a2ea.jpg" class="gallery-item glightbox" data-glightbox="title: ">
-      <img src="https://i.postimg.cc/sxPzm3Rj/Whats-App-Image-2025-11-20-at-05-35-49-17e2a2ea.jpg" alt="Image 2">
+    <a href="https://i.postimg.cc/sxPzm3Rj/Whats-App-Image-2025-11-20-at-05-35-49-17e2a2ea.jpg" class="gallery-item glightbox" data-glightbox="title: Golden Gate school moments">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/sxPzm3Rj/Whats-App-Image-2025-11-20-at-05-35-49-17e2a2ea.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/9XycCYwN/Whats-App-Image-2025-11-20-at-05-46-34-9e93260e.jpg" class="gallery-item glightbox" data-glightbox="title: ">
-      <img src="https://i.postimg.cc/9XycCYwN/Whats-App-Image-2025-11-20-at-05-46-34-9e93260e.jpg" alt="Image 2">
+    <a href="https://i.postimg.cc/9XycCYwN/Whats-App-Image-2025-11-20-at-05-46-34-9e93260e.jpg" class="gallery-item glightbox" data-glightbox="title: Golden Gate school moments">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/9XycCYwN/Whats-App-Image-2025-11-20-at-05-46-34-9e93260e.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/66CBtf4D/Whats-App-Image-2025-11-20-at-05-47-37-e9da97ba.jpg" class="gallery-item glightbox" data-glightbox="title: ">
-      <img src="https://i.postimg.cc/66CBtf4D/Whats-App-Image-2025-11-20-at-05-47-37-e9da97ba.jpg" alt="Image 2">
+    <a href="https://i.postimg.cc/66CBtf4D/Whats-App-Image-2025-11-20-at-05-47-37-e9da97ba.jpg" class="gallery-item glightbox" data-glightbox="title: Golden Gate school moments">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/66CBtf4D/Whats-App-Image-2025-11-20-at-05-47-37-e9da97ba.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
       <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/vZDZmZBq/cover.jpg" class="gallery-item glightbox" data-glightbox="title: ">
-      <img src="https://i.postimg.cc/vZDZmZBq/cover.jpg" alt="Image 2">
+    <a href="https://i.postimg.cc/vZDZmZBq/cover.jpg" class="gallery-item glightbox" data-glightbox="title: Golden Gate school moments">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/vZDZmZBq/cover.jpg" alt="Golden Gate students and classroom moments">
     </a>
 
     <!-- IMAGE ITEM -->
-    <a href="https://i.postimg.cc/9fvJgbzD/Whats-App-Image-2025-11-20-at-05-41-28-6a02eb35.jpg" class="gallery-item glightbox" data-glightbox="title: ">
-      <img src="https://i.postimg.cc/9fvJgbzD/Whats-App-Image-2025-11-20-at-05-41-28-6a02eb35.jpg" alt="Image 2">
+    <a href="https://i.postimg.cc/9fvJgbzD/Whats-App-Image-2025-11-20-at-05-41-28-6a02eb35.jpg" class="gallery-item glightbox" data-glightbox="title: Golden Gate school moments">
+      <img loading="lazy" decoding="async" src="https://i.postimg.cc/9fvJgbzD/Whats-App-Image-2025-11-20-at-05-41-28-6a02eb35.jpg" alt="Golden Gate students and classroom moments">
     </a>
     <!-- Add more items as needed -->
 
@@ -1258,12 +1458,13 @@ a:focus, button:focus, input:focus, select:focus { outline: 3px solid rgba(59,13
 <!-- FLOATING DONATE -->
 <a href="#" class="donate-floating" data-target="project-donate" aria-label="Donate now">Donate</a>
 
+<!-- MUSIC TOGGLE -->
+<button type="button" id="musicToggle" class="music-toggle" aria-label="Play background music" title="Toggle background music">&#9654;</button>
+
 <!-- SWIPER JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js" async></script>
 
 
-<script>
-/* =========================
 <script>
 /* =========================
    BASIC UI BEHAVIOR
@@ -1289,6 +1490,8 @@ document.querySelectorAll('nav a, .donate-floating, .cta-btn').forEach(el => {
   });
 });
 
+const SECTION_IDS = ['home','mission','fundraise','project-donate','about','contact','gallery'];
+
 function activateSection(id) {
   document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
   const target = document.getElementById(id);
@@ -1296,32 +1499,60 @@ function activateSection(id) {
     target.classList.add('active');
     target.querySelectorAll('.fade-in').forEach(el => setTimeout(() => el.classList.add('show'), 40));
   }
+  if (SECTION_IDS.includes(id) && location.hash !== '#' + id) {
+    history.replaceState(null, '', '#' + id);
+  }
 }
+
+function sectionFromHash() {
+  const h = (location.hash || '').replace('#', '');
+  return SECTION_IDS.includes(h) ? h : 'home';
+}
+
+(function initFromHash() {
+  const sec = sectionFromHash();
+  if (sec !== 'home') {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById(sec);
+    if (target) {
+      target.classList.add('active');
+      target.querySelectorAll('.fade-in').forEach(el => el.classList.add('show'));
+    }
+  }
+})();
+
+window.addEventListener('popstate', () => activateSection(sectionFromHash()));
 
 
 /* =========================
-   SWIPER INIT
+   LIB HELPERS + SWIPER INIT
    ========================= */
-for(let i = 1; i <= 8; i++){
-  try {
-    new Swiper('.proj'+i, {
-      loop: false,
-      pagination: { el: '.proj'+i+' .swiper-pagination', clickable: true },
-      grabCursor: true,
-      lazy: true
-    });
-  } catch(e) {}
+function whenLib(ns, fn) {
+  if (window[ns]) fn();
+  else window.addEventListener('load', fn, { once: true });
 }
 
-try {
-  new Swiper('.home-swiper', {
-    loop: true,
-    autoplay: { delay: 15000, disableOnInteraction: false },
-    pagination: { el: '.home-swiper .swiper-pagination', clickable: true },
-    effect: 'fade',
-    fadeEffect: { crossFade: true },
-  });
-} catch(e) {}
+whenLib('Swiper', () => {
+  for(let i = 1; i <= 9; i++){
+    try {
+      new Swiper('.proj'+i, {
+        loop: false,
+        pagination: { el: '.proj'+i+' .swiper-pagination', clickable: true },
+        grabCursor: true
+      });
+    } catch(e) {}
+  }
+
+  try {
+    new Swiper('.home-swiper', {
+      loop: true,
+      autoplay: { delay: 15000, disableOnInteraction: false },
+      pagination: { el: '.home-swiper .swiper-pagination', clickable: true },
+      effect: 'fade',
+      fadeEffect: { crossFade: true },
+    });
+  } catch(e) {}
+});
 
 /* =========================
    DONATION FLOW
@@ -1364,6 +1595,42 @@ document.getElementById('custom-amount').addEventListener('input', updateTotal);
 /* =========================
    INITIATE PAYMENT
    ========================= */
+const METHOD_LABELS = {
+  cashapp: 'Cash App',
+  venmo: 'Venmo',
+  bank: 'Bank Deposit',
+  mtn: 'MTN Mobile Money',
+  orange: 'Orange Money'
+};
+
+let pendingDonation = null;
+
+function processDonation() {
+  if (!pendingDonation) return;
+  const { total, method, projectName } = pendingDonation;
+  closeModal('confirm-modal');
+  switch (method) {
+    case 'cashapp':
+      window.open(`https://cash.app/${encodeURIComponent("GoldenGateSupport")}/${encodeURIComponent(total)}`, '_blank');
+      break;
+    case 'venmo':
+      window.open(`https://venmo.com/?txn=pay&recipients=${encodeURIComponent("GoldenGateSupport")}&amount=${encodeURIComponent(total)}&note=${encodeURIComponent('Donation to ' + projectName)}`, '_blank');
+      break;
+    case 'bank':
+      showBankModal(total);
+      break;
+    case 'mtn':
+      showmtnModal(total);
+      break;
+    case 'orange':
+      showorangeModal(total);
+      break;
+    default:
+      alert('Payment method not recognized.');
+  }
+  pendingDonation = null;
+}
+
 document.getElementById('initiate-payment').addEventListener('click', () => {
   const totalText = document.getElementById('total-amount').textContent;
   const total = parseFloat(totalText.replace(/[^0-9.]/g, '')) || 0;
@@ -1381,143 +1648,148 @@ document.getElementById('initiate-payment').addEventListener('click', () => {
 
   const activeProject = document.querySelector('.donation-project.active');
   const projectName = activeProject?.querySelector('h3')?.textContent || 'Golden Gates';
+  const methodLabel = METHOD_LABELS[method.toLowerCase()] || method;
 
-  switch (method.toLowerCase()) {
-    
+  pendingDonation = { total, method: method.toLowerCase(), projectName };
 
-    case 'cashapp':
-      const cashHandle = "GoldenGateSupport";
-      window.open(`https://cash.app/$${encodeURIComponent(cashHandle)}/${encodeURIComponent(total)}`, '_blank');
-      break;
-
-    case 'venmo':
-      const venmoHandle = "GoldenGateSupport";
-      const venmoNote = encodeURIComponent(`Donation to ${projectName}`);
-      window.open(`https://venmo.com/code?user_id=4407078516950843826&created=1762382134${encodeURIComponent(venmoHandle)}?txn=pay&amount=${encodeURIComponent(total)}&note=${venmoNote}`, '_blank');
-      break;
-
-    case 'bank':
-      showBankModal(total);
-      break;
-
-      case 'mtn':
-      showmtnModal(total);
-      break;
-
-       case 'orange':
-      showorangeModal(total);
-      break;
-  
-
-
-    default:
-      alert('Payment method not recognized.');
-  }
+  document.getElementById('confirm-details').innerHTML =
+    `You're about to donate <strong>$${total.toFixed(2)}</strong> to <strong>${projectName}</strong> using <strong>${methodLabel}</strong>.`;
+  openModal('confirm-modal');
 });
 
 
 
 /* =========================
-   BANK MODAL
+   MODALS
    ========================= */
+function openModal(id) {
+  const modal = document.getElementById(id);
+  if (modal) modal.classList.add('open');
+}
+
+function closeModal(id) {
+  const modal = document.getElementById(id);
+  if (modal) modal.classList.remove('open');
+}
+
 function showBankModal(amount) {
   document.getElementById('bank-amount').textContent = `$${amount.toFixed(2)}`;
-  const modal = document.getElementById('bank-modal');
-  modal.style.display = 'block';
-
-     // Close modal if clicking outside content
-  modal.onclick = function(e) {
-    if (e.target === modal) modal.style.display = 'close';
-  }
-   // Close modal if clicking outside content
-  modal.onclick = function(e) {
-    if (e.target === modal) modal.style.display = 'none';
-  }
+  openModal('bank-modal');
 }
 
-/* =========================
-   MTN MODAL
-   ========================= */
 function showmtnModal(amount) {
   document.getElementById('mtn-amount').textContent = `$${amount.toFixed(2)}`;
-  const modal = document.getElementById('mtn-modal');
-  modal.style.display = 'block';
-
-   // Close modal if clicking outside content
-  modal.onclick = function(e) {
-    if (e.target === modal) modal.style.display = 'none';
-  }
+  openModal('mtn-modal');
 }
 
-/* =========================
-   ORANGE MODAL
-   ========================= */
 function showorangeModal(amount) {
   document.getElementById('orange-amount').textContent = `$${amount.toFixed(2)}`;
-  const modal = document.getElementById('orange-modal');
-  modal.style.display = 'block';
-
-   // Close modal if clicking outside content
-  modal.onclick = function(e) {
-    if (e.target === modal) modal.style.display = 'none';
-  }
+  openModal('orange-modal');
 }
+
+function fallbackCopy(text, done) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch(e) {}
+  document.body.removeChild(ta);
+  done();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.modal-overlay').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal(modal.id);
+    });
+  });
+
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => closeModal(btn.dataset.close));
+  });
+
+  document.getElementById('confirm-proceed').addEventListener('click', processDonation);
+
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const text = btn.dataset.copy;
+      if (!text) return;
+      const done = () => {
+        const orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = orig; }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+      } else {
+        fallbackCopy(text, done);
+      }
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+    }
+  });
+});
 </script>
 
 <!-- Bank modal HTML -->
-<div id="bank-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
-  <div style="background:#0000003e; padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
-    <h3><em>Bank Transfer Instructions</em></h3>
-    <p><strong><em>Account Name:</em></strong> <em>Golden Gate</em></p>
-    <p><strong><em>Account Number:</em></strong><em> 1234567890</em></p>
-    <p><strong><em>Bank:</em></strong> <em>police Credit union</em></p>
-    <p><strong><em>Amount:</em></strong> <span id="bank-amount"></span></p>
-<p>
-  <em>After transfer, please reach out on WhatsApp to so we can confirm reception and keep track of all the benevolent people who help us in making this dream a reality.</em>
-  <a href="https://wa.me/237652796507" target="_blank" rel="noopener noreferrer">
-    +237 652 796 507
-  </a>
-</p>
-
-   
+<div id="bank-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="bank-title">
+  <div class="modal-card">
+    <button type="button" class="modal-close" data-close="bank-modal" aria-label="Close">&times;</button>
+    <h3 id="bank-title">Bank Transfer Instructions</h3>
+    <p><strong>Account Name:</strong> Golden Gate</p>
+    <p><strong>Account Number:</strong> 1234567890 <button type="button" class="copy-btn" data-copy="1234567890">Copy</button></p>
+    <p><strong>Bank:</strong> Police Credit Union</p>
+    <p><strong>Amount:</strong> <span id="bank-amount"></span></p>
+    <p>After transfer, please reach out on WhatsApp so we can confirm reception and keep track of all the benevolent people who help us make this dream a reality.
+      <a href="https://wa.me/237652796507" target="_blank" rel="noopener noreferrer">+237 652 796 507</a>
+    </p>
   </div>
 </div>
 
 <!-- MTN MODAL -->
-<div id="mtn-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
-  <div style="background:#0000003e;  padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
-    <h3><em>MTN Mobile money Info</em></h3>
-    <p><strong><em>Account Name:</em></strong> Stephanie jinui</p>
-    <p><strong><em>Account Number:</em></strong> +237 652796507</p>
- 
-    <p><strong><em>Amount:</em></strong> <span id="mtn-amount"></span></p>
-<p>
-  <em>After transfer, please reach by clicking on the number so we can confirm reception and keep track of all the benevolent people who help us in making this dream a reality.</em>
-  <a href="https://wa.me/237652796507" target="_blank" rel="noopener noreferrer">
-    +237 652 796 507
-  </a>
-</p>
-
-  
+<div id="mtn-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="mtn-title">
+  <div class="modal-card">
+    <button type="button" class="modal-close" data-close="mtn-modal" aria-label="Close">&times;</button>
+    <h3 id="mtn-title">MTN Mobile Money</h3>
+    <p><strong>Account Name:</strong> Stephanie Jinui</p>
+    <p><strong>Account Number:</strong> +237 652 796 507 <button type="button" class="copy-btn" data-copy="+237652796507">Copy</button></p>
+    <p><strong>Amount:</strong> <span id="mtn-amount"></span></p>
+    <p>After transfer, please reach out on WhatsApp so we can confirm reception and keep track of all the benevolent people who help us make this dream a reality.
+      <a href="https://wa.me/237652796507" target="_blank" rel="noopener noreferrer">+237 652 796 507</a>
+    </p>
   </div>
 </div>
 
 <!-- ORANGE MODAL -->
-<div id="orange-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
-  <div style="background:#0000003e; padding:20px; max-width:400px; margin:100px auto; border-radius:8px; text-align:center;">
-    <h3><em>OM Account details</em></h3>
-    <p><strong><em>Account Name:</em></strong>  Priceless Mbuongho Sheutang</p>
-    <p><strong><em> OM account number:</em></strong>+237 689279394</p>
-  
-    <p><strong><em>Amount:</em></strong> <span id="orange-amount"></span></p>
-<p>
-  <em>After transfer, please reach out on WhatsApp to so we can confirm reception and keep track of all the benevolent people who help us in making this dream a reality. </em>
-  <a href="https://wa.me/237652796507" target="_blank" rel="noopener noreferrer">
-    +237 652 796 507
-  </a>
-</p>
+<div id="orange-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="orange-title">
+  <div class="modal-card">
+    <button type="button" class="modal-close" data-close="orange-modal" aria-label="Close">&times;</button>
+    <h3 id="orange-title">Orange Money Details</h3>
+    <p><strong>Account Name:</strong> Priceless Mbuongho Sheutang</p>
+    <p><strong>Account Number:</strong> +237 689 279 394 <button type="button" class="copy-btn" data-copy="+237689279394">Copy</button></p>
+    <p><strong>Amount:</strong> <span id="orange-amount"></span></p>
+    <p>After transfer, please reach out on WhatsApp so we can confirm reception and keep track of all the benevolent people who help us make this dream a reality.
+      <a href="https://wa.me/237652796507" target="_blank" rel="noopener noreferrer">+237 652 796 507</a>
+    </p>
+  </div>
+</div>
 
- 
+<!-- CONFIRM DONATION MODAL -->
+<div id="confirm-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+  <div class="modal-card">
+    <button type="button" class="modal-close" data-close="confirm-modal" aria-label="Close">&times;</button>
+    <h3 id="confirm-title">Confirm Your Donation</h3>
+    <div id="confirm-details" style="line-height: 1.7;"></div>
+    <div class="confirm-actions">
+      <button type="button" class="btn" id="confirm-proceed">Continue</button>
+      <button type="button" class="btn btn-ghost" data-close="confirm-modal">Cancel</button>
+    </div>
   </div>
 </div>
 
@@ -1525,10 +1797,11 @@ function showorangeModal(amount) {
 <div id="welcomePopup" class="popup-overlay">
   <div class="popup-box">
     <h2>Welcome to Golden Gate!</h2>
-    <p>Would you like background music while exploring the site?</p>
-    
-    <button id="agreeMusic">Yes</button>
-    <button id="declineMusic">No</button>
+    <p>Would you like a little background music while you explore the site?</p>
+    <div class="popup-actions">
+      <button id="agreeMusic">Yes, play music</button>
+      <button id="declineMusic" class="decline">No, thanks</button>
+    </div>
   </div>
 </div>
 
@@ -1546,43 +1819,80 @@ document.addEventListener('DOMContentLoaded', () => {
   const agreeBtn = document.getElementById('agreeMusic');
   const declineBtn = document.getElementById('declineMusic');
   const music = document.getElementById('bgMusic');
+  const toggle = document.getElementById('musicToggle');
+  const PREF = 'gg_music_pref';
+
+  function getPref() {
+    try { return localStorage.getItem(PREF); } catch(e) { return null; }
+  }
+
+  function setPref(v) {
+    try { localStorage.setItem(PREF, v); } catch(e) {}
+  }
 
   function closePopup() {
     popup.classList.add('fade-out');
     setTimeout(() => popup.style.display = 'none', 380);
   }
 
-  // User clicks Yes → start music
-  agreeBtn.addEventListener('click', () => {
-    if (music.paused) {
-      music.volume = 0.3; // very soft
-      music.play().catch(err => console.log("Playback prevented:", err));
-    }
-    closePopup();
+  function syncToggle() {
+    toggle.classList.add('visible');
+    toggle.textContent = music.paused ? '\u25B6' : '\u23F8';
+    toggle.setAttribute('aria-label', music.paused ? 'Play background music' : 'Pause background music');
+  }
+
+  function startMusic() {
+    music.volume = 0.3;
+    music.play().catch(() => {});
+    syncToggle();
+  }
+
+  function stopMusic() {
+    music.pause();
+    syncToggle();
+  }
+
+  toggle.addEventListener('click', () => {
+    if (music.paused) startMusic(); else stopMusic();
   });
 
-  // User clicks No → just close popup
-  declineBtn.addEventListener('click', closePopup);
+  ['play', 'pause'].forEach(ev => music.addEventListener(ev, syncToggle));
 
-  // Optional: click outside the box closes popup
+  agreeBtn.addEventListener('click', () => { setPref('yes'); startMusic(); closePopup(); });
+  declineBtn.addEventListener('click', () => { setPref('no'); closePopup(); });
+
   popup.addEventListener('click', (e) => {
-    if (e.target === popup) closePopup();
+    if (e.target === popup) { setPref('no'); closePopup(); }
   });
+
+  const pref = getPref();
+  if (pref === 'yes') {
+    popup.style.display = 'none';
+    startMusic();
+  } else if (pref === 'no') {
+    popup.style.display = 'none';
+  }
 });
-
-
 </script>
 
 <!-- GLightbox JS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" async></script>
 <script>
-const lightbox = GLightbox({
-  selector: '.glightbox',
-  touchNavigation: true,
-  loop: true,
-  autoplayVideos: false
+whenLib('GLightbox', () => {
+  const lightbox = GLightbox({
+    selector: '.glightbox',
+    touchNavigation: true,
+    loop: true,
+    autoplayVideos: false
+  });
 });
+</script>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> Golden Gate Foundation, Foumbot &mdash; Bridging Educational Gaps. <a href="mailto:info@goldengate-foumbot.org">info@goldengate-foumbot.org</a></p>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
 </body>
