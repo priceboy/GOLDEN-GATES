@@ -51,3 +51,10 @@
 .footer-inner p,.footer-inner>a:last-child{font-size:10px;margin:0}
 
 .footer-inner>a:last-child{color:#e5cc91;text-decoration:none}
+
+
+.primary-nav a{transition:color .2s ease,opacity .2s ease}
+.primary-nav a[aria-current="location"]{color:var(--gold)}
+.primary-nav .nav-donate{font-weight:700;white-space:nowrap}
+.menu-toggle{cursor:pointer}
+.menu-toggle:focus-visible,.primary-nav a:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
