@@ -11,3 +11,7 @@ a{color:inherit}
 .skip-link{position:absolute;top:-60px;left:16px;background:white;color:var(--navy);padding:10px;z-index:99}
 
 .skip-link:focus{top:10px}
+
+
+section[id]{scroll-margin-top:88px}
+:focus-visible{outline-color:var(--gold)}
