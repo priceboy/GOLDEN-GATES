@@ -152,3 +152,5 @@
 .story-hint{font-size:10px;color:#7d8582;letter-spacing:.04em;margin:13px 0 0}
 
 .story-arrow:focus-visible,.story-track:focus-visible{outline:3px solid #c9a45c;outline-offset:3px}
+
+.story-list{margin:0;padding-left:18px;color:var(--muted);font-size:12px}.story-list li{padding:0 0 8px 3px}.story-list li::marker{color:#a17e3e}
