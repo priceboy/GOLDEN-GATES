@@ -3,20 +3,14 @@ const nav = document.querySelector(".primary-nav");
 
 if (menu && nav) {
   const mobileQuery = window.matchMedia("(max-width: 900px)");
-  const links = [...nav.querySelectorAll('a[href^="#"]')];
-  const sections = links
-    .map((link) => document.querySelector(link.getAttribute("href")))
-    .filter(Boolean);
 
   const setMenuOpen = (open, { restoreFocus = false } = {}) => {
     menu.setAttribute("aria-expanded", String(open));
     menu.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
     nav.classList.toggle("is-open", open);
-
     if (!open && restoreFocus) menu.focus();
     if (open && mobileQuery.matches) {
-      const firstLink = nav.querySelector("a");
-      if (firstLink) firstLink.focus({ preventScroll: true });
+      nav.querySelector("a")?.focus({ preventScroll: true });
     }
   };
 
@@ -39,106 +33,108 @@ if (menu && nav) {
       menu.getAttribute("aria-expanded") === "true" &&
       !nav.contains(event.target) &&
       !menu.contains(event.target)
-    ) {
-      setMenuOpen(false);
-    }
+    ) setMenuOpen(false);
   });
 
   mobileQuery.addEventListener("change", (event) => {
     if (!event.matches) setMenuOpen(false);
   });
-
-  if ("IntersectionObserver" in window) {
-    const linkBySection = new Map(
-      links.map((link) => [link.getAttribute("href").slice(1), link])
-    );
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (!visible) return;
-
-        links.forEach((link) => link.removeAttribute("aria-current"));
-        const activeLink = linkBySection.get(visible.target.id);
-        if (activeLink) activeLink.setAttribute("aria-current", "location");
-      },
-      {
-        rootMargin: "-22% 0px -58% 0px",
-        threshold: [0, 0.15, 0.35, 0.6]
-      }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-  }
 }
 
-/* Navigate between top-level panels horizontally while preserving
-   normal vertical scrolling inside each panel. */
+/* The page is a horizontal strip of independently vertically-scrollable panels.
+   Calculate positions from live rectangles rather than offsetLeft, whose
+   offset-parent can vary with layout and browser. */
 const panelTrack = document.getElementById("main");
+
 if (panelTrack) {
-  const panelNavLinks = [...document.querySelectorAll('.primary-nav a[href^="#"]')];
+  const navLinks = [...document.querySelectorAll('.primary-nav a[href^="#"]')];
   const panels = [...panelTrack.children].filter((node) =>
     node.matches("section, .site-footer")
   );
+
   const panelFor = (target) => target?.closest("section, .site-footer");
+  const panelLeft = (panel) =>
+    panelTrack.scrollLeft +
+    panel.getBoundingClientRect().left -
+    panelTrack.getBoundingClientRect().left;
+
   const scrollToPanel = (panel, behavior = "smooth") => {
     if (!panel || !panels.includes(panel)) return;
-    panelTrack.scrollTo({ left: panel.offsetLeft, behavior });
+    panelTrack.scrollTo({ left: panelLeft(panel), behavior });
+  };
+
+  const scrollToTarget = (target, behavior = "smooth") => {
+    const panel = panelFor(target);
+    if (!panel) return;
+    scrollToPanel(panel, behavior);
+    if (target !== panel) {
+      requestAnimationFrame(() => {
+        const top = target.getBoundingClientRect().top -
+          panel.getBoundingClientRect().top + panel.scrollTop;
+        panel.scrollTo({ top, behavior });
+      });
+    } else {
+      panel.scrollTo({ top: 0, behavior });
+    }
   };
 
   document.addEventListener("click", (event) => {
-    const link = event.target.closest('a[href^="#"]');
+    const link = event.target.closest?.('a[href^="#"]');
     if (!link) return;
-    const id = decodeURIComponent(link.getAttribute("href").slice(1));
-    if (!id || id === "main") return;
-    const target = document.getElementById(id);
-    const panel = panelFor(target);
-    if (!panel) return;
-    event.preventDefault();
-    if (target === panel) {
-      scrollToPanel(panel);
-    } else {
-      scrollToPanel(panel);
-      requestAnimationFrame(() => {
-        const top = target.getBoundingClientRect().top - panel.getBoundingClientRect().top + panel.scrollTop;
-        panel.scrollTo({ top, behavior: "smooth" });
-      });
+    const rawHash = link.getAttribute("href");
+    if (!rawHash || rawHash === "#" || rawHash === "#main") return;
+
+    let target;
+    try {
+      target = document.getElementById(decodeURIComponent(rawHash.slice(1)));
+    } catch {
+      return;
     }
-    if (window.location.hash !== link.getAttribute("href")) {
-      history.replaceState(null, "", link.getAttribute("href"));
+    if (!target || !panelFor(target)) return;
+
+    event.preventDefault();
+    scrollToTarget(target);
+    if (window.location.hash !== rawHash) {
+      history.replaceState(null, "", rawHash);
     }
   });
 
-  let panelScrollFrame = null;
+  const closestPanel = () => {
+    if (!panels.length) return null;
+    const left = panelTrack.getBoundingClientRect().left;
+    return panels.reduce((best, panel) =>
+      Math.abs(panel.getBoundingClientRect().left - left) <
+      Math.abs(best.getBoundingClientRect().left - left) ? panel : best
+    , panels[0]);
+  };
+
+  let scrollFrame = null;
   panelTrack.addEventListener("scroll", () => {
-    if (panelScrollFrame !== null) cancelAnimationFrame(panelScrollFrame);
-    panelScrollFrame = requestAnimationFrame(() => {
-      panelScrollFrame = null;
-      const current = panels.reduce((best, panel) =>
-        Math.abs(panel.offsetLeft - panelTrack.scrollLeft) <
-        Math.abs(best.offsetLeft - panelTrack.scrollLeft) ? panel : best
-      , panels[0]);
+    if (scrollFrame !== null) cancelAnimationFrame(scrollFrame);
+    scrollFrame = requestAnimationFrame(() => {
+      scrollFrame = null;
+      const current = closestPanel();
       if (!current?.id) return;
-      panelNavLinks.forEach((link) => link.removeAttribute("aria-current"));
-      const active = panelNavLinks.find((link) => link.getAttribute("href") === "#" + current.id);
-      active?.setAttribute("aria-current", "location");
-    }, { passive: true });
+      navLinks.forEach((link) => link.removeAttribute("aria-current"));
+      navLinks.find((link) => link.getAttribute("href") === "#" + current.id)
+        ?.setAttribute("aria-current", "location");
+    });
   }, { passive: true });
 
-  window.addEventListener("load", () => {
-    const initial = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-    const panel = panelFor(initial);
-    if (panel) scrollToPanel(panel, "auto");
-  }, { once: true });
+  const restoreHashPosition = () => {
+    if (!window.location.hash || window.location.hash === "#main") return;
+    let target;
+    try {
+      target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+    } catch {
+      return;
+    }
+    if (target && panelFor(target)) scrollToTarget(target, "auto");
+  };
 
+  window.addEventListener("load", restoreHashPosition, { once: true });
   window.addEventListener("resize", () => {
-    const current = panels.reduce((best, panel) =>
-      Math.abs(panel.offsetLeft - panelTrack.scrollLeft) <
-      Math.abs(best.offsetLeft - panelTrack.scrollLeft) ? panel : best
-    , panels[0]);
-    scrollToPanel(current, "auto");
+    const current = closestPanel();
+    if (current) scrollToPanel(current, "auto");
   }, { passive: true });
 }

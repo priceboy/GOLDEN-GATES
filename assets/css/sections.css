@@ -174,7 +174,7 @@
 .story-image img,.project-photo img,.team-card>img,.gallery-grid img{background:#e8e2d7}
 .project-photo{aspect-ratio:16/10;height:auto}
 .project-feature .project-photo{height:100%;min-height:300px;aspect-ratio:auto}
-.team-card>img{aspect-ratio:4/3;height:auto}
+.team-card>img{width:100%;height:240px;aspect-ratio:auto;object-fit:cover;object-position:center 30%}
 .gallery-grid img{object-position:center}
 
 
@@ -205,3 +205,47 @@
 
 /* Keep card edges consistent in every section */
 .impact-link{overflow:hidden}
+
+
+/* Desktop image frames: preserve source proportions and prevent stretched media. */
+@media (min-width:901px) {
+  .project-photo {
+    position:relative;
+    aspect-ratio:16 / 10;
+    height:auto;
+    min-height:0;
+    overflow:hidden;
+  }
+  .project-photo img {
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+  }
+  .project-feature .project-photo {
+    height:100%;
+    min-height:300px;
+    aspect-ratio:auto;
+  }
+  .team-card>img {
+    display:block;
+    width:100%;
+    height:240px;
+    aspect-ratio:auto;
+    object-fit:cover;
+    object-position:center 30%;
+  }
+  .story-image {
+    height:clamp(210px,24vw,300px);
+    flex:0 0 auto;
+  }
+  .story-image img,
+  .gallery-grid img {
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+  }
+}

@@ -11,10 +11,10 @@ if (track && root) {
   let activeIndex = 0;
   let autoplayTimer = null;
   let interactionTimer = null;
-  let hovered = false;
-  let focused = false;
   let interacting = false;
-  let userPaused = false;
+  // Respect the operating-system preference initially, but let a visitor
+  // explicitly choose Play if they want the automatic slideshow.
+  let userPaused = reducedMotion.matches;
   let scrollFrame = null;
 
   cards.forEach((card, index) => {
@@ -24,28 +24,35 @@ if (track && root) {
   });
 
   const isBlocked = () =>
-    userPaused || hovered || focused || interacting ||
-    document.hidden || reducedMotion.matches;
+    userPaused || interacting || document.hidden;
 
   const clearAutoplay = () => {
     if (autoplayTimer !== null) window.clearTimeout(autoplayTimer);
     autoplayTimer = null;
   };
 
+  const syncToggle = () => {
+    if (!autoplayToggle) return;
+    autoplayToggle.setAttribute("aria-pressed", String(userPaused));
+    autoplayToggle.textContent = userPaused ? "Play" : "Pause";
+    autoplayToggle.setAttribute(
+      "aria-label",
+      userPaused ? "Resume automatic story playback" : "Pause automatic story playback"
+    );
+  };
+
   const renderStatus = () => {
     if (!status || !cards.length) return;
-    const message = reducedMotion.matches
-      ? "Use the arrows or swipe to explore"
-      : userPaused
-        ? "Automatic playback paused"
-        : hovered || focused || interacting
-          ? "Paused while you interact"
-          : "Auto-advances every 5 seconds";
+    const message = userPaused
+      ? (reducedMotion.matches
+          ? "Paused for reduced motion — press Play to start"
+          : "Automatic playback paused")
+      : interacting
+        ? "Paused briefly after interaction"
+        : "Auto-advances every 5 seconds";
     status.textContent = `Chapter ${activeIndex + 1} of ${cards.length} · ${message}`;
   };
 
-  // Measure each slide against the track itself; do not assume a fixed
-  // slide width or rely on offsetLeft's offset-parent behaviour.
   const slideLeft = (card) =>
     card.getBoundingClientRect().left -
     track.getBoundingClientRect().left +
@@ -89,21 +96,21 @@ if (track && root) {
     }, interval);
   };
 
-  const pauseForInteraction = () => {
+  const pauseBrieflyForInteraction = () => {
     interacting = true;
     window.clearTimeout(interactionTimer);
     interactionTimer = window.setTimeout(() => {
       interacting = false;
       scheduleAutoplay();
       renderStatus();
-    }, 8000);
+    }, 1800);
     clearAutoplay();
     renderStatus();
   };
 
   controls.forEach((button) => {
     button.addEventListener("click", () => {
-      pauseForInteraction();
+      pauseBrieflyForInteraction();
       const direction = Number(button.dataset.storyDirection) || 1;
       goTo(activeIndex + direction);
     });
@@ -111,14 +118,13 @@ if (track && root) {
 
   autoplayToggle?.addEventListener("click", () => {
     userPaused = !userPaused;
-    autoplayToggle.setAttribute("aria-pressed", String(userPaused));
-    autoplayToggle.textContent = userPaused ? "Play" : "Pause";
-    autoplayToggle.setAttribute(
-      "aria-label",
-      userPaused ? "Resume automatic story playback" : "Pause automatic story playback"
-    );
+    syncToggle();
     if (userPaused) clearAutoplay();
-    else scheduleAutoplay();
+    else {
+      interacting = false;
+      window.clearTimeout(interactionTimer);
+      scheduleAutoplay();
+    }
     renderStatus();
   });
 
@@ -130,43 +136,13 @@ if (track && root) {
     });
   }, { passive: true });
 
-  track.addEventListener("pointerdown", pauseForInteraction, { passive: true });
-  track.addEventListener("wheel", pauseForInteraction, { passive: true });
-  track.addEventListener("keydown", pauseForInteraction);
-
-  track.addEventListener("pointerenter", () => {
-    hovered = true;
-    clearAutoplay();
-    renderStatus();
-  });
-  track.addEventListener("pointerleave", () => {
-    hovered = false;
-    scheduleAutoplay();
-    renderStatus();
-  });
-
-  root.addEventListener("focusin", () => {
-    focused = true;
-    clearAutoplay();
-    renderStatus();
-  });
-  root.addEventListener("focusout", (event) => {
-    if (!root.contains(event.relatedTarget)) {
-      focused = false;
-      scheduleAutoplay();
-      renderStatus();
-    }
-  });
+  track.addEventListener("pointerdown", pauseBrieflyForInteraction, { passive: true });
+  track.addEventListener("wheel", pauseBrieflyForInteraction, { passive: true });
+  track.addEventListener("keydown", pauseBrieflyForInteraction);
 
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) clearAutoplay();
     else scheduleAutoplay();
-  });
-
-  reducedMotion.addEventListener?.("change", () => {
-    if (reducedMotion.matches) clearAutoplay();
-    else scheduleAutoplay();
-    renderStatus();
   });
 
   window.addEventListener("resize", () => {
@@ -175,10 +151,7 @@ if (track && root) {
     updateStatus();
   }, { passive: true });
 
-  if (reducedMotion.matches && autoplayToggle) {
-    autoplayToggle.hidden = true;
-  }
-
+  syncToggle();
   updateStatus();
   scheduleAutoplay();
 }
