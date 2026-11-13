@@ -39,3 +39,18 @@
   .story-track{display:flex;gap:0}
   .story-track>.story-card{flex:0 0 100%;width:100%;min-width:100%;max-width:100%}
 }
+
+
+@media(max-width:900px){
+  .story-track{display:grid;grid-template-columns:1fr;gap:20px;overflow:visible}
+  .story-track>.story-card,
+  .story-track>.story-card:nth-child(even){grid-template-columns:minmax(0,1fr);width:100%;min-width:0}
+  .story-track>.story-card:nth-child(even) .story-image{order:0}
+  .story-image,.story-image img{height:240px;min-height:240px}
+  .story-copy{padding:25px}
+}
+@media(max-width:440px){
+  .story-track{gap:16px}
+  .story-image,.story-image img{height:205px;min-height:205px}
+  .story-copy{padding:21px}
+}
