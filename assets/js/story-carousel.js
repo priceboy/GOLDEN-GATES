@@ -65,7 +65,7 @@ if (track && root) {
     const left = cards[nextIndex].offsetLeft - cards[0].offsetLeft;
     track.scrollTo({
       left,
-      behavior: automatic || reducedMotion.matches ? "auto" : "smooth"
+      behavior: reducedMotion.matches ? "auto" : "smooth"
     });
     updateStatus();
   };
