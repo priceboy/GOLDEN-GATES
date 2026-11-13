@@ -85,3 +85,8 @@
 .dialog-whatsapp{display:block;margin-top:16px;font-size:12px;font-weight:700;color:var(--navy)}
 
 .story-copy .text-link{margin-top:auto}
+
+
+.button:focus-visible,.text-link:focus-visible,.project-donate:focus-visible,.floating-support:focus-visible,.impact-link:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+.project-photo img,.story-image img,.team-card>img,.gallery-grid img{transition:transform .35s ease}
+.project-card:hover .project-photo img,.story-card:hover .story-image img{transform:scale(1.025)}
