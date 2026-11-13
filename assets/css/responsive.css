@@ -6,6 +6,5 @@
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
 
-@media(max-width:760px){.story-track{grid-auto-columns:minmax(255px,82vw);gap:13px}.story-image{height:195px}.story-copy{padding:20px}.story-copy h3{font-size:24px}.story-controls{margin-top:22px}}
-@media(max-width:440px){.story-track{grid-auto-columns:minmax(245px,86vw)}}
+@media(max-width:760px){.story-track{grid-auto-columns:100%;gap:0}.story-image{height:195px}.story-copy{padding:20px}.story-copy h3{font-size:24px}.story-controls{margin-top:22px;flex-wrap:wrap}.story-autoplay{height:40px;min-width:68px}}
 
