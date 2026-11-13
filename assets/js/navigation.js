@@ -74,20 +74,3 @@ if (menu && nav) {
     sections.forEach((section) => observer.observe(section));
   }
 }
-
-// A restrained fade/settle effect as each page section enters view.
-// Content stays visible if IntersectionObserver is unavailable.
-if ("IntersectionObserver" in window) {
-  const pageSections = document.querySelectorAll("main > section[id]");
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.remove("section-arrive");
-      // Restart the short entrance animation when navigating between sections.
-      void entry.target.offsetWidth;
-      entry.target.classList.add("section-arrive");
-    });
-  }, { rootMargin: "-12% 0px -12% 0px", threshold: 0.08 });
-
-  pageSections.forEach((section) => revealObserver.observe(section));
-}
