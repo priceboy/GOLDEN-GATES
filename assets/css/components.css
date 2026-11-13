@@ -90,3 +90,17 @@
 .button:focus-visible,.text-link:focus-visible,.project-donate:focus-visible,.floating-support:focus-visible,.impact-link:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
 .project-photo img,.story-image img,.team-card>img,.gallery-grid img{transition:transform .35s ease}
 .project-card:hover .project-photo img,.story-card:hover .story-image img{transform:scale(1.025)}
+
+
+/* Consistent rounded treatment for content cards across the site */
+.project-card,
+.team-card,
+.story-card,
+.donation-panel,
+.donation-option,
+.impact-link,
+.gallery-grid a,
+.payment-dialog,
+#payment-instructions{
+  border-radius:var(--card-radius);
+}

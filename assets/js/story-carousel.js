@@ -7,7 +7,7 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 if (track && root) {
   const cards = [...track.querySelectorAll(".story-card")];
-  const interval = 6000;
+  const interval = 5000;
   let activeIndex = 0;
   let autoplayTimer = null;
   let interactionTimer = null;
@@ -40,7 +40,7 @@ if (track && root) {
         ? "Automatic playback paused"
         : hovered || focused || interacting
           ? "Paused while you interact"
-          : "Auto-advances every 6 seconds";
+          : "Auto-advances every 5 seconds";
     status.textContent = `Chapter ${activeIndex + 1} of ${cards.length} · ${message}`;
   };
 

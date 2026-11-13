@@ -201,3 +201,7 @@
   max-width:100%;
   scroll-snap-align:start;
 }
+
+
+/* Keep card edges consistent in every section */
+.impact-link{overflow:hidden}
