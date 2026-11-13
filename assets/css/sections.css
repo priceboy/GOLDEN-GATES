@@ -176,3 +176,28 @@
 .project-feature .project-photo{height:100%;min-height:300px;aspect-ratio:auto}
 .team-card>img{aspect-ratio:4/3;height:auto}
 .gallery-grid img{object-position:center}
+
+
+/* Reliable one-chapter-at-a-time story carousel sizing */
+.story-track{
+  display:flex;
+  width:100%;
+  min-width:0;
+  gap:0;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scroll-snap-stop:always;
+  scroll-padding:0;
+  padding:0 0 18px;
+  overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
+}
+.story-track>.story-card{
+  box-sizing:border-box;
+  flex:0 0 100%;
+  width:100%;
+  min-width:100%;
+  max-width:100%;
+  scroll-snap-align:start;
+}
