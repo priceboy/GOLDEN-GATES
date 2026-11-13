@@ -79,6 +79,7 @@ if (menu && nav) {
    normal vertical scrolling inside each panel. */
 const panelTrack = document.getElementById("main");
 if (panelTrack) {
+  const panelNavLinks = [...document.querySelectorAll('.primary-nav a[href^="#"]')];
   const panels = [...panelTrack.children].filter((node) =>
     node.matches("section, .site-footer")
   );
@@ -121,8 +122,8 @@ if (panelTrack) {
         Math.abs(best.offsetLeft - panelTrack.scrollLeft) ? panel : best
       , panels[0]);
       if (!current?.id) return;
-      links.forEach((link) => link.removeAttribute("aria-current"));
-      const active = links.find((link) => link.getAttribute("href") === "#" + current.id);
+      panelNavLinks.forEach((link) => link.removeAttribute("aria-current"));
+      const active = panelNavLinks.find((link) => link.getAttribute("href") === "#" + current.id);
       active?.setAttribute("aria-current", "location");
     }, { passive: true });
   }, { passive: true });
