@@ -44,22 +44,37 @@ if (track && root) {
     status.textContent = `Chapter ${activeIndex + 1} of ${cards.length} · ${message}`;
   };
 
-  // Every slide is exactly one viewport wide, so the index maps directly
-  // to the scroll position. This avoids offsetLeft's offset-parent ambiguity.
+  // Measure each slide against the track itself; do not assume a fixed
+  // slide width or rely on offsetLeft's offset-parent behaviour.
+  const slideLeft = (card) =>
+    card.getBoundingClientRect().left -
+    track.getBoundingClientRect().left +
+    track.scrollLeft;
+
   const updateStatus = () => {
-    if (!cards.length || !track.clientWidth) return;
-    activeIndex = Math.max(
-      0,
-      Math.min(cards.length - 1, Math.round(track.scrollLeft / track.clientWidth))
-    );
+    if (!cards.length) return;
+    const trackCenter = track.getBoundingClientRect().left + track.clientWidth / 2;
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    cards.forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
+      const distance = Math.abs(rect.left + rect.width / 2 - trackCenter);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    activeIndex = closestIndex;
     renderStatus();
   };
 
   const goTo = (requestedIndex) => {
-    if (!cards.length || !track.clientWidth) return;
+    if (!cards.length) return;
     activeIndex = (requestedIndex + cards.length) % cards.length;
     track.scrollTo({
-      left: activeIndex * track.clientWidth,
+      left: slideLeft(cards[activeIndex]),
       behavior: reducedMotion.matches ? "auto" : "smooth"
     });
     renderStatus();
@@ -155,7 +170,9 @@ if (track && root) {
   });
 
   window.addEventListener("resize", () => {
-    goTo(activeIndex);
+    if (!cards.length) return;
+    track.scrollTo({ left: slideLeft(cards[activeIndex]), behavior: "auto" });
+    updateStatus();
   }, { passive: true });
 
   if (reducedMotion.matches && autoplayToggle) {

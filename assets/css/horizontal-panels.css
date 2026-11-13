@@ -24,10 +24,10 @@ body{height:100%;min-height:0;overflow:hidden;display:flex;flex-direction:column
 #main>.impact-section>.container{width:min(var(--width),calc(100% - 48px));margin:auto}
 #main>.section-pad{padding-top:clamp(42px,7vh,88px);padding-bottom:clamp(42px,7vh,88px)}
 #main>.story-section{padding-top:clamp(35px,5vh,65px);padding-bottom:clamp(35px,5vh,65px)}
-#main>.story-section .story-track{max-height:calc(100% - 190px)}
+#main>.story-section .story-track{max-height:none;height:auto}
 #main>.story-section .story-card{min-height:0}
 #main>.story-section .story-image{height:clamp(150px,26vh,260px)}
-#main>.story-section .story-copy{overflow-y:auto}
+#main>.story-section .story-copy{overflow:visible}
 #main>.hero .hero-content{padding-top:clamp(55px,10vh,100px);padding-bottom:clamp(55px,10vh,100px)}
 #main>section:focus{outline:none}
 @media(max-width:900px){
@@ -36,13 +36,13 @@ body{height:100%;min-height:0;overflow:hidden;display:flex;flex-direction:column
   #main>section,#main>.site-footer{scroll-snap-align:start}
   #main>.section-pad{padding-top:36px;padding-bottom:36px}
   #main>.story-section{padding-top:28px;padding-bottom:28px}
-  #main>.story-section .story-track{max-height:calc(100% - 175px)}
+  #main>.story-section .story-track{max-height:none;height:auto}
   #main>.story-section .story-image{height:clamp(130px,22vh,195px)}
   #main>.hero{min-height:0}
   #main>.hero .hero-content{padding-top:45px;padding-bottom:55px}
   #main>.site-footer .footer-inner{width:calc(100% - 36px)}
 }
 @media(max-width:440px){
-  #main>.story-section .story-track{max-height:calc(100% - 160px)}
+  #main>.story-section .story-track{max-height:none;height:auto}
 }
 @media(prefers-reduced-motion:reduce){#main{scroll-behavior:auto}}
