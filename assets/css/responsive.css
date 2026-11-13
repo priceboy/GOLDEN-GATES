@@ -33,3 +33,9 @@
 @media(max-width:440px){
   .story-image{height:195px;aspect-ratio:auto}
 }
+
+
+@media(max-width:900px){
+  .story-track{display:flex;gap:0}
+  .story-track>.story-card{flex:0 0 100%;width:100%;min-width:100%;max-width:100%}
+}
