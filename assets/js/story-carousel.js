@@ -40,6 +40,18 @@ if (track && root) {
     }, interval);
   };
 
+  const renderStatus = () => {
+    if (!status) return;
+    const message = reducedMotion.matches
+      ? "Use the arrows or swipe to explore"
+      : userPaused
+        ? "Automatic playback paused"
+        : hovered || focused || interacting
+          ? "Paused while you interact"
+          : "Auto-advances every 6 seconds";
+    status.textContent = `Chapter ${activeIndex + 1} of ${cards.length} · ${message}`;
+  };
+
   const updateStatus = () => {
     if (!cards.length) return;
     const currentLeft = track.scrollLeft + cards[0].offsetLeft;
@@ -53,9 +65,7 @@ if (track && root) {
       }
     });
     activeIndex = nearest;
-    if (status) {
-      status.textContent = `Chapter ${activeIndex + 1} of ${cards.length} · ${reducedMotion.matches ? "Use the arrows or swipe to explore" : userPaused ? "Automatic playback paused" : "Auto-advances every 6 seconds"}`;
-    }
+    renderStatus();
   };
 
   const goTo = (requestedIndex, automatic = false) => {
@@ -67,7 +77,7 @@ if (track && root) {
       left,
       behavior: reducedMotion.matches ? "auto" : "smooth"
     });
-    updateStatus();
+    renderStatus();
   };
 
   const pauseForInteraction = () => {
