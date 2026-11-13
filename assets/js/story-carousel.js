@@ -15,6 +15,7 @@ if (track && root) {
   let focused = false;
   let interacting = false;
   let userPaused = false;
+  let scrollFrame = null;
 
   cards.forEach((card, index) => {
     card.setAttribute("role", "group");
@@ -31,17 +32,8 @@ if (track && root) {
     autoplayTimer = null;
   };
 
-  const scheduleAutoplay = () => {
-    clearAutoplay();
-    if (!cards.length || isBlocked()) return;
-    autoplayTimer = window.setTimeout(() => {
-      goTo(activeIndex + 1, true);
-      scheduleAutoplay();
-    }, interval);
-  };
-
   const renderStatus = () => {
-    if (!status) return;
+    if (!status || !cards.length) return;
     const message = reducedMotion.matches
       ? "Use the arrows or swipe to explore"
       : userPaused
@@ -52,32 +44,34 @@ if (track && root) {
     status.textContent = `Chapter ${activeIndex + 1} of ${cards.length} · ${message}`;
   };
 
+  // Every slide is exactly one viewport wide, so the index maps directly
+  // to the scroll position. This avoids offsetLeft's offset-parent ambiguity.
   const updateStatus = () => {
-    if (!cards.length) return;
-    const currentLeft = track.scrollLeft + cards[0].offsetLeft;
-    let nearest = 0;
-    let distance = Infinity;
-    cards.forEach((card, index) => {
-      const nextDistance = Math.abs(card.offsetLeft - currentLeft);
-      if (nextDistance < distance) {
-        distance = nextDistance;
-        nearest = index;
-      }
-    });
-    activeIndex = nearest;
+    if (!cards.length || !track.clientWidth) return;
+    activeIndex = Math.max(
+      0,
+      Math.min(cards.length - 1, Math.round(track.scrollLeft / track.clientWidth))
+    );
     renderStatus();
   };
 
-  const goTo = (requestedIndex, automatic = false) => {
-    if (!cards.length) return;
-    const nextIndex = (requestedIndex + cards.length) % cards.length;
-    activeIndex = nextIndex;
-    const left = cards[nextIndex].offsetLeft - cards[0].offsetLeft;
+  const goTo = (requestedIndex) => {
+    if (!cards.length || !track.clientWidth) return;
+    activeIndex = (requestedIndex + cards.length) % cards.length;
     track.scrollTo({
-      left,
+      left: activeIndex * track.clientWidth,
       behavior: reducedMotion.matches ? "auto" : "smooth"
     });
     renderStatus();
+  };
+
+  const scheduleAutoplay = () => {
+    clearAutoplay();
+    if (!cards.length || isBlocked()) return;
+    autoplayTimer = window.setTimeout(() => {
+      goTo(activeIndex + 1);
+      scheduleAutoplay();
+    }, interval);
   };
 
   const pauseForInteraction = () => {
@@ -86,11 +80,13 @@ if (track && root) {
     interactionTimer = window.setTimeout(() => {
       interacting = false;
       scheduleAutoplay();
+      renderStatus();
     }, 8000);
     clearAutoplay();
+    renderStatus();
   };
 
-  controls.forEach(button => {
+  controls.forEach((button) => {
     button.addEventListener("click", () => {
       pauseForInteraction();
       const direction = Number(button.dataset.storyDirection) || 1;
@@ -108,32 +104,42 @@ if (track && root) {
     );
     if (userPaused) clearAutoplay();
     else scheduleAutoplay();
-    updateStatus();
+    renderStatus();
   });
 
-  track.addEventListener("scroll", updateStatus, { passive: true });
+  track.addEventListener("scroll", () => {
+    if (scrollFrame !== null) cancelAnimationFrame(scrollFrame);
+    scrollFrame = requestAnimationFrame(() => {
+      scrollFrame = null;
+      updateStatus();
+    });
+  }, { passive: true });
+
   track.addEventListener("pointerdown", pauseForInteraction, { passive: true });
-  track.addEventListener("touchstart", pauseForInteraction, { passive: true });
   track.addEventListener("wheel", pauseForInteraction, { passive: true });
   track.addEventListener("keydown", pauseForInteraction);
 
   track.addEventListener("pointerenter", () => {
     hovered = true;
     clearAutoplay();
+    renderStatus();
   });
   track.addEventListener("pointerleave", () => {
     hovered = false;
     scheduleAutoplay();
+    renderStatus();
   });
 
   root.addEventListener("focusin", () => {
     focused = true;
     clearAutoplay();
+    renderStatus();
   });
-  root.addEventListener("focusout", event => {
+  root.addEventListener("focusout", (event) => {
     if (!root.contains(event.relatedTarget)) {
       focused = false;
       scheduleAutoplay();
+      renderStatus();
     }
   });
 
@@ -145,12 +151,11 @@ if (track && root) {
   reducedMotion.addEventListener?.("change", () => {
     if (reducedMotion.matches) clearAutoplay();
     else scheduleAutoplay();
-    updateStatus();
+    renderStatus();
   });
 
   window.addEventListener("resize", () => {
-    goTo(activeIndex, true);
-    scheduleAutoplay();
+    goTo(activeIndex);
   }, { passive: true });
 
   if (reducedMotion.matches && autoplayToggle) {
