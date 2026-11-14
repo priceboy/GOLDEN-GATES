@@ -885,28 +885,35 @@ html.panels .panel-counter {
   }
 
   html.panels .mission-values {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
+    grid-template-columns: 1fr;
+    gap: 6px;
     margin-top: 8px;
     padding-top: 8px;
   }
 
+  html.panels .mission-values article {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr);
+    align-items: start;
+  }
+
   html.panels .mission-values article > span {
+    grid-column: 1;
+    grid-row: 1 / span 2;
     font-size: 8px;
+    padding-top: 2px;
   }
 
   html.panels .mission-values h3 {
+    grid-column: 2;
     font-size: 13px;
-    margin: 2px 0;
+    margin: 0 0 2px;
   }
 
   html.panels .mission-values p {
-    font-size: 8.5px;
-    line-height: 1.3;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    grid-column: 2;
+    font-size: 9px;
+    line-height: 1.35;
   }
 
   html.panels .gallery-grid {
@@ -1180,10 +1187,6 @@ html.panels .panel-counter {
   }
 
   html.panels .payment-note {
-    display: none;
-  }
-
-  html.panels .mission-values p {
     display: none;
   }
 

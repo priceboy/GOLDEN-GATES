@@ -12,7 +12,7 @@ Branch: `redesign/modular-rebuild`
   native anchor links again.
 - Removed the `site.css` `@import` chain. The page now links the six stylesheets
   directly, so they load in parallel instead of one after another.
-- Added `?v=20261114n` cache keys to stylesheet and module URLs. Update the
+- Added `?v=20261114p` cache keys to stylesheet and module URLs. Update the
   version string when deploying CSS or JS changes.
 
 ### JavaScript
@@ -104,6 +104,9 @@ Branch: `redesign/modular-rebuild`
   on the smallest screens. Each card has a "Read more" toggle
   (`assets/js/team.js`) with `aria-expanded`; expanding removes the clamp and the
   About panel scrolls if the card grows beyond the panel.
+- Mission, vision and values are never clamped: on phones they become a
+  single-column list (number, heading and full text) and the About panel scrolls
+  when needed.
 
 ### Media
 
