@@ -1,5 +1,13 @@
 # Golden Gate redesign — implementation plan
 
+> **Implementation update (2026-11-14):** this plan has been executed on
+> `redesign/modular-rebuild`. The full-page horizontal panel experiment was
+> removed in favour of a normal vertical document; payment details are gated
+> behind a verification flag; images are now self-hosted. See
+> `docs/IMPLEMENTATION_NOTES.md` for what changed and what still needs
+> foundation sign-off. The font implementation uses Playfair Display + DM Sans
+> rather than the originally proposed Fraunces + Inter.
+
 ## Approved direction
 
 - Complete visual reimagining.

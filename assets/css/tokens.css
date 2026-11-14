@@ -1,1 +1,16 @@
-:root{--navy:#092b45;--deep:#061e31;--ivory:#f5f0e6;--paper:#fffdf8;--gold:#c9a45c;--ink:#172a35;--muted:#66747a;--line:#ded8cb;--serif:"Playfair Display",Georgia,serif;--sans:"DM Sans",Arial,sans-serif;--width:1180px;--card-radius:18px}
+:root {
+  --navy: #092b45;
+  --deep: #061e31;
+  --ivory: #f5f0e6;
+  --paper: #fffdf8;
+  --gold: #c9a45c;
+  --gold-ink: #7c5f26;
+  --ink: #172a35;
+  --muted: #5d6b70;
+  --line: #ded8cb;
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "DM Sans", Arial, sans-serif;
+  --width: 1180px;
+  --card-radius: 18px;
+  --header-height: 80px;
+}

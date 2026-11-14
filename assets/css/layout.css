@@ -1,60 +1,143 @@
-.container{width:min(var(--width),calc(100% - 48px));margin:auto}
+.container {
+  width: min(var(--width), calc(100% - 48px));
+  margin: auto;
+}
 
-.site-header{position:sticky;top:0;z-index:30;background:rgba(6,30,49,.98);color:white;border-bottom:1px solid #ffffff20}
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(6, 30, 49, 0.98);
+  color: white;
+  border-bottom: 1px solid #ffffff20;
+}
 
-.header-inner{height:80px;display:flex;align-items:center;justify-content:space-between}
+.header-inner {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
 
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
 
-.brand img{width:43px;height:43px}
+.brand img {
+  width: 43px;
+  height: 43px;
+}
 
-.brand span{display:grid;line-height:1.2;letter-spacing:.14em}
+.brand span {
+  display: grid;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+}
 
-.brand strong{font-size:13px}
+.brand strong {
+  font-size: 13px;
+}
 
-.brand small{font-size:9px;color:#e5cc91;letter-spacing:.2em;margin-top:4px}
+.brand small {
+  font-size: 9px;
+  color: #e5cc91;
+  letter-spacing: 0.2em;
+  margin-top: 4px;
+}
 
-.primary-nav{display:flex;align-items:center;gap:clamp(12px,2vw,26px)}
+.primary-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.6vw, 22px);
+}
 
-.primary-nav a{font-size:12px;text-decoration:none;color:#ffffffd9}
+.primary-nav a {
+  font-size: 12px;
+  text-decoration: none;
+  color: #ffffffd9;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
 
-.primary-nav a:hover{color:#e5cc91}
+.primary-nav a:hover {
+  color: #e5cc91;
+}
 
-.primary-nav .nav-donate{border:1px solid #c9a45c;padding:9px 14px;color:#e5cc91}
+.primary-nav a[aria-current="location"] {
+  color: var(--gold);
+}
 
-.menu-toggle{display:none;background:none;border:0;padding:10px}
+.primary-nav .nav-donate {
+  border: 1px solid #c9a45c;
+  padding: 9px 14px;
+  color: #e5cc91;
+  font-weight: 700;
+}
 
-.menu-toggle span{display:block;width:24px;height:2px;background:white;margin:5px}
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  padding: 10px;
+  cursor: pointer;
+}
 
-.hero-image,.hero-shade{position:absolute;inset:0}
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: white;
+  margin: 5px;
+}
 
-.hero-image{background:url("https://i.imgur.com/DolIePP.png") center 38%/cover;opacity:.65}
+.menu-toggle:focus-visible,
+.primary-nav a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 5px;
+}
 
-.hero-shade{background:linear-gradient(90deg,#041827ed,#041827b8 50%,#04182720),linear-gradient(0deg,#04182770,transparent 50%)}
+.site-footer {
+  background: #041827;
+  color: #ffffffa8;
+  padding: 23px 0;
+}
 
-.hero-content{position:relative;padding:100px 0}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
 
-.hero-caption{position:absolute;bottom:30px;left:0;font-size:9px;letter-spacing:.2em;color:#ffffffa8}
+.brand-footer img {
+  width: 36px;
+  height: 36px;
+}
 
-.caption-line{display:inline-block;width:38px;height:1px;background:var(--gold);vertical-align:middle;margin-right:12px}
+.brand-footer strong {
+  font-size: 11px;
+}
 
-.site-footer{background:#041827;color:#ffffffa8;padding:23px 0}
+.brand-footer small {
+  font-size: 8px;
+}
 
-.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:18px}
+.footer-inner p,
+.footer-inner > a:last-child {
+  font-size: 10px;
+  margin: 0;
+}
 
-.brand-footer img{width:36px;height:36px}
+.footer-inner > a:last-child {
+  color: #e5cc91;
+  text-decoration: none;
+}
 
-.brand-footer strong{font-size:11px}
-
-.brand-footer small{font-size:8px}
-
-.footer-inner p,.footer-inner>a:last-child{font-size:10px;margin:0}
-
-.footer-inner>a:last-child{color:#e5cc91;text-decoration:none}
-
-
-.primary-nav a{transition:color .2s ease,opacity .2s ease}
-.primary-nav a[aria-current="location"]{color:var(--gold)}
-.primary-nav .nav-donate{font-weight:700;white-space:nowrap}
-.menu-toggle{cursor:pointer}
-.menu-toggle:focus-visible,.primary-nav a:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
+.footer-inner > a:last-child:hover {
+  text-decoration: underline;
+}

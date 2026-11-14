@@ -35,6 +35,10 @@ jobs:
           lftp -c "
           open -u $IONOS_USER,$IONOS_PASS sftp://$IONOS_HOST
           mirror -R --verbose \
+            --exclude .git/ \
+            --exclude .github/ \
+            --exclude docs/ \
+            --exclude .gitignore \
             --exclude .logs/ \
             --exclude access.log \
             --exclude access.log.* \

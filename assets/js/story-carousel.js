@@ -12,8 +12,7 @@ if (track && root) {
   let autoplayTimer = null;
   let interactionTimer = null;
   let interacting = false;
-  // Respect the operating-system preference initially, but let a visitor
-  // explicitly choose Play if they want the automatic slideshow.
+  let visible = false;
   let userPaused = reducedMotion.matches;
   let scrollFrame = null;
 
@@ -23,8 +22,7 @@ if (track && root) {
     card.setAttribute("aria-label", `Chapter ${index + 1} of ${cards.length}`);
   });
 
-  const isBlocked = () =>
-    userPaused || interacting || document.hidden;
+  const isBlocked = () => userPaused || interacting || document.hidden || !visible;
 
   const clearAutoplay = () => {
     if (autoplayTimer !== null) window.clearTimeout(autoplayTimer);
@@ -33,20 +31,20 @@ if (track && root) {
 
   const syncToggle = () => {
     if (!autoplayToggle) return;
-    autoplayToggle.setAttribute("aria-pressed", String(userPaused));
     autoplayToggle.textContent = userPaused ? "Play" : "Pause";
     autoplayToggle.setAttribute(
       "aria-label",
       userPaused ? "Resume automatic story playback" : "Pause automatic story playback"
     );
+    autoplayToggle.dataset.state = userPaused ? "paused" : "playing";
   };
 
   const renderStatus = () => {
     if (!status || !cards.length) return;
     const message = userPaused
-      ? (reducedMotion.matches
-          ? "Paused for reduced motion — press Play to start"
-          : "Automatic playback paused")
+      ? reducedMotion.matches
+        ? "Paused for reduced motion — press Play to start"
+        : "Automatic playback paused"
       : interacting
         ? "Paused briefly after interaction"
         : "Auto-advances every 5 seconds";
@@ -54,9 +52,7 @@ if (track && root) {
   };
 
   const slideLeft = (card) =>
-    card.getBoundingClientRect().left -
-    track.getBoundingClientRect().left +
-    track.scrollLeft;
+    card.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft;
 
   const updateStatus = () => {
     if (!cards.length) return;
@@ -82,7 +78,7 @@ if (track && root) {
     activeIndex = (requestedIndex + cards.length) % cards.length;
     track.scrollTo({
       left: slideLeft(cards[activeIndex]),
-      behavior: reducedMotion.matches ? "auto" : "smooth"
+      behavior: reducedMotion.matches ? "auto" : "smooth",
     });
     renderStatus();
   };
@@ -119,8 +115,9 @@ if (track && root) {
   autoplayToggle?.addEventListener("click", () => {
     userPaused = !userPaused;
     syncToggle();
-    if (userPaused) clearAutoplay();
-    else {
+    if (userPaused) {
+      clearAutoplay();
+    } else {
       interacting = false;
       window.clearTimeout(interactionTimer);
       scheduleAutoplay();
@@ -128,30 +125,61 @@ if (track && root) {
     renderStatus();
   });
 
-  track.addEventListener("scroll", () => {
-    if (scrollFrame !== null) cancelAnimationFrame(scrollFrame);
-    scrollFrame = requestAnimationFrame(() => {
-      scrollFrame = null;
-      updateStatus();
-    });
-  }, { passive: true });
+  track.addEventListener(
+    "scroll",
+    () => {
+      if (scrollFrame !== null) cancelAnimationFrame(scrollFrame);
+      scrollFrame = requestAnimationFrame(() => {
+        scrollFrame = null;
+        updateStatus();
+      });
+    },
+    { passive: true }
+  );
 
   track.addEventListener("pointerdown", pauseBrieflyForInteraction, { passive: true });
   track.addEventListener("wheel", pauseBrieflyForInteraction, { passive: true });
-  track.addEventListener("keydown", pauseBrieflyForInteraction);
+  track.addEventListener("keydown", (event) => {
+    if (["ArrowLeft", "ArrowRight", "Home", "End", "PageUp", "PageDown"].includes(event.key)) {
+      pauseBrieflyForInteraction();
+    }
+  });
 
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) clearAutoplay();
     else scheduleAutoplay();
   });
 
-  window.addEventListener("resize", () => {
-    if (!cards.length) return;
-    track.scrollTo({ left: slideLeft(cards[activeIndex]), behavior: "auto" });
-    updateStatus();
-  }, { passive: true });
+  window.addEventListener(
+    "resize",
+    () => {
+      if (!cards.length) return;
+      track.scrollTo({ left: slideLeft(cards[activeIndex]), behavior: "auto" });
+      updateStatus();
+    },
+    { passive: true }
+  );
+
+  /* Only run the slideshow while the story is actually on screen. */
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        visible = entries.some((entry) => entry.isIntersecting);
+        if (visible) {
+          updateStatus();
+          scheduleAutoplay();
+        } else {
+          clearAutoplay();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(root);
+  } else {
+    visible = true;
+    scheduleAutoplay();
+  }
 
   syncToggle();
   updateStatus();
-  scheduleAutoplay();
 }

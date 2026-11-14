@@ -1,5 +1,10 @@
 # Golden Gate website — technical audit
 
+> **Update (2026-11-14):** the findings below were addressed on
+> `redesign/modular-rebuild`. See `docs/IMPLEMENTATION_NOTES.md` for the fixes,
+> the verification performed, and the content questions that still block
+> release.
+
 Audit date: 2026-11-11
 Repository: `priceboy/GOLDEN-GATES`
 Baseline: `main`
