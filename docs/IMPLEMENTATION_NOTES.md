@@ -12,7 +12,7 @@ Branch: `redesign/modular-rebuild`
   native anchor links again.
 - Removed the `site.css` `@import` chain. The page now links the six stylesheets
   directly, so they load in parallel instead of one after another.
-- Added `?v=20261114c` cache keys to stylesheet and module URLs. Update the
+- Added `?v=20261114j` cache keys to stylesheet and module URLs. Update the
   version string when deploying CSS or JS changes.
 
 ### JavaScript
@@ -67,27 +67,33 @@ Branch: `redesign/modular-rebuild`
   because the name is adjacent) and individuals (initials monogram, `.hero-type`
   set to "Supporter"). Publish only with written consent.
 
-### Horizontal section panels (desktop)
+### Horizontal section panels (all widths)
 
-- At 1025 px and above, `html.panels` turns `#main` into a horizontal,
-  scroll-snapped track: one full-height section per viewport. Vertical scrolling
-  inside a panel only happens when its content exceeds the screen.
+- With JavaScript enabled, `html.panels` turns `#main` into a horizontal,
+  scroll-snapped track at every viewport: one full-height section per screen.
+  Vertical scrolling inside a panel only happens when its content exceeds the
+  screen.
 - Sections fade and slide in when active (`.container` opacity 0.35 → 1 plus a
   14 px lift). Reduced-motion visitors get the state change without the motion.
-- Navigation supports mouse wheel (a vertical wheel advances panels unless the
-  panel is mid-scroll), trackpad horizontal scrolling, ArrowLeft/ArrowRight,
-  in-page links, hash deep links and browser back/forward via `pushState`.
+- Navigation supports touch/mouse horizontal swiping, mouse wheel, trackpad
+  scrolling, ArrowLeft/ArrowRight, previous/next buttons in the footer, in-page
+  links, hash deep links and browser back/forward. A footer counter and the gold
+  progress bar show the current section.
 - Only the active panel is tabbable: inactive sections are `inert` and
-  `aria-hidden`. A thin gold progress bar shows the current position.
+  `aria-hidden`.
+- Phones get a compact composition: two-column image-left project cards (project
+  descriptions hidden), tighter mission/donate/about/gallery layouts, and a
+  footer reduced to the logo mark plus section controls. `100dvh` keeps the
+  layout stable when mobile browser chrome appears or disappears.
 - The floating Support CTA is hidden in panel mode; Support remains in the nav.
-- The story carousel becomes a fade deck in panel mode (one card visible,
-  arrows/keys/swipe, no nested horizontal scroller). Mobile keeps the horizontal
-  scroll-snap track.
-- Phones/tablets below 1025 px and no-JavaScript visits stay as the normal
-  vertical document; the `panels` class is never applied.
-- Panel content is compacted (image-left project rows, shorter gallery rows,
-  tighter donation form). At 1440×900, 1280×720 and 1025×768 every section fits
-  without internal scrolling; at 1280×600 the tallest panels scroll internally.
+- The story carousel becomes a fade deck (one card visible, arrows/keys/swipe,
+  no nested horizontal scroller). The story track uses `touch-action: pan-y` so
+  a horizontal swipe changes chapters instead of scrolling the panel.
+- Without JavaScript the `panels` class is never added and the site remains the
+  normal vertical document, including the scrollable mobile story.
+- Layout fit: all sections fit without internal scrolling at 375×800, 390×844,
+  430×932, 1024×768 and 1440×900; 768×900 has a 12 px overflow in donate, and
+  320×568 has small internal scrolling in projects/contact/donate/story/gallery.
 
 ### Media
 
@@ -158,6 +164,10 @@ answered by an authorised foundation representative.
 - Horizontal panel audit at 1440×900, 1280×720, 1025×768 and 1280×600: no
   horizontal overflow; projects, story, gallery, about, donate, mission and
   contact fit at the first three sizes; 1280×600 has small internal scrolling.
-- Panel interactions: nav click, wheel, ArrowRight, hash load, browser back,
-  progress bar, `inert` state, and story fade all verified in a 1440 px frame.
+- Panel interactions: nav click, footer arrows/counter, wheel, ArrowRight, hash
+  load, browser back, progress bar, `inert` state, story swipe and story fade all
+  verified in iframes at 375 px and 1440 px.
+- Mobile panel audit at 320×568, 375×800, 390×844, 430×932, 768×900, 1024×768
+  and 1440×900: no horizontal overflow; all sections fit at the five main phone
+  and desktop sizes; 320×568 keeps small internal scrolling only.
 - Lighthouse: 100 accessibility / 100 best practices / 100 SEO.

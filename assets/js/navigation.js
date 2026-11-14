@@ -1,9 +1,12 @@
-const panelQuery = window.matchMedia("(min-width: 1025px)");
+const panelQuery = window.matchMedia("(min-width: 0px)");
 const root = document.documentElement;
 const track = document.getElementById("main");
 const sections = track ? [...track.querySelectorAll(":scope > section")] : [];
 const navLinks = [...document.querySelectorAll('.primary-nav a[href^="#"]')];
 const progress = document.getElementById("panel-progress");
+const prevPanel = document.querySelector("[data-panel-prev]");
+const nextPanel = document.querySelector("[data-panel-next]");
+const panelCounter = document.getElementById("panel-counter");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 let panelMode = false;
@@ -146,6 +149,12 @@ const setActivePanel = (index) => {
   if (progress) {
     progress.style.width = `${((clamped + 1) / sections.length) * 100}%`;
   }
+
+  if (panelCounter) {
+    panelCounter.textContent = `${clamped + 1} / ${sections.length}`;
+  }
+  if (prevPanel) prevPanel.disabled = clamped === 0;
+  if (nextPanel) nextPanel.disabled = clamped === sections.length - 1;
 };
 
 const goToPanel = (index, behavior = "smooth") => {
@@ -155,6 +164,9 @@ const goToPanel = (index, behavior = "smooth") => {
   setTrackScroll(panelOffset(sections[clamped]), reducedMotion.matches ? "auto" : behavior);
   setActivePanel(clamped);
 };
+
+prevPanel?.addEventListener("click", () => goToPanel(currentIndex - 1));
+nextPanel?.addEventListener("click", () => goToPanel(currentIndex + 1));
 
 const applyMode = () => {
   if (!sections.length) return;

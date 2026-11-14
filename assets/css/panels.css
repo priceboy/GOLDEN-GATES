@@ -1,401 +1,1149 @@
 /*
- * Desktop horizontal section panels.
+ * Horizontal section panels at all widths.
  *
- * The `panels` class is only added at 1025px and above, so phones and tablets
- * keep the normal vertical document. Without JavaScript the class is never
- * added and the site remains vertical as well.
+ * The `panels` class is added by JavaScript when the page boots, so a
+ * no-JavaScript visitor still gets the normal vertical document. Phones get a
+ * compact composition inside the same horizontal shell.
  */
 
-.panel-progress {
+.panel-controls {
   display: none;
 }
 
-@media (min-width: 1025px) {
-  html.panels {
-    height: 100%;
-    overflow: hidden;
-  }
+html.panels {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
 
-  html.panels body {
-    height: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
+html.panels body {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
 
-  html.panels .site-header {
-    position: relative;
-    flex: 0 0 var(--header-height);
-  }
+html.panels .site-header {
+  position: relative;
+  flex: 0 0 var(--header-height);
+}
 
-  html.panels .panel-progress {
-    display: block;
-    position: fixed;
-    top: var(--header-height);
-    left: 0;
-    z-index: 25;
-    width: 0;
-    height: 2px;
-    background: var(--gold);
-    transition: width 0.25s ease;
-  }
+html.panels .panel-progress {
+  display: block;
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  z-index: 25;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.25s ease;
+}
 
-  html.panels #main {
-    flex: 1 1 auto;
-    min-height: 0;
-    display: flex;
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    overscroll-behavior-x: contain;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
+html.panels #main {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
 
-  html.panels #main::-webkit-scrollbar {
-    display: none;
-  }
+html.panels #main::-webkit-scrollbar {
+  display: none;
+}
 
-  html.panels #main > section {
-    flex: 0 0 100%;
-    width: 100%;
-    min-width: 100%;
-    max-width: 100%;
-    height: 100%;
-    min-height: 0;
-    max-height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    overscroll-behavior-y: contain;
-    padding: 0;
-    scrollbar-width: thin;
-    scrollbar-color: #c9a45c66 transparent;
-  }
+html.panels #main > section {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overscroll-behavior-y: contain;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #c9a45c66 transparent;
+  -webkit-overflow-scrolling: touch;
+}
 
-  html.panels #main > section::-webkit-scrollbar {
-    width: 6px;
-  }
+html.panels #main > section::-webkit-scrollbar {
+  width: 6px;
+}
 
-  html.panels #main > section::-webkit-scrollbar-thumb {
-    background: #c9a45c66;
-    border-radius: 3px;
-  }
+html.panels #main > section::-webkit-scrollbar-thumb {
+  background: #c9a45c66;
+  border-radius: 3px;
+}
 
-  html.panels #main > section.section-pad {
-    padding: clamp(16px, 3.4vh, 44px) 0;
-  }
+html.panels #main > section.section-pad {
+  padding: clamp(16px, 3.4vh, 44px) 0;
+}
 
-  html.panels #main > section > .container {
-    opacity: 0.35;
-    transform: translateY(14px);
-    transition: opacity 0.45s ease, transform 0.45s ease;
-  }
+html.panels #main > section > .container {
+  opacity: 0.35;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
 
-  html.panels #main > section.is-active > .container {
-    opacity: 1;
-    transform: none;
-  }
+html.panels #main > section.is-active > .container {
+  opacity: 1;
+  transform: none;
+}
 
-  html.panels #main > section:focus-visible {
-    outline: 3px solid var(--gold);
-    outline-offset: -3px;
-  }
+html.panels #main > section:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: -3px;
+}
 
-  /* Compact the long sections so a panel fits the viewport. */
-  html.panels .section-heading {
-    font-size: clamp(30px, 3.4vw, 44px);
-  }
+/* Compact the long sections so a panel fits the viewport. */
+html.panels .section-heading {
+  font-size: clamp(30px, 3.4vw, 44px);
+}
 
+html.panels .section-topline {
+  margin-bottom: clamp(12px, 2.4vh, 24px);
+  gap: 30px;
+}
+
+html.panels .section-aside {
+  max-width: 34ch;
+  font-size: 12px;
+}
+
+html.panels .hero {
+  min-height: 0;
+}
+
+html.panels .hero-content {
+  padding: clamp(30px, 7vh, 80px) 0;
+}
+
+html.panels .hero h1 {
+  font-size: clamp(48px, 6vw, 78px);
+}
+
+html.panels .hero-caption {
+  bottom: 18px;
+}
+
+html.panels .impact-section {
+  padding: clamp(22px, 4vh, 40px) 0;
+}
+
+html.panels .intro-grid {
+  gap: 7%;
+}
+
+html.panels .purpose-strip {
+  margin-top: clamp(18px, 4vh, 38px);
+  padding-top: 20px;
+  gap: 24px;
+}
+
+html.panels .project-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+html.panels .project-card,
+html.panels .project-feature {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  grid-column: auto;
+}
+
+html.panels .project-photo,
+html.panels .project-feature .project-photo {
+  height: 100%;
+  min-height: 100px;
+  aspect-ratio: auto;
+}
+
+html.panels .project-content,
+html.panels .project-feature .project-content {
+  padding: 10px 11px;
+  align-self: stretch;
+}
+
+html.panels .project-heading h3 {
+  font-size: 15px;
+}
+
+html.panels .progress-number {
+  font-size: 10px;
+}
+
+html.panels .project-content p {
+  font-size: 10px;
+  line-height: 1.4;
+  margin: 4px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+html.panels .project-index {
+  left: 8px;
+  bottom: 8px;
+  padding: 4px 6px;
+  font-size: 8px;
+}
+
+html.panels .project-donate {
+  padding-top: 6px;
+  margin-top: 4px;
+  font-size: 9.5px;
+}
+
+html.panels .data-note {
+  margin-top: 10px;
+  font-size: 9px;
+}
+
+html.panels .story-image {
+  height: clamp(130px, 20vh, 220px);
+}
+
+html.panels .story-copy {
+  padding: 14px 16px 16px;
+}
+
+html.panels .story-copy h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+html.panels .story-copy > p:not(.eyebrow) {
+  font-size: 10.5px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+html.panels .story-list {
+  font-size: 10.5px;
+}
+
+html.panels .story-hint {
+  margin-top: 8px;
+  font-size: 8.5px;
+}
+
+html.panels .story-track {
+  display: grid;
+  overflow: visible;
+  padding: 0;
+  touch-action: pan-y;
+}
+
+html.panels .story-track > .story-card {
+  grid-area: 1 / 1;
+  flex: none;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+  pointer-events: none;
+}
+
+html.panels .story-track > .story-card.is-current {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+
+html.panels .team-card > img {
+  height: clamp(100px, 15vh, 170px);
+}
+
+html.panels .team-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+html.panels .team-card > div {
+  padding: 10px 12px;
+}
+
+html.panels .team-card h3 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+html.panels .team-card div > p:last-child {
+  font-size: 11px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+html.panels .mission-values {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 14px;
+  padding-top: 12px;
+  gap: 14px;
+}
+
+html.panels .mission-values h3 {
+  font-size: 17px;
+  margin: 4px 0;
+}
+
+html.panels .mission-values p {
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+
+html.panels .gallery-grid {
+  grid-auto-rows: clamp(66px, 10vh, 104px);
+  gap: 8px;
+}
+
+html.panels .gallery-footnote {
+  margin-top: 10px;
+  font-size: 9px;
+}
+
+html.panels .donate-aside {
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+html.panels .donate-intro > p:not(.eyebrow) {
+  font-size: 12px;
+  margin: 14px 0;
+}
+
+html.panels .donation-panel {
+  padding: 16px 20px;
+}
+
+html.panels .field-label {
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+
+html.panels .donation-options {
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+html.panels .donation-option {
+  padding: 5px 8px;
+  font-size: 10.5px;
+  line-height: 1.35;
+}
+
+html.panels .donation-panel select,
+html.panels .amount-input {
+  min-height: 36px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+html.panels .donation-total {
+  padding: 8px 0;
+  margin-bottom: 8px;
+  font-size: 11px;
+}
+
+html.panels .donation-total strong {
+  font-size: 22px;
+}
+
+html.panels .button {
+  min-height: 44px;
+  font-size: 11px;
+}
+
+html.panels .payment-note {
+  margin-top: 8px;
+  font-size: 9px;
+}
+
+html.panels .payment-feedback {
+  min-height: 0;
+  font-size: 10px;
+}
+
+html.panels .contact-grid {
+  gap: 8%;
+}
+
+html.panels .site-footer {
+  flex: 0 0 auto;
+  padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px));
+}
+
+html.panels .brand-footer img {
+  width: 28px;
+  height: 28px;
+}
+
+html.panels .footer-inner p,
+html.panels .footer-inner > a:last-child {
+  font-size: 9px;
+}
+
+html.panels .floating-support {
+  display: none;
+}
+
+/* ---------- Footer section controls ---------- */
+html.panels .panel-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+html.panels .panel-arrow {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #c9a45c;
+  border-radius: 50%;
+  background: transparent;
+  color: #e5cc91;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+html.panels .panel-arrow:hover:not(:disabled),
+html.panels .panel-arrow:focus-visible:not(:disabled) {
+  background: var(--gold);
+  color: var(--deep);
+}
+
+html.panels .panel-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+html.panels .panel-counter {
+  min-width: 46px;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #ffffffb8;
+}
+
+/* Tablet composition */
+@media (min-width: 601px) and (max-width: 900px) {
   html.panels .section-topline {
-    margin-bottom: clamp(12px, 2.4vh, 24px);
-    gap: 30px;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 20px;
   }
 
   html.panels .section-aside {
-    max-width: 34ch;
-    font-size: 12px;
+    margin: 0;
+    max-width: 26ch;
+  }
+}
+
+@media (max-width: 900px) {
+  html.panels #main > section.section-pad {
+    padding: clamp(14px, 3vh, 34px) 0;
   }
 
-  html.panels .hero {
-    min-height: 0;
-  }
-
-  html.panels .hero-content {
-    padding: clamp(30px, 7vh, 80px) 0;
-  }
-
-  html.panels .hero h1 {
-    font-size: clamp(48px, 6vw, 78px);
-  }
-
-  html.panels .hero-caption {
-    bottom: 18px;
-  }
-
-  html.panels .impact-section {
-    padding: clamp(22px, 4vh, 40px) 0;
-  }
-
-  html.panels .intro-grid {
-    gap: 7%;
-  }
-
-  html.panels .purpose-strip {
-    margin-top: clamp(18px, 4vh, 38px);
-    padding-top: 20px;
-    gap: 24px;
+  html.panels .section-heading {
+    font-size: clamp(28px, 6vw, 38px);
   }
 
   html.panels .project-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
 
   html.panels .project-card,
   html.panels .project-feature {
-    display: grid;
-    grid-template-columns: 110px minmax(0, 1fr);
-    grid-column: auto;
+    grid-template-columns: 80px minmax(0, 1fr);
   }
 
   html.panels .project-photo,
   html.panels .project-feature .project-photo {
-    height: 100%;
-    min-height: 100px;
-    aspect-ratio: auto;
+    min-height: 72px;
   }
 
   html.panels .project-content,
   html.panels .project-feature .project-content {
-    padding: 10px 11px;
-    align-self: stretch;
+    padding: 6px;
   }
 
   html.panels .project-heading h3 {
-    font-size: 15px;
-  }
-
-  html.panels .progress-number {
-    font-size: 10px;
+    font-size: 13px;
   }
 
   html.panels .project-content p {
+    font-size: 8.8px;
+    line-height: 1.3;
+    -webkit-line-clamp: 2;
+  }
+
+  html.panels .project-donate {
+    font-size: 8.5px;
+  }
+
+  html.panels .team-card:last-child {
+    grid-column: auto;
+  }
+
+  html.panels .donation-panel {
+    padding: 12px 16px;
+  }
+
+  html.panels .donation-options {
+    gap: 3px;
+    margin-bottom: 7px;
+  }
+
+  html.panels .donation-option {
+    padding: 4px 6px;
+  }
+
+  html.panels .donation-panel select,
+  html.panels .amount-input {
+    min-height: 30px;
+    margin-bottom: 5px;
+  }
+
+  html.panels .donation-total {
+    padding: 5px 0;
+    margin-bottom: 5px;
+  }
+
+  html.panels .gallery-grid {
+    grid-auto-rows: clamp(44px, 7.8vh, 84px);
+  }
+
+  html.panels .gallery-grid a:nth-child(1),
+  html.panels .gallery-grid a:nth-child(6) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  html.panels .donation-panel {
+    padding: 14px 18px;
+  }
+
+  html.panels .donation-options {
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  html.panels .donation-option {
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+
+  html.panels .donation-panel select,
+  html.panels .amount-input {
+    min-height: 32px;
+    margin-bottom: 6px;
+  }
+
+  html.panels .donation-total {
+    padding: 6px 0;
+    margin-bottom: 6px;
+  }
+
+  html.panels .button {
+    min-height: 40px;
+  }
+
+  html.panels .payment-note {
+    font-size: 8.5px;
+  }
+
+  html.panels .footer-inner p {
+    display: none;
+  }
+}
+
+/* Phone composition */
+@media (max-width: 600px) {
+  html.panels #main > section.section-pad {
+    padding: clamp(10px, 2.4vh, 24px) 0;
+  }
+
+  html.panels .section-heading {
+    font-size: clamp(25px, 7vw, 32px);
+  }
+
+  html.panels .section-topline {
+    margin-bottom: 10px;
+    gap: 8px;
+  }
+
+  html.panels .section-aside {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+
+  html.panels .eyebrow {
+    font-size: 9px;
+    margin-bottom: 8px;
+  }
+
+  html.panels .hero-content {
+    padding: clamp(18px, 4vh, 34px) 0;
+  }
+
+  html.panels .hero h1 {
+    font-size: 45px;
+  }
+
+  html.panels .hero-copy {
+    font-size: 13px;
+    margin: 14px 0 20px;
+  }
+
+  html.panels .hero-actions {
+    gap: 12px;
+  }
+
+  html.panels .hero-caption {
+    display: none;
+  }
+
+  html.panels .impact-section {
+    padding: 16px 0;
+  }
+
+  html.panels .impact-links {
+    grid-template-columns: 1fr;
+  }
+
+  html.panels .impact-link {
+    padding: 10px 28px 10px 12px;
+    min-height: 0;
+    border-left: 0;
+    border-top: 1px solid #ffffff30;
+  }
+
+  html.panels .impact-link > span {
+    margin-bottom: 2px;
+  }
+
+  html.panels .impact-link small {
+    max-width: 250px;
+    font-size: 10px;
+  }
+
+  html.panels .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  html.panels .large-copy {
+    font-size: 15px;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+
+  html.panels .intro-copy > p:not(.large-copy) {
+    font-size: 10.5px;
+    line-height: 1.45;
+    margin: 0 0 8px;
+  }
+
+  html.panels .intro-copy .text-link {
+    font-size: 10px;
+  }
+
+  html.panels .purpose-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 10px;
+    padding-top: 8px;
+  }
+
+  html.panels .purpose-strip article {
+    padding-left: 20px;
+  }
+
+  html.panels .purpose-strip .number {
+    font-size: 8px;
+  }
+
+  html.panels .purpose-strip h3 {
+    font-size: 14px;
+  }
+
+  html.panels .purpose-strip p {
+    font-size: 9px;
+    line-height: 1.35;
+  }
+
+  html.panels .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  html.panels .project-card,
+  html.panels .project-feature {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+
+  html.panels .project-photo,
+  html.panels .project-feature .project-photo {
+    min-height: 56px;
+  }
+
+  html.panels .project-content,
+  html.panels .project-feature .project-content {
+    padding: 4px 6px;
+  }
+
+  html.panels .project-heading h3 {
+    font-size: 11.5px;
+    line-height: 1.15;
+  }
+
+  html.panels .project-content p {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  html.panels .project-donate {
+    padding-top: 1px;
+    margin-top: 0;
+    font-size: 8px;
+  }
+
+  html.panels .project-index {
+    display: none;
+  }
+
+  html.panels .data-note {
+    margin-top: 6px;
+    font-size: 8px;
+  }
+
+  html.panels .story-image {
+    height: clamp(110px, 18vh, 190px);
+  }
+
+  html.panels .story-copy {
+    padding: 10px 12px 12px;
+  }
+
+  html.panels .story-copy h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  html.panels .story-copy > p:not(.eyebrow) {
     font-size: 10px;
     line-height: 1.4;
-    margin: 4px 0;
+    margin-bottom: 6px;
+  }
+
+  html.panels .story-list {
+    font-size: 9.5px;
+  }
+
+  html.panels .story-list li {
+    padding-bottom: 4px;
+  }
+
+  html.panels .story-controls {
+    margin-top: 8px;
+    gap: 6px;
+  }
+
+  html.panels .story-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
+  }
+
+  html.panels .story-autoplay {
+    height: 36px;
+    min-width: 62px;
+    font-size: 9px;
+  }
+
+  html.panels .story-hint {
+    font-size: 8px;
+  }
+
+  html.panels .team-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  html.panels .team-card {
+    display: grid;
+    grid-template-columns: 86px minmax(0, 1fr);
+  }
+
+  html.panels .team-card:last-child {
+    grid-column: auto;
+  }
+
+  html.panels .team-card > img {
+    width: 86px;
+    height: 100%;
+    max-height: 112px;
+    object-fit: cover;
+  }
+
+  html.panels .team-card > div {
+    padding: 8px 10px;
+  }
+
+  html.panels .team-card .eyebrow {
+    font-size: 8px;
+    margin-bottom: 2px;
+  }
+
+  html.panels .team-card h3 {
+    font-size: 15px;
+    margin-bottom: 2px;
+  }
+
+  html.panels .team-card div > p:last-child {
+    font-size: 9.5px;
+    line-height: 1.35;
+    -webkit-line-clamp: 2;
+  }
+
+  html.panels .mission-values {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+
+  html.panels .mission-values article > span {
+    font-size: 8px;
+  }
+
+  html.panels .mission-values h3 {
+    font-size: 13px;
+    margin: 2px 0;
+  }
+
+  html.panels .mission-values p {
+    font-size: 8.5px;
+    line-height: 1.3;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
-  html.panels .project-index {
-    left: 8px;
-    bottom: 8px;
-    padding: 4px 6px;
-    font-size: 8px;
-  }
-
-  html.panels .project-donate {
-    padding-top: 6px;
-    margin-top: 4px;
-    font-size: 9.5px;
-  }
-
-  html.panels .data-note {
-    margin-top: 10px;
-    font-size: 9px;
-  }
-
-  html.panels .story-image {
-    height: clamp(130px, 20vh, 220px);
-  }
-
-  html.panels .story-copy {
-    padding: 14px 16px 16px;
-  }
-
-  html.panels .story-copy h3 {
-    font-size: 20px;
-    margin-bottom: 8px;
-  }
-
-  html.panels .story-copy > p:not(.eyebrow) {
-    font-size: 10.5px;
-    line-height: 1.5;
-    margin-bottom: 10px;
-  }
-
-  html.panels .story-list {
-    font-size: 10.5px;
-  }
-
-  html.panels .story-hint {
-    margin-top: 8px;
-    font-size: 8.5px;
-  }
-
-  html.panels .story-track {
-    display: grid;
-    overflow: visible;
-    padding: 0;
-    touch-action: pan-y;
-  }
-
-  html.panels .story-track > .story-card {
-    grid-area: 1 / 1;
-    flex: none;
-    width: auto;
-    min-width: 0;
-    max-width: none;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
-    pointer-events: none;
-  }
-
-  html.panels .story-track > .story-card.is-current {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    pointer-events: auto;
-  }
-
-  html.panels .team-card > img {
-    height: clamp(100px, 15vh, 170px);
-  }
-
-  html.panels .team-card > div {
-    padding: 10px 12px;
-  }
-
-  html.panels .team-card h3 {
-    font-size: 18px;
-    margin-bottom: 6px;
-  }
-
-  html.panels .team-card div > p:last-child {
-    font-size: 11px;
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  html.panels .mission-values {
-    margin-top: 14px;
-    padding-top: 12px;
-    gap: 14px;
-  }
-
-  html.panels .mission-values h3 {
-    font-size: 17px;
-    margin: 4px 0;
-  }
-
-  html.panels .mission-values p {
-    font-size: 10.5px;
-    line-height: 1.45;
-  }
-
   html.panels .gallery-grid {
-    grid-auto-rows: clamp(66px, 10vh, 104px);
-    gap: 8px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: clamp(46px, 8vh, 84px);
+    gap: 6px;
   }
 
   html.panels .gallery-footnote {
-    margin-top: 10px;
-    font-size: 9px;
+    margin-top: 6px;
+    font-size: 8px;
   }
 
-  html.panels .donate-aside {
-    margin-top: 14px;
-    font-size: 14px;
+  html.panels .donate-layout {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  html.panels .donate-intro .section-heading {
+    font-size: 26px;
   }
 
   html.panels .donate-intro > p:not(.eyebrow) {
-    font-size: 12px;
-    margin: 14px 0;
+    font-size: 10.5px;
+    margin: 6px 0;
+  }
+
+  html.panels .donate-aside {
+    display: none;
   }
 
   html.panels .donation-panel {
-    padding: 16px 20px;
+    padding: 10px 12px;
   }
 
   html.panels .field-label {
-    font-size: 10px;
-    margin-bottom: 5px;
+    font-size: 9px;
+    margin-bottom: 3px;
   }
 
   html.panels .donation-options {
-    gap: 4px;
-    margin-bottom: 10px;
+    gap: 3px;
+    margin-bottom: 8px;
   }
 
   html.panels .donation-option {
-    padding: 5px 8px;
-    font-size: 10.5px;
-    line-height: 1.35;
+    padding: 4px 6px;
+    font-size: 10px;
   }
 
   html.panels .donation-panel select,
   html.panels .amount-input {
-    min-height: 36px;
-    margin-bottom: 8px;
-    font-size: 12px;
+    min-height: 32px;
+    margin-bottom: 6px;
+    font-size: 11px;
   }
 
   html.panels .donation-total {
-    padding: 8px 0;
-    margin-bottom: 8px;
-    font-size: 11px;
-  }
-
-  html.panels .donation-total strong {
-    font-size: 22px;
-  }
-
-  html.panels .button {
-    min-height: 44px;
-    font-size: 11px;
-  }
-
-  html.panels .payment-note {
-    margin-top: 8px;
-    font-size: 9px;
-  }
-
-  html.panels .payment-feedback {
-    min-height: 0;
+    padding: 6px 0;
+    margin-bottom: 6px;
     font-size: 10px;
   }
 
+  html.panels .donation-total strong {
+    font-size: 18px;
+  }
+
+  html.panels .button {
+    min-height: 40px;
+    font-size: 10px;
+  }
+
+  html.panels .payment-note {
+    font-size: 8px;
+  }
+
+  html.panels .payment-feedback {
+    font-size: 9px;
+  }
+
   html.panels .contact-grid {
-    gap: 8%;
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
-  html.panels .site-footer {
-    flex: 0 0 auto;
-    padding: 10px 0;
+  html.panels .contact-details {
+    border: 0;
+    border-top: 1px solid #ffffff30;
+    padding: 10px 0 0;
   }
 
-  html.panels .brand-footer img {
-    width: 28px;
-    height: 28px;
+  html.panels .contact-details > div {
+    margin-bottom: 10px;
+  }
+
+  html.panels .contact-details a,
+  html.panels .contact-details p {
+    font-size: 12px;
+  }
+
+  html.panels .facebook-link {
+    padding-top: 8px;
+  }
+
+  html.panels .hero-feature {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+
+  html.panels .hero-media {
+    width: 72px;
+    height: 72px;
+    font-size: 20px;
+  }
+
+  html.panels .hero-media img {
+    max-width: 60px;
+    max-height: 46px;
+  }
+
+  html.panels .hero-body h3 {
+    font-size: 18px;
+  }
+
+  html.panels .hero-body p:not(.hero-type) {
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+
+  html.panels .heroes-intro > p:not(.eyebrow) {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+
+  /* Footer: brand + section controls only. */
+  html.panels .footer-inner {
+    justify-content: space-between;
+    gap: 8px;
   }
 
   html.panels .footer-inner p,
   html.panels .footer-inner > a:last-child {
+    display: none;
+  }
+
+  html.panels .brand-footer small {
+    display: none;
+  }
+
+  html.panels .brand-footer strong {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  /* Keep the footer to one row: logo mark + section controls. The wordmark
+     stays available to screen readers. */
+  html.panels .brand-footer span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+@media (max-width: 340px) {
+  html.panels .hero h1 {
+    font-size: 40px;
+  }
+
+  html.panels .hero-copy {
+    font-size: 12px;
+    margin: 10px 0 14px;
+  }
+
+  html.panels .story-image {
+    height: 90px;
+  }
+
+  html.panels .story-copy > p:not(.eyebrow) {
+    font-size: 9.5px;
+  }
+
+  html.panels .gallery-grid {
+    grid-auto-rows: 36px;
+  }
+
+  html.panels .project-card,
+  html.panels .project-feature {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  html.panels .project-photo,
+  html.panels .project-feature .project-photo {
+    min-height: 48px;
+  }
+
+  html.panels .project-content,
+  html.panels .project-feature .project-content {
+    padding: 3px 4px;
+  }
+
+  html.panels .project-heading h3 {
+    font-size: 11px;
+  }
+
+  html.panels .project-donate {
+    font-size: 7.5px;
+  }
+
+  html.panels .about-section .section-aside {
+    display: none;
+  }
+
+  html.panels .team-card > img {
+    width: 76px;
+    max-height: 96px;
+  }
+
+  html.panels .contact-grid .section-heading {
+    font-size: 22px;
+  }
+
+  html.panels .contact-details > div {
+    margin-bottom: 4px;
+  }
+
+  html.panels .donation-options {
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 6px;
+  }
+
+  html.panels .donation-option {
+    padding: 3px 4px;
     font-size: 9px;
   }
 
-  html.panels .floating-support {
+  html.panels .donation-panel {
+    padding: 8px;
+  }
+
+  html.panels .donation-panel select,
+  html.panels .amount-input {
+    min-height: 28px;
+    margin-bottom: 4px;
+    font-size: 10px;
+  }
+
+  html.panels .donation-total {
+    padding: 4px 0;
+    margin-bottom: 4px;
+  }
+
+  html.panels .donate-intro .section-heading {
+    font-size: 22px;
+  }
+
+  html.panels .donate-intro > p:not(.eyebrow) {
     display: none;
+  }
+
+  html.panels .button {
+    min-height: 36px;
+  }
+
+  html.panels .payment-note {
+    display: none;
+  }
+
+  html.panels .mission-values p {
+    display: none;
+  }
+
+  html.panels .team-card div > p:last-child {
+    -webkit-line-clamp: 1;
+  }
+
+  html.panels .contact-grid .button {
+    min-height: 36px;
   }
 }

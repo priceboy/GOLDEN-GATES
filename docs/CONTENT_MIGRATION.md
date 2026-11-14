@@ -2,7 +2,7 @@
 
 ## Story content restored
 
-The eight narrative chapters below were recovered from the unchanged `main` branch and reintroduced into the redesigned homepage. On mobile and tablets the story is a native horizontal scroll-snap sequence; on desktop horizontal-panel mode it becomes a fade deck so it does not nest a second horizontal scroller. Original chapter wording and image references were retained.
+The eight narrative chapters below were recovered from the unchanged `main` branch and reintroduced into the redesigned homepage. In panel mode it is a fade deck (one chapter at a time) so it does not nest a second horizontal scroller; without JavaScript the normal scrollable story remains. Original chapter wording and image references were retained.
 
 1. **The Gate of Hope** — In 2023, a dream took its first breath. Under the vision of our founder, our dedicated team set out on a mission:
    - Image: https://i.imgur.com/DolIePP.png

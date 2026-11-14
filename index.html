@@ -26,18 +26,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/tokens.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/base.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/layout.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/components.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/sections.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/responsive.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/panels.css?v=20261114c">
+<link rel="stylesheet" href="assets/css/tokens.css?v=20261114j">
+<link rel="stylesheet" href="assets/css/base.css?v=20261114j">
+<link rel="stylesheet" href="assets/css/layout.css?v=20261114j">
+<link rel="stylesheet" href="assets/css/components.css?v=20261114j">
+<link rel="stylesheet" href="assets/css/sections.css?v=20261114j">
+<link rel="stylesheet" href="assets/css/responsive.css?v=20261114j">
+<link rel="stylesheet" href="assets/css/panels.css?v=20261114j">
 <script>
   document.documentElement.classList.replace("no-js", "js");
-  if (window.matchMedia("(min-width: 1025px)").matches) {
-    document.documentElement.classList.add("panels");
-  }
+  document.documentElement.classList.add("panels");
 </script>
 <script type="application/ld+json">
 {
@@ -560,6 +558,11 @@
     </a>
     <p>© <span id="year"></span> Golden Gate Foundation. Bridging a brighter future.</p>
     <a href="mailto:info@goldengate-foumbot.org">Get in touch <span aria-hidden="true">↗</span></a>
+    <div class="panel-controls" role="group" aria-label="Section navigation">
+      <button type="button" class="panel-arrow" data-panel-prev aria-label="Previous section">←</button>
+      <span class="panel-counter" id="panel-counter" aria-live="polite">1 / 10</span>
+      <button type="button" class="panel-arrow" data-panel-next aria-label="Next section">→</button>
+    </div>
   </div>
 </footer>
 
@@ -593,6 +596,6 @@
 
 <a class="floating-support" href="#donate" aria-label="Support Golden Gate">Support <span aria-hidden="true">↗</span></a>
 
-<script type="module" src="assets/js/site.js?v=20261114c"></script>
+<script type="module" src="assets/js/site.js?v=20261114j"></script>
 </body>
 </html>

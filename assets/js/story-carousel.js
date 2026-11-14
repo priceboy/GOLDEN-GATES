@@ -4,10 +4,8 @@ const root = track?.closest(".story-section");
 const controls = root?.querySelectorAll("[data-story-direction]") ?? [];
 const autoplayToggle = root?.querySelector("[data-story-autoplay-toggle]");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const panelQuery = window.matchMedia("(min-width: 1025px)");
 
-const inPanelMode = () =>
-  panelQuery.matches && document.documentElement.classList.contains("panels");
+const inPanelMode = () => document.documentElement.classList.contains("panels");
 
 if (track && root) {
   const cards = [...track.querySelectorAll(".story-card")];

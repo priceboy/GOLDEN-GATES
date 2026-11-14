@@ -1,5 +1,5 @@
-import { PROJECTS } from "./data/projects.js?v=20261114c";
-import { PAYMENT } from "./data/payment.js?v=20261114c";
+import { PROJECTS } from "./data/projects.js?v=20261114j";
+import { PAYMENT } from "./data/payment.js?v=20261114j";
 
 const select = document.getElementById("donation-project");
 const options = document.getElementById("donation-options");
