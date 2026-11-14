@@ -64,6 +64,8 @@ if (track && root) {
       card.inert = !current;
       if (current) {
         card.removeAttribute("aria-hidden");
+        const image = card.querySelector(".story-image img");
+        if (image && image.loading === "lazy") image.loading = "eager";
       } else {
         card.setAttribute("aria-hidden", "true");
       }

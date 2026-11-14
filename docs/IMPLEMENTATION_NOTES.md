@@ -12,7 +12,7 @@ Branch: `redesign/modular-rebuild`
   native anchor links again.
 - Removed the `site.css` `@import` chain. The page now links the six stylesheets
   directly, so they load in parallel instead of one after another.
-- Added `?v=20261114j` cache keys to stylesheet and module URLs. Update the
+- Added `?v=20261114l` cache keys to stylesheet and module URLs. Update the
   version string when deploying CSS or JS changes.
 
 ### JavaScript
@@ -88,7 +88,12 @@ Branch: `redesign/modular-rebuild`
 - The floating Support CTA is hidden in panel mode; Support remains in the nav.
 - The story carousel becomes a fade deck (one card visible, arrows/keys/swipe,
   no nested horizontal scroller). The story track uses `touch-action: pan-y` so
-  a horizontal swipe changes chapters instead of scrolling the panel.
+  a horizontal swipe changes chapters instead of scrolling the panel. Cards are
+  stacked with the current card in normal flow, so the track takes the active
+  chapter's height instead of the tallest chapter's height (which previously
+  left a large empty block). From 601 px up the card is a two-column editorial
+  layout with the image left and copy right; phones stack image over copy. The
+  current chapter's image is switched to eager loading when it becomes active.
 - Without JavaScript the `panels` class is never added and the site remains the
   normal vertical document, including the scrollable mobile story.
 - Layout fit: all sections fit without internal scrolling at 375×800, 390×844,

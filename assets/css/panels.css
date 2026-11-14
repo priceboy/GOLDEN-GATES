@@ -213,6 +213,13 @@ html.panels .data-note {
   font-size: 9px;
 }
 
+html.panels .story-card {
+  background: var(--paper);
+  border: 1px solid #e5dfd3;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
 html.panels .story-image {
   height: clamp(130px, 20vh, 220px);
 }
@@ -242,16 +249,18 @@ html.panels .story-hint {
 }
 
 html.panels .story-track {
-  display: grid;
+  position: relative;
+  display: block;
+  width: 100%;
   overflow: visible;
   padding: 0;
   touch-action: pan-y;
 }
 
 html.panels .story-track > .story-card {
-  grid-area: 1 / 1;
-  flex: none;
-  width: auto;
+  position: absolute;
+  inset: 0;
+  width: 100%;
   min-width: 0;
   max-width: none;
   opacity: 0;
@@ -262,10 +271,39 @@ html.panels .story-track > .story-card {
 }
 
 html.panels .story-track > .story-card.is-current {
+  position: relative;
+  inset: auto;
   opacity: 1;
   visibility: visible;
   transform: none;
   pointer-events: auto;
+}
+
+/* Tablet and desktop: two-column editorial card. */
+@media (min-width: 601px) {
+  html.panels .story-card {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    height: clamp(330px, 50vh, 460px);
+  }
+
+  html.panels .story-image {
+    height: 100%;
+  }
+
+  html.panels .story-copy {
+    justify-content: center;
+    padding: clamp(20px, 2.5vw, 34px);
+    overflow-y: auto;
+  }
+
+  html.panels .story-copy h3 {
+    font-size: clamp(22px, 2vw, 30px);
+  }
+
+  html.panels .story-copy > p:not(.eyebrow) {
+    font-size: 12px;
+  }
 }
 
 html.panels .team-card > img {
