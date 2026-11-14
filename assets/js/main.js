@@ -1,7 +1,7 @@
-import "./navigation.js?v=20261114b";
-import "./donations.js?v=20261114b";
-import "./story-carousel.js?v=20261114b";
-import "./lightbox.js?v=20261114b";
+import "./navigation.js?v=20261114c";
+import "./donations.js?v=20261114c";
+import "./story-carousel.js?v=20261114c";
+import "./lightbox.js?v=20261114c";
 
 document.addEventListener("DOMContentLoaded", () => {
   const year = document.getElementById("year");

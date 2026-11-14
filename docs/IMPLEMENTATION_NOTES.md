@@ -12,7 +12,7 @@ Branch: `redesign/modular-rebuild`
   native anchor links again.
 - Removed the `site.css` `@import` chain. The page now links the six stylesheets
   directly, so they load in parallel instead of one after another.
-- Added `?v=20261114b` cache keys to stylesheet and module URLs. Update the
+- Added `?v=20261114c` cache keys to stylesheet and module URLs. Update the
   version string when deploying CSS or JS changes.
 
 ### JavaScript
@@ -66,6 +66,28 @@ Branch: `redesign/modular-rebuild`
 - Hero cards support both organisations (`<img>` in `.hero-media`, `alt=""`
   because the name is adjacent) and individuals (initials monogram, `.hero-type`
   set to "Supporter"). Publish only with written consent.
+
+### Horizontal section panels (desktop)
+
+- At 1025 px and above, `html.panels` turns `#main` into a horizontal,
+  scroll-snapped track: one full-height section per viewport. Vertical scrolling
+  inside a panel only happens when its content exceeds the screen.
+- Sections fade and slide in when active (`.container` opacity 0.35 → 1 plus a
+  14 px lift). Reduced-motion visitors get the state change without the motion.
+- Navigation supports mouse wheel (a vertical wheel advances panels unless the
+  panel is mid-scroll), trackpad horizontal scrolling, ArrowLeft/ArrowRight,
+  in-page links, hash deep links and browser back/forward via `pushState`.
+- Only the active panel is tabbable: inactive sections are `inert` and
+  `aria-hidden`. A thin gold progress bar shows the current position.
+- The floating Support CTA is hidden in panel mode; Support remains in the nav.
+- The story carousel becomes a fade deck in panel mode (one card visible,
+  arrows/keys/swipe, no nested horizontal scroller). Mobile keeps the horizontal
+  scroll-snap track.
+- Phones/tablets below 1025 px and no-JavaScript visits stay as the normal
+  vertical document; the `panels` class is never applied.
+- Panel content is compacted (image-left project rows, shorter gallery rows,
+  tighter donation form). At 1440×900, 1280×720 and 1025×768 every section fits
+  without internal scrolling; at 1280×600 the tallest panels scroll internally.
 
 ### Media
 
@@ -133,4 +155,9 @@ answered by an authorised foundation representative.
 - Responsive audit in an iframe at 320, 375, 430, 768, 900, 1000, 1024, 1041,
   1180 and 1440 px: no horizontal overflow, nav collapses at 1040 px, header
   never overflows, heroes switch to two columns above 1024 px.
+- Horizontal panel audit at 1440×900, 1280×720, 1025×768 and 1280×600: no
+  horizontal overflow; projects, story, gallery, about, donate, mission and
+  contact fit at the first three sizes; 1280×600 has small internal scrolling.
+- Panel interactions: nav click, wheel, ArrowRight, hash load, browser back,
+  progress bar, `inert` state, and story fade all verified in a 1440 px frame.
 - Lighthouse: 100 accessibility / 100 best practices / 100 SEO.

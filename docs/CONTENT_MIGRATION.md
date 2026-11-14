@@ -2,7 +2,7 @@
 
 ## Story content restored
 
-The eight narrative chapters below were recovered from the unchanged `main` branch and reintroduced into the redesigned homepage as a native, horizontally scrollable, touch-friendly story sequence. Original chapter wording and image references were retained.
+The eight narrative chapters below were recovered from the unchanged `main` branch and reintroduced into the redesigned homepage. On mobile and tablets the story is a native horizontal scroll-snap sequence; on desktop horizontal-panel mode it becomes a fade deck so it does not nest a second horizontal scroller. Original chapter wording and image references were retained.
 
 1. **The Gate of Hope** — In 2023, a dream took its first breath. Under the vision of our founder, our dedicated team set out on a mission:
    - Image: https://i.imgur.com/DolIePP.png
@@ -29,9 +29,13 @@ The eight narrative chapters below were recovered from the unchanged `main` bran
 - `assets/css/components.css`: reusable buttons, cards, form controls and dialogs.
 - `assets/css/sections.css`: page-section styling, including the restored story sequence.
 - `assets/css/responsive.css`: breakpoint and reduced-motion rules.
-- `assets/js/navigation.js`: responsive navigation behaviour.
+- `assets/css/panels.css`: desktop horizontal panel shell, compact panel layouts and fade transitions.
+- `assets/js/navigation.js`: responsive navigation, horizontal panel navigation and scroll position.
 - `assets/js/donations.js`: project selection, contribution calculations and payment-instruction dialog.
-- `assets/js/story-carousel.js`: story controls, horizontal scrolling and chapter status.
+- `assets/js/data/projects.js`: project task and price data.
+- `assets/js/data/payment.js`: payment configuration, gated behind a verification flag.
+- `assets/js/story-carousel.js`: story controls, fade/scroll behaviour and chapter status.
+- `assets/js/lightbox.js`: accessible gallery viewer for images and video.
 - `assets/js/main.js`: application entry point and module imports.
 - `assets/js/site.js`: small browser entry point imported by the HTML document.
 

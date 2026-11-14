@@ -4,6 +4,10 @@ const root = track?.closest(".story-section");
 const controls = root?.querySelectorAll("[data-story-direction]") ?? [];
 const autoplayToggle = root?.querySelector("[data-story-autoplay-toggle]");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const panelQuery = window.matchMedia("(min-width: 1025px)");
+
+const inPanelMode = () =>
+  panelQuery.matches && document.documentElement.classList.contains("panels");
 
 if (track && root) {
   const cards = [...track.querySelectorAll(".story-card")];
@@ -54,8 +58,31 @@ if (track && root) {
   const slideLeft = (card) =>
     card.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft;
 
-  const updateStatus = () => {
-    if (!cards.length) return;
+  const setPanelCard = (index) => {
+    activeIndex = (index + cards.length) % cards.length;
+    cards.forEach((card, i) => {
+      const current = i === activeIndex;
+      card.classList.toggle("is-current", current);
+      card.inert = !current;
+      if (current) {
+        card.removeAttribute("aria-hidden");
+      } else {
+        card.setAttribute("aria-hidden", "true");
+      }
+    });
+    renderStatus();
+  };
+
+  const clearPanelCard = () => {
+    cards.forEach((card) => {
+      card.classList.remove("is-current");
+      card.inert = false;
+      card.removeAttribute("aria-hidden");
+    });
+  };
+
+  const updateStatusFromScroll = () => {
+    if (!cards.length || inPanelMode()) return;
     const trackCenter = track.getBoundingClientRect().left + track.clientWidth / 2;
     let closestIndex = 0;
     let closestDistance = Infinity;
@@ -75,7 +102,14 @@ if (track && root) {
 
   const goTo = (requestedIndex) => {
     if (!cards.length) return;
-    activeIndex = (requestedIndex + cards.length) % cards.length;
+    const next = (requestedIndex + cards.length) % cards.length;
+
+    if (inPanelMode()) {
+      setPanelCard(next);
+      return;
+    }
+
+    activeIndex = next;
     track.scrollTo({
       left: slideLeft(cards[activeIndex]),
       behavior: reducedMotion.matches ? "auto" : "smooth",
@@ -128,10 +162,11 @@ if (track && root) {
   track.addEventListener(
     "scroll",
     () => {
+      if (inPanelMode()) return;
       if (scrollFrame !== null) cancelAnimationFrame(scrollFrame);
       scrollFrame = requestAnimationFrame(() => {
         scrollFrame = null;
-        updateStatus();
+        updateStatusFromScroll();
       });
     },
     { passive: true }
@@ -139,8 +174,43 @@ if (track && root) {
 
   track.addEventListener("pointerdown", pauseBrieflyForInteraction, { passive: true });
   track.addEventListener("wheel", pauseBrieflyForInteraction, { passive: true });
+
+  let swipeStart = null;
+
+  track.addEventListener(
+    "pointerdown",
+    (event) => {
+      if (inPanelMode()) swipeStart = event.clientX;
+    },
+    { passive: true }
+  );
+
+  track.addEventListener(
+    "pointerup",
+    (event) => {
+      if (!inPanelMode() || swipeStart === null) return;
+      const distance = event.clientX - swipeStart;
+      swipeStart = null;
+      if (Math.abs(distance) > 45) {
+        goTo(activeIndex + (distance < 0 ? 1 : -1));
+      }
+    },
+    { passive: true }
+  );
+
+  track.addEventListener("pointercancel", () => {
+    swipeStart = null;
+  });
+
   track.addEventListener("keydown", (event) => {
-    if (["ArrowLeft", "ArrowRight", "Home", "End", "PageUp", "PageDown"].includes(event.key)) {
+    if (
+      inPanelMode() &&
+      (event.key === "ArrowLeft" || event.key === "ArrowRight")
+    ) {
+      event.preventDefault();
+      pauseBrieflyForInteraction();
+      goTo(activeIndex + (event.key === "ArrowRight" ? 1 : -1));
+    } else if (["ArrowLeft", "ArrowRight", "Home", "End", "PageUp", "PageDown"].includes(event.key)) {
       pauseBrieflyForInteraction();
     }
   });
@@ -154,11 +224,26 @@ if (track && root) {
     "resize",
     () => {
       if (!cards.length) return;
+      if (inPanelMode()) {
+        setPanelCard(activeIndex);
+        return;
+      }
       track.scrollTo({ left: slideLeft(cards[activeIndex]), behavior: "auto" });
-      updateStatus();
+      updateStatusFromScroll();
     },
     { passive: true }
   );
+
+  window.addEventListener("panelmodechange", (event) => {
+    if (event.detail.enabled) {
+      setPanelCard(activeIndex);
+    } else {
+      clearPanelCard();
+      track.scrollTo({ left: slideLeft(cards[activeIndex]), behavior: "auto" });
+      updateStatusFromScroll();
+    }
+    renderStatus();
+  });
 
   /* Only run the slideshow while the story is actually on screen. */
   if ("IntersectionObserver" in window) {
@@ -166,8 +251,8 @@ if (track && root) {
       (entries) => {
         visible = entries.some((entry) => entry.isIntersecting);
         if (visible) {
-          updateStatus();
           scheduleAutoplay();
+          renderStatus();
         } else {
           clearAutoplay();
         }
@@ -180,6 +265,12 @@ if (track && root) {
     scheduleAutoplay();
   }
 
+  if (inPanelMode()) {
+    setPanelCard(0);
+  } else {
+    clearPanelCard();
+    updateStatusFromScroll();
+  }
+
   syncToggle();
-  updateStatus();
 }
