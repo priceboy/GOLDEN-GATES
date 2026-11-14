@@ -323,13 +323,23 @@ html.panels .team-card h3 {
   margin-bottom: 6px;
 }
 
-html.panels .team-card div > p:last-child {
+html.panels .team-card .team-bio {
   font-size: 11px;
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+html.panels .team-toggle {
+  display: inline-flex;
+}
+
+html.panels .team-card.is-expanded .team-bio {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
 }
 
 html.panels .mission-values {
@@ -868,7 +878,7 @@ html.panels .panel-counter {
     margin-bottom: 2px;
   }
 
-  html.panels .team-card div > p:last-child {
+  html.panels .team-card .team-bio {
     font-size: 9.5px;
     line-height: 1.35;
     -webkit-line-clamp: 2;
@@ -1177,7 +1187,7 @@ html.panels .panel-counter {
     display: none;
   }
 
-  html.panels .team-card div > p:last-child {
+  html.panels .team-card .team-bio {
     -webkit-line-clamp: 1;
   }
 

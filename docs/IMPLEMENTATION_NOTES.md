@@ -12,7 +12,7 @@ Branch: `redesign/modular-rebuild`
   native anchor links again.
 - Removed the `site.css` `@import` chain. The page now links the six stylesheets
   directly, so they load in parallel instead of one after another.
-- Added `?v=20261114l` cache keys to stylesheet and module URLs. Update the
+- Added `?v=20261114n` cache keys to stylesheet and module URLs. Update the
   version string when deploying CSS or JS changes.
 
 ### JavaScript
@@ -99,6 +99,11 @@ Branch: `redesign/modular-rebuild`
 - Layout fit: all sections fit without internal scrolling at 375×800, 390×844,
   430×932, 1024×768 and 1440×900; 768×900 has a 12 px overflow in donate, and
   320×568 has small internal scrolling in projects/contact/donate/story/gallery.
+
+- Team bios are clamped to four lines on tablet/desktop, two on phones and one
+  on the smallest screens. Each card has a "Read more" toggle
+  (`assets/js/team.js`) with `aria-expanded`; expanding removes the clamp and the
+  About panel scrolls if the card grows beyond the panel.
 
 ### Media
 

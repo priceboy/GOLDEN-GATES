@@ -220,10 +220,35 @@
   margin: 0 0 10px;
 }
 
-.team-card div > p:last-child {
+.team-card .team-bio {
   font-size: 12px;
   color: var(--muted);
   margin: 0;
+}
+
+.team-toggle {
+  display: none;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  padding: 7px 0 3px;
+  border: 0;
+  border-bottom: 1px solid #c9a45c;
+  background: none;
+  color: var(--gold-ink);
+  font: 700 10px var(--sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.team-toggle:hover {
+  color: var(--navy);
+}
+
+.team-toggle:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
 }
 
 .floating-support {

@@ -36,6 +36,7 @@ The eight narrative chapters below were recovered from the unchanged `main` bran
 - `assets/js/data/payment.js`: payment configuration, gated behind a verification flag.
 - `assets/js/story-carousel.js`: story controls, fade/scroll behaviour and chapter status.
 - `assets/js/lightbox.js`: accessible gallery viewer for images and video.
+- `assets/js/team.js`: expands and collapses the About team biographies.
 - `assets/js/main.js`: application entry point and module imports.
 - `assets/js/site.js`: small browser entry point imported by the HTML document.
 
