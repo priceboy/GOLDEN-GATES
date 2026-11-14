@@ -12,7 +12,7 @@ Branch: `redesign/modular-rebuild`
   native anchor links again.
 - Removed the `site.css` `@import` chain. The page now links the six stylesheets
   directly, so they load in parallel instead of one after another.
-- Added `?v=20261114` cache keys to stylesheet and module URLs. Update the
+- Added `?v=20261114b` cache keys to stylesheet and module URLs. Update the
   version string when deploying CSS or JS changes.
 
 ### JavaScript
@@ -46,6 +46,26 @@ Branch: `redesign/modular-rebuild`
   Cash App/Venmo handles.
 - Kept the inherited progress percentages, with the existing data note asking
   the foundation to review them. No figures were invented.
+
+### Our Heroes and UX polish
+
+- Added the `#heroes` spotlight between "Our story" and "Support": one
+  placeholder partner card (monogram, type label, name and one-sentence
+  description) plus a "Become a partner" link. The markup is static, needs no
+  JavaScript, and includes replacement instructions for an organisation logo or
+  an individual monogram.
+- Added "Our Heroes" to the primary navigation. The mobile-nav breakpoint moved
+  from 900 px to 1040 px so the ten-item bar cannot overflow; verified at
+  320–1440 px with no horizontal overflow. The open mobile menu scrolls
+  internally on short viewports.
+- The floating "Support" CTA now hides while the `#donate` section is on screen,
+  so the ask is not duplicated in the same viewport.
+- Section spacing uses a `--section-space` clamp, the hero height is capped at
+  `min(680px, 92vh)` (and 600/630 px on smaller screens), and body copy uses the
+  `--measure` token.
+- Hero cards support both organisations (`<img>` in `.hero-media`, `alt=""`
+  because the name is adjacent) and individuals (initials monogram, `.hero-type`
+  set to "Supporter"). Publish only with written consent.
 
 ### Media
 
@@ -97,6 +117,9 @@ answered by an authorised foundation representative.
 6. **Domain assets.** The Open Graph image uses
    `https://goldengate-foumbot.org/assets/images/hero-gate-of-hope.jpg`; verify
    the production URL resolves once deployed.
+7. **Our Heroes.** Replace the placeholder name, type and sentence; confirm the
+   hero approves the logo/name/sentence and that consent is on file. The
+   placeholder is marked with a comment in `index.html`.
 
 ## Verification performed
 
@@ -107,4 +130,7 @@ answered by an authorised foundation representative.
 - Lightbox: image, next, video embed, close.
 - Mobile menu: open/close, `aria-expanded`, closes on link selection.
 - Story: autoplay advances only when visible, pause/play, arrows.
+- Responsive audit in an iframe at 320, 375, 430, 768, 900, 1000, 1024, 1041,
+  1180 and 1440 px: no horizontal overflow, nav collapses at 1040 px, header
+  never overflows, heroes switch to two columns above 1024 px.
 - Lighthouse: 100 accessibility / 100 best practices / 100 SEO.

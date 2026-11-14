@@ -106,3 +106,26 @@ document.addEventListener("click", (event) => {
   target.setAttribute("tabindex", "-1");
   requestAnimationFrame(() => target.focus({ preventScroll: true }));
 });
+
+/* Hide the floating support CTA while the support section is on screen. */
+const floatingSupport = document.querySelector(".floating-support");
+const donateSection = document.getElementById("donate");
+
+if (floatingSupport && donateSection && "IntersectionObserver" in window) {
+  const setFloatingHidden = (hidden) => {
+    floatingSupport.classList.toggle("is-hidden", hidden);
+    floatingSupport.tabIndex = hidden ? -1 : 0;
+    if (hidden) {
+      floatingSupport.setAttribute("aria-hidden", "true");
+    } else {
+      floatingSupport.removeAttribute("aria-hidden");
+    }
+  };
+
+  const supportObserver = new IntersectionObserver(
+    ([entry]) => setFloatingHidden(entry.isIntersecting),
+    { threshold: 0.2 }
+  );
+
+  supportObserver.observe(donateSection);
+}

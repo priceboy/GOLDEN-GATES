@@ -13,4 +13,6 @@
   --width: 1180px;
   --card-radius: 18px;
   --header-height: 80px;
+  --section-space: clamp(72px, 9vw, 120px);
+  --measure: 62ch;
 }

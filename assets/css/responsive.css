@@ -1,12 +1,4 @@
 @media (max-width: 1000px) {
-  .primary-nav {
-    gap: 10px;
-  }
-
-  .primary-nav a {
-    font-size: 11px;
-  }
-
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -15,8 +7,9 @@
     grid-column: span 2;
   }
 
-  .section-pad {
-    padding: 85px 0;
+  .heroes-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
 
   .impact-inner {
@@ -29,13 +22,9 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1040px) {
   :root {
     --header-height: 70px;
-  }
-
-  .container {
-    width: calc(100% - 36px);
   }
 
   .header-inner {
@@ -52,6 +41,8 @@
     top: var(--header-height);
     left: 0;
     right: 0;
+    max-height: calc(100vh - var(--header-height));
+    overflow-y: auto;
     background: var(--deep);
     padding: 12px 22px 20px;
     align-items: stretch;
@@ -102,9 +93,15 @@
   html:not(.js) .primary-nav a {
     border-bottom: 1px solid #ffffff18;
   }
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: calc(100% - 36px);
+  }
 
   .hero {
-    min-height: 630px;
+    min-height: min(630px, 92vh);
   }
 
   .hero-content {
@@ -113,10 +110,6 @@
 
   .hero h1 {
     font-size: clamp(50px, 11vw, 75px);
-  }
-
-  .section-pad {
-    padding: 72px 0;
   }
 
   .intro-grid,
@@ -266,7 +259,7 @@
 
 @media (max-width: 440px) {
   .hero {
-    min-height: 600px;
+    min-height: min(600px, 92vh);
   }
 
   .hero h1 {
@@ -277,6 +270,21 @@
     align-items: flex-start;
     flex-direction: column;
     gap: 17px;
+  }
+
+  .hero-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-media {
+    width: 88px;
+    height: 88px;
+    font-size: 24px;
+  }
+
+  .hero-media img {
+    max-width: 72px;
+    max-height: 56px;
   }
 
   .project-grid,
