@@ -12,7 +12,7 @@ Branch: `redesign/modular-rebuild`
   native anchor links again.
 - Removed the `site.css` `@import` chain. The page now links the six stylesheets
   directly, so they load in parallel instead of one after another.
-- Added `?v=20261114p` cache keys to stylesheet and module URLs. Update the
+- Added `?v=20261114s` cache keys to stylesheet and module URLs. Update the
   version string when deploying CSS or JS changes.
 
 ### JavaScript
@@ -47,25 +47,25 @@ Branch: `redesign/modular-rebuild`
 - Kept the inherited progress percentages, with the existing data note asking
   the foundation to review them. No figures were invented.
 
-### Our Heroes and UX polish
+### Our Partners and UX polish
 
-- Added the `#heroes` spotlight between "Our story" and "Support": one
-  placeholder partner card (monogram, type label, name and one-sentence
-  description) plus a "Become a partner" link. The markup is static, needs no
-  JavaScript, and includes replacement instructions for an organisation logo or
-  an individual monogram.
-- Added "Our Heroes" to the primary navigation. The mobile-nav breakpoint moved
-  from 900 px to 1040 px so the ten-item bar cannot overflow; verified at
-  320–1440 px with no horizontal overflow. The open mobile menu scrolls
-  internally on short viewports.
+- Added a `#partners` block inside About, after mission/vision/values: heading
+  "Our partners", one placeholder partner card (monogram, type label, name and
+  one-sentence description) plus a "Become a partner" link. The standalone
+  `#heroes` panel was removed; the deck now has nine sections.
+- Added "Our Partners" to the primary navigation. It opens the About panel and
+  scrolls inside it to `#partners`; deep links and back/forward use the same
+  logic. The mobile-nav breakpoint moved from 900 px to 1040 px so the ten-item
+  bar cannot overflow; verified at 320–1440 px with no horizontal overflow. The
+  open mobile menu scrolls internally on short viewports.
 - The floating "Support" CTA now hides while the `#donate` section is on screen,
   so the ask is not duplicated in the same viewport.
 - Section spacing uses a `--section-space` clamp, the hero height is capped at
   `min(680px, 92vh)` (and 600/630 px on smaller screens), and body copy uses the
   `--measure` token.
-- Hero cards support both organisations (`<img>` in `.hero-media`, `alt=""`
-  because the name is adjacent) and individuals (initials monogram, `.hero-type`
-  set to "Supporter"). Publish only with written consent.
+- Partner cards support both organisations (`<img>` in `.partner-media`,
+  `alt=""` because the name is adjacent) and individuals (initials monogram,
+  `.partner-type` set to "Supporter"). Publish only with written consent.
 
 ### Horizontal section panels (all widths)
 
@@ -158,8 +158,8 @@ answered by an authorised foundation representative.
 6. **Domain assets.** The Open Graph image uses
    `https://goldengate-foumbot.org/assets/images/hero-gate-of-hope.jpg`; verify
    the production URL resolves once deployed.
-7. **Our Heroes.** Replace the placeholder name, type and sentence; confirm the
-   hero approves the logo/name/sentence and that consent is on file. The
+7. **Our Partners.** Replace the placeholder name, type and sentence; confirm the
+   partner approves the logo/name/sentence and that consent is on file. The
    placeholder is marked with a comment in `index.html`.
 
 ## Verification performed
@@ -173,7 +173,7 @@ answered by an authorised foundation representative.
 - Story: autoplay advances only when visible, pause/play, arrows.
 - Responsive audit in an iframe at 320, 375, 430, 768, 900, 1000, 1024, 1041,
   1180 and 1440 px: no horizontal overflow, nav collapses at 1040 px, header
-  never overflows, heroes switch to two columns above 1024 px.
+  never overflows, and the partners layout switches to two columns above 1000 px.
 - Horizontal panel audit at 1440×900, 1280×720, 1025×768 and 1280×600: no
   horizontal overflow; projects, story, gallery, about, donate, mission and
   contact fit at the first three sizes; 1280×600 has small internal scrolling.

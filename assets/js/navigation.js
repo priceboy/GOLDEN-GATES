@@ -168,6 +168,32 @@ const goToPanel = (index, behavior = "smooth") => {
 prevPanel?.addEventListener("click", () => goToPanel(currentIndex - 1));
 nextPanel?.addEventListener("click", () => goToPanel(currentIndex + 1));
 
+const scrollPanelToTarget = (panel, target, behavior = "smooth") => {
+  if (!panel) return;
+  if (!target || target === panel) {
+    panel.scrollTo({ top: 0, behavior });
+    return;
+  }
+  const top =
+    target.getBoundingClientRect().top - panel.getBoundingClientRect().top + panel.scrollTop;
+  panel.scrollTo({ top, behavior });
+};
+
+const targetFromHash = () => {
+  const id = location.hash.replace(/^#/, "");
+  if (!id) return { target: null, section: null, index: -1 };
+
+  let target;
+  try {
+    target = document.getElementById(decodeURIComponent(id));
+  } catch {
+    return { target: null, section: null, index: -1 };
+  }
+
+  const section = target?.closest("section") || null;
+  return { target, section, index: section ? sections.indexOf(section) : -1 };
+};
+
 const applyMode = () => {
   if (!sections.length) return;
 
@@ -175,12 +201,15 @@ const applyMode = () => {
   root.classList.toggle("panels", panelMode);
 
   if (panelMode) {
-    const hashId = location.hash.replace("#", "");
-    const hashIndex = sections.findIndex((section) => section.id === hashId);
-    const index = hashIndex >= 0 ? hashIndex : 0;
+    const { target, section, index } = targetFromHash();
+    const panelIndex = index >= 0 ? index : 0;
 
-    setTrackScroll(panelOffset(sections[index]), "auto");
-    setActivePanel(index);
+    setTrackScroll(panelOffset(sections[panelIndex]), "auto");
+    setActivePanel(panelIndex);
+
+    if (target && section) {
+      scrollPanelToTarget(section, target, "auto");
+    }
   } else {
     sections.forEach((section) => {
       section.inert = false;
@@ -284,13 +313,7 @@ document.addEventListener("click", (event) => {
       history.pushState(null, "", hash);
     }
 
-    if (target !== panel) {
-      requestAnimationFrame(() => {
-        const top =
-          target.getBoundingClientRect().top - panel.getBoundingClientRect().top + panel.scrollTop;
-        panel.scrollTo({ top, behavior: reducedMotion.matches ? "auto" : "smooth" });
-      });
-    }
+    scrollPanelToTarget(panel, target, "auto");
   }
 
   target.setAttribute("tabindex", "-1");
@@ -299,9 +322,9 @@ document.addEventListener("click", (event) => {
 
 window.addEventListener("popstate", () => {
   if (!panelMode) return;
-  const id = location.hash.slice(1);
-  const index = sections.findIndex((section) => section.id === id);
+  const { target, section, index } = targetFromHash();
   goToPanel(index >= 0 ? index : 0, "auto");
+  if (section) scrollPanelToTarget(section, target, "auto");
 });
 
 window.addEventListener(

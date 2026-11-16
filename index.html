@@ -26,13 +26,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/tokens.css?v=20261114p">
-<link rel="stylesheet" href="assets/css/base.css?v=20261114p">
-<link rel="stylesheet" href="assets/css/layout.css?v=20261114p">
-<link rel="stylesheet" href="assets/css/components.css?v=20261114p">
-<link rel="stylesheet" href="assets/css/sections.css?v=20261114p">
-<link rel="stylesheet" href="assets/css/responsive.css?v=20261114p">
-<link rel="stylesheet" href="assets/css/panels.css?v=20261114p">
+<link rel="stylesheet" href="assets/css/tokens.css?v=20261114s">
+<link rel="stylesheet" href="assets/css/base.css?v=20261114s">
+<link rel="stylesheet" href="assets/css/layout.css?v=20261114s">
+<link rel="stylesheet" href="assets/css/components.css?v=20261114s">
+<link rel="stylesheet" href="assets/css/sections.css?v=20261114s">
+<link rel="stylesheet" href="assets/css/responsive.css?v=20261114s">
+<link rel="stylesheet" href="assets/css/panels.css?v=20261114s">
 <script>
   document.documentElement.classList.replace("no-js", "js");
   document.documentElement.classList.add("panels");
@@ -74,7 +74,7 @@
       <a href="#mission">Mission</a>
       <a href="#projects">Our work</a>
       <a href="#story">Our story</a>
-      <a href="#heroes">Our Heroes</a>
+      <a href="#partners">Our Partners</a>
       <a href="#about">About</a>
       <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
@@ -358,35 +358,6 @@
     </div>
   </section>
 
-  <section class="heroes-section section-pad" id="heroes" aria-labelledby="heroes-title">
-    <div class="container heroes-layout">
-      <div class="heroes-intro">
-        <p class="eyebrow">WITH GRATITUDE</p>
-        <h2 id="heroes-title" class="section-heading">Our <em>Heroes</em></h2>
-        <p>The partners and people who turn generosity into classrooms, water and opportunity.</p>
-        <a class="text-link" href="#contact">Become a partner <span aria-hidden="true">↗</span></a>
-      </div>
-
-      <!-- OUR HEROES PLACEHOLDER — replace before launch.
-           Organisation: replace the initials below with
-             <img src="assets/images/partner-logo.svg" alt=""> inside .hero-media.
-           Individual: keep the monogram (initials), change .hero-type to "Supporter",
-             and only publish a portrait or name with written consent.
-           Keep the description under 25 words. Do not publish donation amounts. -->
-      <article class="hero-feature">
-        <div class="hero-media" aria-hidden="true"><span>PN</span></div>
-        <div class="hero-body">
-          <p class="hero-type">Partner</p>
-          <h3>Partner name</h3>
-          <p>Replace this sentence with a short description of how this partner supports Golden Gate.</p>
-          <!-- Optional partner link:
-          <a class="text-link" href="https://example.org" target="_blank" rel="noopener noreferrer">Visit partner <span aria-hidden="true">↗</span></a>
-          -->
-        </div>
-      </article>
-    </div>
-  </section>
-
   <section class="donate-section section-pad" id="donate">
     <div class="container donate-layout">
       <div class="donate-intro">
@@ -476,6 +447,35 @@
         <article><span>02</span><h3>Our vision</h3><p>An educational hub that empowers every learner to overcome challenges, thrive and create a brighter future, regardless of circumstance.</p></article>
         <article><span>03</span><h3>Our values</h3><p>Honesty, integrity and respect. We foster trust, embrace fairness and honour the contributions of every member of our community.</p></article>
       </div>
+
+      <div class="partners-block" id="partners" aria-labelledby="partners-title">
+        <div class="partners-layout">
+          <div class="partners-intro">
+            <p class="eyebrow">WITH GRATITUDE</p>
+            <h2 id="partners-title" class="section-heading">Our <em>partners</em></h2>
+            <p>The partners and people who turn generosity into classrooms, water and opportunity.</p>
+            <a class="text-link" href="#contact">Become a partner <span aria-hidden="true">↗</span></a>
+          </div>
+
+          <!-- OUR PARTNERS PLACEHOLDER — replace before launch.
+               Organisation: replace the initials below with
+                 <img src="assets/images/partner-logo.svg" alt=""> inside .partner-media.
+               Individual: keep the monogram (initials), change .partner-type to "Supporter",
+                 and only publish a portrait or name with written consent.
+               Keep the description under 25 words. Do not publish donation amounts. -->
+          <article class="partner-card">
+            <div class="partner-media" aria-hidden="true"><span>PN</span></div>
+            <div class="partner-body">
+              <p class="partner-type">Partner</p>
+              <h3>Partner name</h3>
+              <p>Replace this sentence with a short description of how this partner supports Golden Gate.</p>
+              <!-- Optional partner link:
+              <a class="text-link" href="https://example.org" target="_blank" rel="noopener noreferrer">Visit partner <span aria-hidden="true">↗</span></a>
+              -->
+            </div>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -563,7 +563,7 @@
     <a href="mailto:info@goldengate-foumbot.org">Get in touch <span aria-hidden="true">↗</span></a>
     <div class="panel-controls" role="group" aria-label="Section navigation">
       <button type="button" class="panel-arrow" data-panel-prev aria-label="Previous section">←</button>
-      <span class="panel-counter" id="panel-counter" aria-live="polite">1 / 10</span>
+      <span class="panel-counter" id="panel-counter" aria-live="polite">1 / 9</span>
       <button type="button" class="panel-arrow" data-panel-next aria-label="Next section">→</button>
     </div>
   </div>
@@ -599,6 +599,6 @@
 
 <a class="floating-support" href="#donate" aria-label="Support Golden Gate">Support <span aria-hidden="true">↗</span></a>
 
-<script type="module" src="assets/js/site.js?v=20261114p"></script>
+<script type="module" src="assets/js/site.js?v=20261114s"></script>
 </body>
 </html>

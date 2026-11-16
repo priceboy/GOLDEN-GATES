@@ -7,7 +7,7 @@
     grid-column: span 2;
   }
 
-  .heroes-layout {
+  .partners-layout {
     grid-template-columns: 1fr;
     gap: 28px;
   }
@@ -272,17 +272,17 @@
     gap: 17px;
   }
 
-  .hero-feature {
+  .partner-card {
     grid-template-columns: 1fr;
   }
 
-  .hero-media {
+  .partner-media {
     width: 88px;
     height: 88px;
     font-size: 24px;
   }
 
-  .hero-media img {
+  .partner-media img {
     max-width: 72px;
     max-height: 56px;
   }

@@ -359,6 +359,38 @@ html.panels .mission-values p {
   line-height: 1.45;
 }
 
+html.panels .partners-block {
+  margin-top: 14px;
+  padding-top: 12px;
+}
+
+html.panels .partners-layout {
+  gap: 24px;
+}
+
+html.panels .partners-intro .section-heading {
+  font-size: clamp(24px, 2.6vw, 34px);
+}
+
+html.panels .partner-card {
+  padding: 16px;
+}
+
+html.panels .partner-media {
+  width: 96px;
+  height: 96px;
+  font-size: 24px;
+}
+
+html.panels .partner-body h3 {
+  font-size: 20px;
+}
+
+html.panels .partner-body p:not(.partner-type) {
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
 html.panels .gallery-grid {
   grid-auto-rows: clamp(66px, 10vh, 104px);
   gap: 8px;
@@ -1018,33 +1050,33 @@ html.panels .panel-counter {
     padding-top: 8px;
   }
 
-  html.panels .hero-feature {
+  html.panels .partner-card {
     grid-template-columns: 72px minmax(0, 1fr);
     gap: 12px;
     padding: 12px;
   }
 
-  html.panels .hero-media {
+  html.panels .partner-media {
     width: 72px;
     height: 72px;
     font-size: 20px;
   }
 
-  html.panels .hero-media img {
+  html.panels .partner-media img {
     max-width: 60px;
     max-height: 46px;
   }
 
-  html.panels .hero-body h3 {
+  html.panels .partner-body h3 {
     font-size: 18px;
   }
 
-  html.panels .hero-body p:not(.hero-type) {
+  html.panels .partner-body p:not(.partner-type) {
     font-size: 10px;
     margin-bottom: 8px;
   }
 
-  html.panels .heroes-intro > p:not(.eyebrow) {
+  html.panels .partners-intro > p:not(.eyebrow) {
     font-size: 11px;
     margin-bottom: 8px;
   }
